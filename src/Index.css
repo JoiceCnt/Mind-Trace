@@ -12,3 +12,11 @@
   color: white;
   border-radius: 8px;
 }
+
+.nav {
+  background-color: #E0E0E0;
+  height: 10vh;
+}
+.logo {
+  height: 75px;
+}
