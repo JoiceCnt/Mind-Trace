@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./index.css";
+import "./App.css";
 import Calendar from "react-calendar";
 import { Routes, Route } from 'react-router-dom';
 import { Link } from "react-router-dom";

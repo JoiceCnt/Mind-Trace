@@ -1,11 +1,18 @@
-import React from 'react'
-
-const Footer = () => {
-  return (
-    <div>
-      Footer
-    </div>
-  )
+function Footer() {
+    return (
+        <footer>
+            <p>
+                View the source code on{" "}    
+                <a
+                    href="https://github.com/JoiceCnt/Mind-Trace"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <strong>GitHub</strong>
+                </a>.
+            </p>
+        </footer>
+    );
 }
 
-export default Footer
+export default Footer;
