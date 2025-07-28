@@ -1,20 +1,19 @@
-import { useState } from "react";
-import "./index.css";
-import Calendar from "react-calendar";
-
-import "react-calendar/dist/Calendar.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Pages/Home";
+import CustomCalendar from "./Pages/CustomCalendar.jsx";
+import PatientLogin from "./Pages/PatientLogin.jsx";
+import ProfessionalLogin from "./Pages/ProfessionalLogin.jsx";
 
 function App() {
-  const [selectedDate, setSelectedDate] = useState(new Date());
-
   return (
-    <>
-      <div>
-        <h2>Calendar</h2>
-        <Calendar onChange={setSelectedDate} value={selectedDate} />
-        <p>Daily Secctions {selectedDate.toDateString()}</p>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/calendar" element={<CustomCalendar />} />
+        <Route path="/login/patient" element={<PatientLogin />} />
+        <Route path="/login/professional" element={<ProfessionalLogin />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -10,4 +10,4 @@ const CustomCalendar = () => {
   );
 };
 
-export default Calendar;
+export default CustomCalendar;
