@@ -3,17 +3,45 @@ import Home from "./Pages/Home";
 import CustomCalendar from "./Pages/CustomCalendar.jsx";
 import PatientLogin from "./Pages/PatientLogin.jsx";
 import ProfessionalLogin from "./Pages/ProfessionalLogin.jsx";
+import { useState } from "react";
+import "./App.css";
+import Calendar from "react-calendar";
+import { Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+import "react-calendar/dist/Calendar.css";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/calendar" element={<CustomCalendar />} />
-        <Route path="/login/patient" element={<PatientLogin />} />
-        <Route path="/login/professional" element={<ProfessionalLogin />} />
-      </Routes>
-    </Router>
+    <>
+      <div>
+        <Navbar />
+
+        <h2>Calendar</h2>
+        <Calendar onChange={setSelectedDate} value={selectedDate} />
+        <p>Daily Secctions {selectedDate.toDateString()}</p>
+
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div>
+                <h1>Select the option below to login:</h1>
+                <Link to="/emotion-selector">
+                  <button>Patient</button>
+                </Link>
+              </div>
+            }
+          />
+          <Route path="/emotion-selector" element={<EmotionSelectorPage />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </>
   );
 }
 
