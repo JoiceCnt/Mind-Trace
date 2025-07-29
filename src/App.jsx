@@ -1,47 +1,31 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
-import CustomCalendar from "./Pages/CustomCalendar.jsx";
-import PatientLogin from "./Pages/PatientLogin.jsx";
-import ProfessionalLogin from "./Pages/ProfessionalLogin.jsx";
-import { useState } from "react";
-import "./App.css";
-import Calendar from "react-calendar";
-import { Routes, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-import "react-calendar/dist/Calendar.css";
+import Home from "./Pages/Home.jsx";
+import "../src/Styles/App.css";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
+import { Routes, Route } from "react-router-dom";
 import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
+import PatientLogin from "./Pages/PatientLogin";
+import EmotionLog from "./Pages/EmotionLog.jsx";
+import CustomCalendar from "./Pages/CustomCalendar.jsx";
 
 function App() {
   return (
-    <>
-      <div>
-        <Navbar />
-
-        <h2>Calendar</h2>
-        <Calendar onChange={setSelectedDate} value={selectedDate} />
-        <p>Daily Secctions {selectedDate.toDateString()}</p>
-
+    <div>
+      <Navbar />
+      <div className="app-container">
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route
-            path="/"
-            element={
-              <div>
-                <h1>Select the option below to login:</h1>
-                <Link to="/emotion-selector">
-                  <button>Patient</button>
-                </Link>
-              </div>
-            }
+            path="/EmotionSelectorPage"
+            element={<EmotionSelectorPage />}
           />
-          <Route path="/emotion-selector" element={<EmotionSelectorPage />} />
+          <Route path="/login/patient" element={<PatientLogin />} />
+          <Route path="/emotion-log" element={<EmotionLog />} />
+          <Route path="/Calendar" element={<CustomCalendar />} />
         </Routes>
-
-        <Footer />
       </div>
-    </>
+      <Footer />
+    </div>
   );
 }
 

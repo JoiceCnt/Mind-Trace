@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import MindTraceLogo from "../assets/MindTrace_ logo.png";
+import MindTraceLogo from "../assets/logo.png";
 
 function Home() {
   return (

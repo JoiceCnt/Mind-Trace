@@ -1,0 +1,106 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/*=== CONTAINER ===*/
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 93vh;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* ===NAVBAR=== */
+.navbar {
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===FOOTER=== */
+.footer {
+  background-color: #e0e0e0;
+  padding: 10px 20px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+/*=== EMOJI GRID=== */
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  padding: 40px;
+  justify-items: center; /* novo */
+}
+
+/*===EMOJI CARD === */
+.emoji-card {
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.emoji-card:hover,
+.emoji-card.selected {
+  border: 2px solid #a8d5ba;
+  background-color: #e0f2f0;
+  transform: scale(1.05);
+}
+
+/* === EMOJI IMAGE=== */
+.emoji-card img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+/*=== PROMPT TEXT ===*/
+.prompt {
+  margin-top: 20px;
+  font-style: italic;
+  color: #555;
+  text-align: center;
+}
+
+/* ===LOGO ===*/
+.logo {
+  height: 60px;
+}
+
+/* ===PAGE CONTAINER=== 
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}*/
+.calendar-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  width: 100%;
+}

@@ -1,0 +1,43 @@
+/*======EMOTION SELECTOR PAGE=====*/
+.emotion-selector-page {
+  padding: 12vh 2rem 12vh; /* espaço para navbar e footer */
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 colunas fixas */
+  gap: 24px;
+  max-width: 900px;
+  margin: 2rem auto;
+  justify-items: center;
+}
+.emoji-card {
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.emoji-card:hover {
+  transform: scale(1.05);
+}
+
+.emoji-card.selected {
+  border: 2px dashed #7986cb;
+  background-color: #e3f2fd;
+}
+
+.emoji {
+  font-size: 2.5rem;
+}
+
+.emoji-label {
+  margin-top: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}

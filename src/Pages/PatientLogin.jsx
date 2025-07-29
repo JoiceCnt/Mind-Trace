@@ -13,7 +13,7 @@ function PatientLogin() {
     setLogged(true);
 
     setTimeout(() => {
-      navigate("/calendar"); // definir a que página vamos a redireccionar el usuario
+      navigate("/EmotionSelectorPage"); // definir a que página vamos a redireccionar el usuario
     }, 1000);
   };
 

@@ -1,13 +1,17 @@
-import React from "react";
 import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import { useState } from "react";
 
-const CustomCalendar = () => {
+function CustomCalendar() {
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   return (
-    <div>
+    <div className="calendar-container">
       <h2>Calendar</h2>
-      <Calendar />
+      <Calendar onChange={setSelectedDate} value={selectedDate} />
+      <p>Daily Sections {selectedDate.toDateString()}</p>
     </div>
   );
-};
+}
 
 export default CustomCalendar;
