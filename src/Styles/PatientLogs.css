@@ -1,0 +1,68 @@
+.logs-container {
+  text-align: center;
+  padding: 30px;
+}
+
+.logs-header {
+  margin-bottom: 20px;
+}
+
+.logs-header input {
+  margin: 5px;
+  padding: 5px;
+}
+
+.logs-header button {
+  padding: 6px 15px;
+  margin-left: 10px;
+}
+
+.log-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.log-item {
+  display: flex;
+  align-items: center;
+  background-color: #e0e0e0;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 700px;
+  justify-content: flex-start;
+}
+
+.log-emoji {
+  font-size: 28px;
+  width: 40px;
+  height: 40px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.log-date {
+  background-color: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-right: 10px;
+  font-size: 14px;
+  min-width: 100px;
+  text-align: center;
+}
+
+.log-description {
+  text-align: left;
+}
+
+.logs-footer {
+  margin-top: 40px;
+  font-size: 12px;
+  color: gray;
+}
