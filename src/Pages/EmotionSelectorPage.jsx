@@ -32,6 +32,7 @@ const EmotionSelectorPage = () => {
   return (
     <div className="emotion-selector-page">
       <h2>How are you feeling today?</h2>
+
       <div className="emoji-grid">
         {emotions.map((emotion) => (
           <div

@@ -12,9 +12,9 @@ import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
 
 function App() {
   return (
-    <div>
+    <div className="app-container">
       <Navbar />
-      <div className="app-container">
+      <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

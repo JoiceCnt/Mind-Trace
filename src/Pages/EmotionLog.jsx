@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../Styles/EmotionLog.css";
 
 function EmotionLog() {
   const location = useLocation();
@@ -36,13 +37,13 @@ function EmotionLog() {
       </div>
 
       <textarea
-        placeholder="Use this space to write about your feelings"
-        value={text}
-        maxLength={100}
-        onChange={(e) => setText(e.target.value)}
         className="emotion-textarea"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Use this space to write about your feelings"
+        maxLength={50}
       />
-      <p className="char-count">{text.length}/100</p>
+      <p className="char-count">{text.length}/50</p>
 
       <button className="submit-button" onClick={handleSubmit}>
         Submit

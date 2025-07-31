@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./../Styles/PatientLogs.css"; // Importa o CSS externo
+import "./../Styles/PatientLogs.css";
 
 function PatientLogs() {
   const [logs, setLogs] = useState([]);
@@ -7,7 +7,7 @@ function PatientLogs() {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
 
-  const patientId = "patient_5"; // substitua no futuro por localStorage
+  const patientId = "patient_5"; // simulating patient 5
 
   // load the logs
   useEffect(() => {
@@ -36,7 +36,6 @@ function PatientLogs() {
     <div className="logs-container">
       <h2>History</h2>
 
-      {/* Filtro de datas */}
       <div className="logs-header">
         <input
           type="date"
@@ -51,7 +50,6 @@ function PatientLogs() {
         <button onClick={handleFilter}>Filter</button>
       </div>
 
-      {/* Lista de logs */}
       <div className="log-list">
         {filteredLogs.map((log) => (
           <div key={log.id} className="log-item">
@@ -61,14 +59,6 @@ function PatientLogs() {
           </div>
         ))}
       </div>
-
-      {/* Rodapé */}
-      <footer className="logs-footer">
-        <p>
-          © 2025 MindTrace &nbsp; | &nbsp; Terms of Use &nbsp; | &nbsp; Contact
-          Support &nbsp; | &nbsp; Privacy Policy
-        </p>
-      </footer>
     </div>
   );
 }
