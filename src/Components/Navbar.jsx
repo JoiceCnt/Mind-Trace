@@ -35,7 +35,7 @@ const Navbar = () => {
   const isProfessional = location.pathname.includes("/professional");
   const isHomePage = location.pathname === "/";
 
-  const showMenuButton = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar | editProfile;
+  const showMenuButton = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile;
 
   const navbarBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
   const buttonBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
