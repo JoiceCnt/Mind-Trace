@@ -1,14 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../Styles/App.css";
 
 const DropdownMenu = ({ handleLogout, menuRef, dropdownBgColor }) => {
-    return (
+  const navigate = useNavigate();
+
+  const goToPatientLogs = () => {
+    navigate("/patient/Logs");
+  }
+  
+  return (
         <div className="dropdown-menu" ref={menuRef} style={{ backgroundColor: dropdownBgColor }}>
             <label className="dropdown-title">Select the option ▼</label>
             <ul className="dropdown-list">
-              <li>Check your history</li>
-              <li>Edit profile</li>
-              <li>Appointments</li>
+              <li onClick={goToPatientLogs}>Check your history</li>
+              <li onClick={() => navigate("/edit-profile")}>Edit profile</li>
+              <li onClick={() => navigate("/ProfessionalCalendar")}>
+                Appointments</li>
               <li className="logout" onClick={handleLogout}>
                 Log out
                 </li>

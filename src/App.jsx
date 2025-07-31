@@ -9,6 +9,7 @@ import EmotionLog from "./Pages/EmotionLog.jsx";
 import CustomCalendar from "./Pages/CustomCalendar.jsx";
 import PatientLogs from "./Pages/PatientLogs.jsx";
 import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
+import EditProfile from "./Pages/EditProfile.jsx";
 import ProfessionalCalendar from "./Components/ProfessionalCalendar.jsx";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             path="/ProfessionalCalendar"
             element={<ProfessionalCalendar />}
           />
+          <Route path="/edit-profile" element={<EditProfile />} />
         </Routes>
       </div>
       <Footer />

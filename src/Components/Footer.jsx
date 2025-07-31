@@ -9,10 +9,13 @@ function Footer() {
   const isPatient = location.pathname.includes("/patient");
   const emotionSelector = location.pathname.includes("/EmotionSelectorPage");
   const emotionLog = location.pathname.includes("/emotion-log");
+  const submissionConfirmation = location.pathname.includes("/submission-confirmation");
+  const professionalCalendar = location.pathname.includes("/ProfessionalCalendar");
+  const editProfile = location.pathname.includes("/edit-profile");
   const isProfessional = location.pathname.includes("/professional");
 
 
- const footerBgColor = isPatient || emotionSelector || emotionLog ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+ const footerBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
 
   return (
     <footer className="footer" style={{ backgroundColor: footerBgColor }}>

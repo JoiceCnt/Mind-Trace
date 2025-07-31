@@ -28,15 +28,20 @@ const Navbar = () => {
   const isPatient = location.pathname.includes("/patient");
   const emotionSelector = location.pathname.includes("/EmotionSelectorPage");
   const emotionLog = location.pathname.includes("/emotion-log");
+  const submissionConfirmation = location.pathname.includes("/submission-confirmation");
+  const patientLogs = location.pathname.includes("/patient/Logs");
+  const professionalCalendar = location.pathname.includes("/ProfessionalCalendar");
+  const editProfile = location.pathname.includes("/edit-profile");
   const isProfessional = location.pathname.includes("/professional");
+  const isHomePage = location.pathname === "/";
 
-  const showMenuButton = emotionSelector || emotionLog;
+  const showMenuButton = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar | editProfile;
 
-  const navbarBgColor = isPatient || emotionSelector || emotionLog ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
-  const buttonBgColor = emotionSelector || emotionLog ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
-  const dropdownBgColor = emotionSelector || emotionLog ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+  const navbarBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+  const buttonBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+  const dropdownBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
   
-  const burgerIcon = emotionSelector || emotionLog ? blueBurgerIcon : greenBurgerIcon;
+  const burgerIcon = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? blueBurgerIcon : greenBurgerIcon;
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -50,15 +55,23 @@ const Navbar = () => {
           <img src={logo} alt="Logo" className="logo" />
         </div>
 
-        {showMenuButton && (
-          <button className="menu-button" style={{ backgroundColor: buttonBgColor }} onClick={() => setIsOpen(!isOpen)}>
-            <img
-              src={burgerIcon}
-              alt="menu"
-              className="menu-icon"
-            />
-          </button>
-        )}
+        <div className="navbar-actions">
+          {!isHomePage && (
+            <button className="home-button" onClick={() => navigate("/")}>
+            Home
+            </button>
+          )}
+          
+          {showMenuButton && (
+            <button
+              className="menu-button"
+              style={{ backgroundColor: buttonBgColor }}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <img src={burgerIcon} alt="menu" className="menu-icon" />
+            </button>
+          )}
+        </div>
 
         {isOpen && (
           <DropdownMenu
