@@ -9,6 +9,7 @@ import EmotionLog from "./Pages/EmotionLog.jsx";
 import CustomCalendar from "./Pages/CustomCalendar.jsx";
 import PatientLogs from "./Pages/PatientLogs.jsx";
 import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
+import ProfessionalCalendar from "./Components/ProfessionalCalendar.jsx";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
           <Route
             path="/submission-confirmation"
             element={<SubmissionConfirmation />}
+          />
+          <Route
+            path="/ProfessionalCalendar"
+            element={<ProfessionalCalendar />}
           />
         </Routes>
       </div>
