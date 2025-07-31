@@ -19,7 +19,7 @@ function EmotionLog() {
       <textarea
         placeholder="Use this space to write about your feelings"
         value={text}
-        maxLength={100}
+        maxLength={50}
         onChange={(e) => setText(e.target.value)}
         className="emotion-textarea"
       />
