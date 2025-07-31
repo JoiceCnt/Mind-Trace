@@ -7,12 +7,15 @@ import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
 import PatientLogin from "./Pages/PatientLogin";
 import EmotionLog from "./Pages/EmotionLog.jsx";
 import CustomCalendar from "./Pages/CustomCalendar.jsx";
+import PatientLogs from "./Pages/PatientLogs.jsx";
+import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
+import ProfessionalCalendar from "./Components/ProfessionalCalendar.jsx";
 
 function App() {
   return (
-    <div>
+    <div className="app-container">
       <Navbar />
-      <div className="app-container">
+      <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
@@ -22,6 +25,15 @@ function App() {
           <Route path="/login/patient" element={<PatientLogin />} />
           <Route path="/emotion-log" element={<EmotionLog />} />
           <Route path="/Calendar" element={<CustomCalendar />} />
+          <Route path="/patient/logs" element={<PatientLogs />} />
+          <Route
+            path="/submission-confirmation"
+            element={<SubmissionConfirmation />}
+          />
+          <Route
+            path="/ProfessionalCalendar"
+            element={<ProfessionalCalendar />}
+          />
         </Routes>
       </div>
       <Footer />

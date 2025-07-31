@@ -10,7 +10,7 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
-  min-height: 93vh;
+  min-height: 100vh;
 }
 
 .main-content {
@@ -128,20 +128,9 @@ body {
 
 /* ===LOGO ===*/
 .logo {
-  height: 60px;
+  height: 80px;
 }
 
-/* ===PAGE CONTAINER=== 
-.page-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.main-content {
-  flex: 1;
-  padding: 20px;
-}*/
 .calendar-container {
   background-color: #fff;
   padding: 20px;
