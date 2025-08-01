@@ -12,7 +12,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
-
 .main-content {
   flex: 1;
   display: flex;
@@ -23,12 +22,90 @@ body {
 
 /* ===NAVBAR=== */
 .navbar {
-  background-color: #e0e0e0;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+.logo {
+  height: 100px;
+  margin-left: 1rem;
+}
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.home-button {
+  font-size: 14px;
+  color: rgb(68, 67, 67);
+  background-color: transparent;
+  border: none;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  transition: all 0.2s ease;
+  transform: scale(1.05);
+}
+.home-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  transition: all 0.2s ease;
+  transform: scale(1.05);
+}
+.menu-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.menu-icon {
+  width: 60px;
+  height: 60px;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  right: 1rem;
+  background-color: #A8D5BA;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  width: 200px;
+  z-index: 100;
+}
+.dropdown-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+  text-align: right;
+  font-size: 14px;
+}
+.dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+.dropdown-list li {
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.dropdown-list li:hover {
+  background-color: #f0f0f0;
+}
+
 
 /* ===FOOTER=== */
 .footer {
@@ -38,40 +115,6 @@ body {
   display: flex;
   justify-content: center;
 }
-
-/*=== EMOJI GRID=== */
-.emoji-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
-  padding: 40px;
-  justify-items: center; /* novo */
-}
-
-/*===EMOJI CARD === */
-.emoji-card {
-  background-color: #e0e0e0;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.emoji-card:hover,
-.emoji-card.selected {
-  border: 2px solid #a8d5ba;
-  background-color: #e0f2f0;
-  transform: scale(1.05);
-}
-
-/* === EMOJI IMAGE=== */
-.emoji-card img {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 5px;
-}
-
 /*=== PROMPT TEXT ===*/
 .prompt {
   margin-top: 20px;
@@ -79,12 +122,7 @@ body {
   color: #555;
   text-align: center;
 }
-
-/* ===LOGO ===*/
-.logo {
-  height: 80px;
-}
-
+/*=== CALENDAR ===*/
 .calendar-container {
   background-color: #fff;
   padding: 20px;
@@ -92,4 +130,17 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   max-width: 500px;
   width: 100%;
+}
+.react-calendar {
+  max-width: 350px;
+  margin: 2rem auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.react-calendar__tile--active {
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
 }

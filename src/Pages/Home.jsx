@@ -29,7 +29,7 @@ function Home() {
             backgroundColor: "#7986CB",
             padding: "10px 20px",
             margin: "10px",
-            color: "white",
+      
           }}
         >
           Professional
