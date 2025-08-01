@@ -15,7 +15,7 @@ function Footer() {
   const isProfessional = location.pathname.includes("/professional");
 
 
- const footerBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+ const footerBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
 
   return (
     <footer className="footer" style={{ backgroundColor: footerBgColor }}>

@@ -5,6 +5,7 @@ import Footer from "./Components/Footer";
 import { Routes, Route } from "react-router-dom";
 import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
 import PatientLogin from "./Pages/PatientLogin";
+import ProfessionalLogin from "./Pages/ProfessionalLogin";
 import EmotionLog from "./Pages/EmotionLog.jsx";
 import CustomCalendar from "./Pages/CustomCalendar.jsx";
 import PatientLogs from "./Pages/PatientLogs.jsx";
@@ -31,6 +32,7 @@ function App() {
             path="/submission-confirmation"
             element={<SubmissionConfirmation />}
           />
+          <Route path="/login/professional" element={<ProfessionalLogin />} />
           <Route
             path="/ProfessionalCalendar"
             element={<ProfessionalCalendar />}

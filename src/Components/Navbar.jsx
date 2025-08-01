@@ -30,18 +30,19 @@ const Navbar = () => {
   const emotionLog = location.pathname.includes("/emotion-log");
   const submissionConfirmation = location.pathname.includes("/submission-confirmation");
   const patientLogs = location.pathname.includes("/patient/Logs");
+  const patientlog = location.pathname.includes("/patient/log");
   const professionalCalendar = location.pathname.includes("/ProfessionalCalendar");
   const editProfile = location.pathname.includes("/edit-profile");
   const isProfessional = location.pathname.includes("/professional");
   const isHomePage = location.pathname === "/";
 
-  const showMenuButton = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile;
+  const showMenuButton = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog || professionalCalendar || editProfile;
 
-  const navbarBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
-  const buttonBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
-  const dropdownBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+  const navbarBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation || patientLogs  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
+  const buttonBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
+  const dropdownBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
   
-  const burgerIcon = emotionSelector || emotionLog || submissionConfirmation || patientLogs || professionalCalendar || editProfile ? blueBurgerIcon : greenBurgerIcon;
+  const burgerIcon = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog || professionalCalendar || editProfile ? blueBurgerIcon : greenBurgerIcon;
 
   const handleLogout = () => {
     localStorage.removeItem("user");
