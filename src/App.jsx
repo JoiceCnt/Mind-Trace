@@ -10,6 +10,8 @@ import CustomCalendar from "./Pages/CustomCalendar.jsx";
 import PatientLogs from "./Pages/PatientLogs.jsx";
 import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
 import ProfessionalCalendar from "./Components/ProfessionalCalendar.jsx";
+import ProfessionalHome from "./Pages/ProfessionalHome";
+import ProfessionalLogin from "./Pages/ProfessionalLogin";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
             path="/ProfessionalCalendar"
             element={<ProfessionalCalendar />}
           />
+          <Route path="/professional-home" element={<ProfessionalHome />} />
+          <Route path="/login/professional" element={<ProfessionalLogin />} />
         </Routes>
       </div>
       <Footer />

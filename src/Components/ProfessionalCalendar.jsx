@@ -64,42 +64,73 @@ function ProfessionalCalendar() {
 
     try {
       if (selectedSlot.id) {
+        // ✏️ Update existing appointment
         await axios.put(
-          `http://localhost:3001/appointments/${selectedSlot.id}`,
+          `http://localhost:5005/appointments/${selectedSlot.id}`,
           {
             ...slot,
-            id: selectedSlot.id,
+            id: crypto.randomUUID(),
           }
         );
       } else {
-        await axios.post("http://localhost:5005/appointments", slot);
+        // ➕ Create a new appointment with a unique ID
+        await axios.post("http://localhost:5005/appointments", {
+          ...slot,
+          id: crypto.randomUUID(), // ✅ safe unique string ID
+        });
       }
+
+      // 🔄 Reset UI and reload data
       setSelectedSlot(null);
       setFormData({ patientId: "", note: "" });
       fetchData();
     } catch (error) {
-      console.error("Erro ao salvar:", error);
+      console.error("Error saving appointment:", error);
     }
   };
 
   const handleDelete = async () => {
     try {
-      if (selectedSlot.id) {
-        await axios.delete(
-          `http://localhost:5005/appointments/${selectedSlot.id}`
+      console.log("Trying to delete:", selectedSlot);
+
+      let appointmentId = selectedSlot.id;
+
+      // If no ID is present, try to find the appointment by patientId + date + time
+      if (!appointmentId && selectedSlot.patientId) {
+        const res = await axios.get(
+          `http://localhost:5005/appointments?patientId=${selectedSlot.patientId}`
         );
+
+        const found = res.data.find(
+          (a) => a.date === selectedSlot.date && a.time === selectedSlot.time
+        );
+
+        appointmentId = found?.id;
       }
+
+      // Proceed to delete if we have the appointment ID
+      if (appointmentId) {
+        await axios.delete(
+          `http://localhost:5005/appointments/${appointmentId}`
+        );
+        alert("Appointment deleted successfully.");
+      } else {
+        alert("Appointment ID not found.");
+      }
+
+      // 🔄 Reset UI and reload appointments
       setSelectedSlot(null);
       setFormData({ patientId: "", note: "" });
       fetchData();
     } catch (error) {
-      console.error("Erro ao excluir:", error);
+      console.error("Error deleting appointment:", error);
+      alert("Error deleting appointment.");
     }
   };
 
   return (
     <div style={{ padding: "1rem" }}>
-      <h2>Agenda do Profissional</h2>
+      <h2>Agenda</h2>
 
       <div style={{ marginBottom: "1rem" }}>
         <button onClick={() => setStartOffset(startOffset - 5)}>
@@ -123,7 +154,7 @@ function ProfessionalCalendar() {
                 background: "#f0f0f0",
               }}
             >
-              Hora
+              Hour
             </th>
             {days.map((day) => (
               <th
@@ -206,7 +237,7 @@ function ProfessionalCalendar() {
             maxWidth: "400px",
           }}
         >
-          <h3>Editar agendamento</h3>
+          <h3>Edit Appointment</h3>
           <p>
             <strong>Date:</strong> {selectedSlot.date}
             <br />
@@ -238,11 +269,9 @@ function ProfessionalCalendar() {
           ></textarea>
           <br />
           <br />
-          <button onClick={handleSave}>💾 Salvar</button>{" "}
-          {selectedSlot.id && (
-            <button onClick={handleDelete}>🗑️ Excluir</button>
-          )}{" "}
-          <button onClick={() => setSelectedSlot(null)}>Cancelar</button>
+          <button onClick={handleSave}>💾 Save</button>{" "}
+          {selectedSlot.id && <button onClick={handleDelete}>🗑️ Delete</button>}{" "}
+          <button onClick={() => setSelectedSlot(null)}>Cancel</button>
         </div>
       )}
     </div>
