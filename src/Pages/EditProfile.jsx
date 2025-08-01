@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "../Styles/EditProfile.css";
 
 function EditProfile() {
   const [profile, setProfile] = useState({ name: "", email: "", birthday: "" });
