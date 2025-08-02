@@ -5,14 +5,16 @@ import Footer from "./Components/Footer";
 import { Routes, Route } from "react-router-dom";
 import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
 import PatientLogin from "./Pages/PatientLogin";
-import ProfessionalLogin from "./Pages/ProfessionalLogin";
 import EmotionLog from "./Pages/EmotionLog.jsx";
 import CustomCalendar from "./Pages/CustomCalendar.jsx";
 import PatientLogs from "./Pages/PatientLogs.jsx";
 import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
-import EditProfile from "./Pages/EditProfile.jsx";
 import ProfessionalCalendar from "./Components/ProfessionalCalendar.jsx";
-
+import ProfessionalHome from "./Pages/ProfessionalHome";
+import ProfessionalLogin from "./Pages/ProfessionalLogin";
+import PatientAppointments from "./Pages/PatientAppointments";
+import CreatePatient from "./Pages/CreatePatient.jsx";
+import PatientReschedule from "./Pages/PatientReschedule.jsx";
 function App() {
   return (
     <div className="app-container">
@@ -32,12 +34,18 @@ function App() {
             path="/submission-confirmation"
             element={<SubmissionConfirmation />}
           />
-          <Route path="/login/professional" element={<ProfessionalLogin />} />
           <Route
             path="/ProfessionalCalendar"
             element={<ProfessionalCalendar />}
           />
-          <Route path="/edit-profile" element={<EditProfile />} />
+          <Route path="/professional-home" element={<ProfessionalHome />} />
+          <Route path="/login/professional" element={<ProfessionalLogin />} />
+          <Route path="/appointments" element={<PatientAppointments />} />
+          <Route path="/create-patient" element={<CreatePatient />} />
+          <Route
+            path="/reschedule/:appointmentId"
+            element={<PatientReschedule />}
+          />
         </Routes>
       </div>
       <Footer />

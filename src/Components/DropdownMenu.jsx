@@ -7,22 +7,25 @@ const DropdownMenu = ({ handleLogout, menuRef, dropdownBgColor }) => {
 
   const goToPatientLogs = () => {
     navigate("/patient/Logs");
-  }
-  
+  };
+
   return (
-        <div className="dropdown-menu" ref={menuRef} style={{ backgroundColor: dropdownBgColor }}>
-            <label className="dropdown-title">Select the option ▼</label>
-            <ul className="dropdown-list">
-              <li onClick={goToPatientLogs}>Check your history</li>
-              <li onClick={() => navigate("/edit-profile")}>Edit profile</li>
-              <li onClick={() => navigate("/ProfessionalCalendar")}>
-                Appointments</li>
-              <li className="logout" onClick={handleLogout}>
-                Log out
-                </li>
-            </ul>
-          </div>      
-    );
+    <div
+      className="dropdown-menu"
+      ref={menuRef}
+      style={{ backgroundColor: dropdownBgColor }}
+    >
+      <label className="dropdown-title">Select the option ▼</label>
+      <ul className="dropdown-list">
+        <li onClick={goToPatientLogs}>Check your history</li>
+        <li onClick={() => navigate("/edit-profile")}>Edit profile</li>
+        <li onClick={() => navigate("/appointments")}>Appointments</li>
+        <li className="logout" onClick={handleLogout}>
+          Log out
+        </li>
+      </ul>
+    </div>
+  );
 };
 
 export default DropdownMenu;

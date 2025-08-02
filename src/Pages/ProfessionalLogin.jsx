@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // ✅ Importa o hook de navegação
 
 function ProfessionalLogin() {
   const [user, setUser] = useState("");
@@ -12,39 +12,33 @@ function ProfessionalLogin() {
     console.log("Professional login:", user, password);
     setLogged(true);
 
-    setTimeout(() => {
-      navigate("/ProfessionalCalendar");
-     }, 1000);
+    navigate("/Professional-Home");
   };
 
   return (
     <div style={{ textAlign: "center", marginTop: "60px" }}>
-      <h2>Login as Professional</h2>
-      {logged ? (
-        <p>Login completed successfully.</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            placeholder="User"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-            required
-          />
-          <br />
-          <br />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <br />
-          <br />
-          <button type="submit">Enter</button>
-        </form>
-      )}
+      {logged && <h2>Login as Professional</h2>}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+          required
+        />
+        <br />
+        <br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <br />
+        <br />
+        <button type="submit">Enter</button>
+      </form>
     </div>
   );
 }

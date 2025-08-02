@@ -7,14 +7,32 @@ function PatientLogin() {
   const [logged, setLogged] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Patient login:", user, password);
-    setLogged(true);
 
-    setTimeout(() => {
-      navigate("/EmotionSelectorPage"); // definir a que página vamos a redireccionar el usuario
-    }, 1000);
+    try {
+      const res = await fetch(
+        `http://localhost:5005/patients?username=${user}&password=${password}`
+      );
+
+      const data = await res.json();
+
+      if (data.length > 0) {
+        const patient = data[0];
+
+        localStorage.setItem("patientId", patient.id);
+        localStorage.setItem("patientName", patient.name);
+
+        setLogged(true);
+        setTimeout(() => {
+          navigate("/EmotionSelectorPage");
+        }, 1000);
+      } else {
+        alert("Invalid username or password");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+    }
   };
 
   return (
