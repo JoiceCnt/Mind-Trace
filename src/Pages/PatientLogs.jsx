@@ -10,13 +10,14 @@ function PatientLogs() {
   const patientId = localStorage.getItem("patientId");
   console.log("Logged in patientId:", patientId);
 
-  // load the logs
+  // load the logssi
   useEffect(() => {
-    fetch(`http://localhost:5005/logs?patientId=${patientId}`)
+    fetch(`http://localhost:5005/logs`)
       .then((res) => res.json())
       .then((data) => {
         setLogs(data);
         setFilteredLogs(data);
+        console.log(data);
       });
   }, []);
 

@@ -31,25 +31,26 @@ function ProfessionalCalendar() {
       setAppointments(apptRes.data);
       setPatients(patientRes.data);
       console.log(patientRes.data);
+      console.log(apptRes.data);
     } catch (error) {
       console.error("Erro ao carregar dados:", error);
     }
   };
 
   const getPatientName = (patientId) => {
-    const found = patients.find((p) => p.id === patientId);
+    const found = patients.find((p) => p.id == patientId);
+    console.log(patientId, patients, found);
     return found ? found.name : "—";
   };
 
   const handleCellClick = (date, time) => {
     console.log(date, time);
+
     const existing = appointments.find(
       (a) => a.date === date && a.time === time
     );
-    setSelectedSlot(
-      existing
-      ? { ...existing }
-      : { date, time, id: null });
+    console.log(existing, appointments);
+    setSelectedSlot({ date, time, ...existing });
     setFormData({
       patientId: existing?.patientId || "",
       note: existing?.note || "",
@@ -79,7 +80,7 @@ function ProfessionalCalendar() {
         // ➕ Create a new appointment with a unique ID
         await axios.post("http://localhost:5005/appointments", {
           ...slot,
-          id: crypto.randomUUID(), //  safe unique string ID
+          /*id: crypto.randomUUID(),*/ //  safe unique string ID
         });
       }
 
@@ -114,8 +115,6 @@ function ProfessionalCalendar() {
           `http://localhost:5005/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
-      } else {
-        alert("Appointment not found in the system.");
       }
 
       setSelectedSlot(null);
