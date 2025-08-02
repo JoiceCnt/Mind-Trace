@@ -22,28 +22,28 @@ body {
 
 /* ===NAVBAR=== */
 .navbar {
-  padding: 10px 20px;
+  padding: 10px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .logo {
-  height: 100px;
-  margin-left: 1rem;
+  height: 120px;
+  margin-left: 1.5rem;
 }
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 }
 .home-button {
-  font-size: 14px;
+  font-size: 16px;
   color: rgb(68, 67, 67);
   background-color: transparent;
   border: none;
   border-radius: 12px;
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
   transition: all 0.2s ease;
@@ -56,8 +56,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 64px;
+  height: 64px;
   cursor: pointer;
   border: none;
   border-radius: 12px;
@@ -74,47 +74,86 @@ body {
 }
 .dropdown-menu {
   position: absolute;
-  top: 60px;
+  top: 90px;
   right: 1rem;
-  background-color: #A8D5BA;
-  border-radius: 8px;
+  background-color: #F9FAFB;
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 1rem;
-  width: 200px;
+  width: 220px;
   z-index: 100;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  border: 1px solid #E0E0E0;
 }
 .dropdown-title {
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
   display: block;
   text-align: right;
-  font-size: 14px;
+  font-size: 15px;
+  color: #5C80BC;
 }
 .dropdown-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  text-align: center;
 }
 .dropdown-list li {
-  padding: 0.5rem;
+  padding: 0.6rem 0.8rem;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 .dropdown-list li:hover {
-  background-color: #f0f0f0;
+  background-color: #A1B8E1;
+  color: #fff
 }
 
 
 /* ===FOOTER=== */
 .footer {
-  background-color: #e0e0e0;
-  padding: 10px 20px;
-  font-size: 12px;
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 13px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 30px; /* separa el párrafo y el nav */
+  box-sizing: border-box;
+  flex-wrap: nowrap; /* evita que bajen a otra línea */
 }
+
+.footer-text {
+  margin: 0;
+  white-space: nowrap; /* que no haga wrap en móvil */
+}
+
+.footer-text a.footer-link {
+  margin-left: 6px; /* espacio entre texto y GitHub */
+  font-weight: 600;
+  color: #5C80BC;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-text a.footer-link:hover {
+  color: #3B5A8A;
+  text-decoration: underline;
+}
+.footer-nav a.footer-link {
+  margin-left: 100px; /* aumentar espacio entre links */
+  font-weight: 600;
+  color: #5C80BC;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-nav a.footer-link:first-child {
+  margin-left: 0; /* sin margen en el primer link para que no se desplace hacia la derecha */
+}
+
 /*=== PROMPT TEXT ===*/
 .prompt {
   margin-top: 20px;

@@ -1,6 +1,6 @@
 .edit-profile-container {
     max-width: 500px;
-    margin: 60px auto;
+    margin: 60 px auto;
     background-color: #F9FAFB;
     padding: 40px;
     border-radius: 16px;
@@ -45,5 +45,22 @@
 }
 .edit-save-button:hover {
   background-color: #92c4a4;
+  transform: scale(1.02);
+}
+.edit-cancel-button {
+  background-color: #e57373;
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.edit-cancel-button:hover {
+  background-color: #d32f2f;
   transform: scale(1.02);
 }

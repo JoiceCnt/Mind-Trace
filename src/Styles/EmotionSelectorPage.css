@@ -1,13 +1,36 @@
 /* Container da página */
 .emotion-selector-page {
-  max-width: 1000px;
-  margin: 40px auto 20px auto;
-  padding: 20px;
-  text-align: center;
+  background-color: #F9FAFB;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  align-items: center;
 }
-.emotion-title {
-  font-size: 24px;
-  margin-bottom: 30px;
+.intro-text {
+  font-size: 1.2rem;
+  color: #5C80BC; /* Azul Serenity */
+  font-weight: 500;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.question-box {
+  background-color: #E0E0E0;
+  padding: 15px 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.5rem;
+  text-align: center;
+  max-width: 900px;
+  width: 80%;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;  
 }
 /*=== EMOJI GRID=== */
 .emoji-grid {
@@ -34,8 +57,8 @@
 }
 .emoji-card:hover,
 .emoji-card.selected {
-  border: 2px solid #a8d5ba;
-  background-color: #e0f2f0;
+  border: 2px solid #c9d9ee;
+  background-color: #e6f0fc;
   transform: scale(1.05);
 }
 /* === EMOJI IMAGE=== */

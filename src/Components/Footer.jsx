@@ -19,17 +19,31 @@ function Footer() {
 
   return (
     <footer className="footer" style={{ backgroundColor: footerBgColor }}>
-      <p>
-        View the source code on{" "}
-        <a
-          href="https://github.com/JoiceCnt/Mind-Trace"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <strong>GitHub</strong>
-        </a>
-        .
-      </p>
+       <p>
+          View the source code on{" "}
+            <a
+              href="https://github.com/JoiceCnt/Mind-Trace"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-link"
+            >
+              <strong>GitHub</strong>
+            </a>
+        </p>
+
+        <nav className="footer-nav">
+          <a href="/contact-support" className="footer-link">
+            Contact Support
+          </a>
+
+          <a href="/terms-of-use" className="footer-link">
+            Terms of Use
+          </a>
+
+          <a href="/privacy-policy" className="footer-link">
+            Privacy Policy
+          </a>
+        </nav>
     </footer>
   );
 }

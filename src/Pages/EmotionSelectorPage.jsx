@@ -31,7 +31,13 @@ const EmotionSelectorPage = () => {
 
   return (
     <div className="emotion-selector-page">
-      <h2>How are you feeling today?</h2>
+      <p className="intro-text">
+      Welcome to the app where your feelings matter, every single day.
+      </p>
+
+      <div className="question-box">
+        <h2>How are you feeling today?</h2>
+      </div>
 
       <div className="emoji-grid">
         {emotions.map((emotion) => (
