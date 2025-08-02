@@ -19,7 +19,8 @@ function Footer() {
 
   return (
     <footer className="footer" style={{ backgroundColor: footerBgColor }}>
-       <p>
+      <div className="footer-section">
+       <p className="footer-text">
           View the source code on{" "}
             <a
               href="https://github.com/JoiceCnt/Mind-Trace"
@@ -27,23 +28,20 @@ function Footer() {
               rel="noopener noreferrer"
               className="footer-link"
             >
-              <strong>GitHub</strong>
+              GitHub
             </a>
         </p>
 
-        <nav className="footer-nav">
-          <a href="/contact-support" className="footer-link">
-            Contact Support
-          </a>
+        <p className="footer-text">
+          Support: <a href="mailto:support@mindtraceapp.com" className="footer-link">support@mindtraceapp.com</a>
+        </p>
+        <p className="footer-text">Hours: Mon–Fri, 9:00–18:00 CET</p>
+      </div>
 
-          <a href="/terms-of-use" className="footer-link">
-            Terms of Use
-          </a>
-
-          <a href="/privacy-policy" className="footer-link">
-            Privacy Policy
-          </a>
-        </nav>
+      <nav className="footer-section footer-links">
+        <a href="/terms-of-use" className="footer-link">Terms of Use</a>
+        <a href="/privacy-policy" className="footer-link">Privacy Policy</a>
+      </nav>
     </footer>
   );
 }

@@ -34,7 +34,7 @@ function PatientReschedule() {
         time: time,
       });
       alert("Appointment rescheduled successfully.");
-      navigate("/PatientAppointments");
+      navigate("/appointments");
     } catch (error) {
       console.error("Error rescheduling:", error);
     }
