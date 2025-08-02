@@ -11,8 +11,9 @@ function EmotionLog() {
   if (!emotion) return <p>No emotion selected.</p>;
 
   const handleSubmit = () => {
+    const patientId = localStorage.getItem("patientId");
     const newLog = {
-      patientId: "patient_1",
+      patientId: patientId,
       date: new Date().toISOString().split("T")[0],
       emojiId: emotion.id,
       nameId: emotion.name,
