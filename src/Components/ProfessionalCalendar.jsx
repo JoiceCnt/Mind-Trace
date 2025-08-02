@@ -62,7 +62,7 @@ function ProfessionalCalendar() {
       date: selectedSlot.date,
       time: selectedSlot.time,
       status: formData.patientId ? "booked" : "available",
-      patientId: formData.patientId || null,
+      patient: formData.patientId || null,
       note: formData.note,
     };
 
@@ -95,6 +95,9 @@ function ProfessionalCalendar() {
 
   const handleDelete = async () => {
     try {
+      /* await axios.delete(
+        `http://localhost:5005/appointments/${selectedSlot.id}`
+      );*/
       console.log("Trying to delete:", selectedSlot);
 
       let appointmentId = selectedSlot.id;
@@ -209,7 +212,7 @@ function ProfessionalCalendar() {
                         <>
                           🔒
                           <br />
-                          <strong>{getPatientName(slot.patientId)}</strong>
+                          <strong>{getPatientName(slot.patient)}</strong>
                         </>
                       ) : (
                         "✅ Livre"
