@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Importa o hook de navegação
 
 function ProfessionalLogin() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [logged, setLogged] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Professional login:", user, password);
     setLogged(true);
+
+    navigate("/Professional-Home");
   };
 
   return (

@@ -12,7 +12,9 @@ import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
 import ProfessionalCalendar from "./Components/ProfessionalCalendar.jsx";
 import ProfessionalHome from "./Pages/ProfessionalHome";
 import ProfessionalLogin from "./Pages/ProfessionalLogin";
-
+import PatientAppointments from "./Pages/PatientAppointments";
+import CreatePatient from "./Pages/CreatePatient.jsx";
+import PatientReschedule from "./Pages/PatientReschedule.jsx";
 function App() {
   return (
     <div className="app-container">
@@ -38,6 +40,12 @@ function App() {
           />
           <Route path="/professional-home" element={<ProfessionalHome />} />
           <Route path="/login/professional" element={<ProfessionalLogin />} />
+          <Route path="/appointments" element={<PatientAppointments />} />
+          <Route path="/create-patient" element={<CreatePatient />} />
+          <Route
+            path="/reschedule/:appointmentId"
+            element={<PatientReschedule />}
+          />
         </Routes>
       </div>
       <Footer />

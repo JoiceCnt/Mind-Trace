@@ -2,34 +2,83 @@ import { Link } from "react-router-dom";
 import MindTraceLogo from "../assets/logo.png";
 
 function Home() {
+  const baseButtonStyle = {
+    width: "450px",
+    padding: "16px",
+    margin: "10px 0",
+    fontSize: "24px",
+    fontWeight: "bold",
+    border: "none",
+    borderRadius: "8px",
+    cursor: "pointer",
+    transition: "all 0.3s ease",
+    boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+  };
+
+  const patientStyle = {
+    ...baseButtonStyle,
+    backgroundColor: "#A8D5BA",
+    color: "#060606ff",
+  };
+
+  const professionalStyle = {
+    ...baseButtonStyle,
+    backgroundColor: "#5C80BC",
+    color: "white",
+  };
+
   return (
-    <div style={{ textAlign: "center", marginTop: "60px" }}>
-      <img src={MindTraceLogo} alt="MindTrace Logo" width="150" />
-      <p>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        fontFamily: "Arial, sans-serif",
+        textAlign: "center",
+      }}
+    >
+      <img
+        src={MindTraceLogo}
+        alt="MindTrace Logo"
+        style={{
+          width: "300px",
+          marginBottom: "50px",
+          borderRadius: "12px",
+        }}
+      />
+
+      <p style={{ fontSize: "18px", marginBottom: "30px", color: "#333" }}>
         <strong>Select the option below to login:</strong>
       </p>
 
       <Link to="/login/patient">
         <button
-          style={{
-            backgroundColor: "#A5D6A7",
-            padding: "10px 20px",
-            margin: "10px",
+          style={patientStyle}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "#91caa5";
+            e.target.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "#A8D5BA";
+            e.target.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
           }}
         >
           Patient
         </button>
       </Link>
 
-      <br />
-
       <Link to="/login/professional">
         <button
-          style={{
-            backgroundColor: "#7986CB",
-            padding: "10px 20px",
-            margin: "10px",
-      
+          style={professionalStyle}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "#4a6ba3";
+            e.target.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "#5C80BC";
+            e.target.style.boxShadow = "0 2px 4px rgba(0,0,0,0.1)";
           }}
         >
           Professional

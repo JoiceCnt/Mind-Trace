@@ -7,7 +7,8 @@ function PatientLogs() {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
 
-  const patientId = "patient_5"; // simulating patient 5
+  const patientId = localStorage.getItem("patientId");
+  console.log("Logged in patientId:", patientId);
 
   // load the logs
   useEffect(() => {

@@ -69,14 +69,14 @@ function ProfessionalCalendar() {
           `http://localhost:5005/appointments/${selectedSlot.id}`,
           {
             ...slot,
-            id: crypto.randomUUID(),
+            id: selectedSlot.id,
           }
         );
       } else {
         // ➕ Create a new appointment with a unique ID
         await axios.post("http://localhost:5005/appointments", {
           ...slot,
-          id: crypto.randomUUID(), // ✅ safe unique string ID
+          id: crypto.randomUUID(), //  safe unique string ID
         });
       }
 
@@ -95,30 +95,26 @@ function ProfessionalCalendar() {
 
       let appointmentId = selectedSlot.id;
 
-      // If no ID is present, try to find the appointment by patientId + date + time
-      if (!appointmentId && selectedSlot.patientId) {
-        const res = await axios.get(
-          `http://localhost:5005/appointments?patientId=${selectedSlot.patientId}`
-        );
-
+      if (!appointmentId) {
+        const res = await axios.get(`http://localhost:5005/appointments`);
         const found = res.data.find(
-          (a) => a.date === selectedSlot.date && a.time === selectedSlot.time
+          (a) =>
+            a.date === selectedSlot.date &&
+            a.time === selectedSlot.time &&
+            a.patientId === selectedSlot.patientId
         );
-
         appointmentId = found?.id;
       }
 
-      // Proceed to delete if we have the appointment ID
       if (appointmentId) {
         await axios.delete(
           `http://localhost:5005/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       } else {
-        alert("Appointment ID not found.");
+        alert("Appointment not found in the system.");
       }
 
-      // 🔄 Reset UI and reload appointments
       setSelectedSlot(null);
       setFormData({ patientId: "", note: "" });
       fetchData();
