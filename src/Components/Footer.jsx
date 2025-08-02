@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "../Styles/App.css";
+import { Link } from "react-router-dom";
+import "../Styles/Footer.css";
 
 
 function Footer() {
@@ -28,7 +29,7 @@ function Footer() {
               rel="noopener noreferrer"
               className="footer-link"
             >
-              GitHub
+              GitHub.
             </a>
         </p>
 
@@ -38,9 +39,12 @@ function Footer() {
         <p className="footer-text">Hours: Mon–Fri, 9:00–18:00 CET</p>
       </div>
 
-      <nav className="footer-section footer-links">
-        <a href="/terms-of-use" className="footer-link">Terms of Use</a>
-        <a href="/privacy-policy" className="footer-link">Privacy Policy</a>
+      <nav className="footer-links">
+        <Link to="/terms-of-use" className="footer-link">Terms of Use</Link>
+      </nav>
+
+      <nav className="footer-links right">
+        <Link to="/privacy-policy" className="footer-link">Privacy Policy</Link>
       </nav>
     </footer>
   );

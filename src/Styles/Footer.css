@@ -1,26 +1,29 @@
-/* ===FOOTER=== */
+/* === FOOTER GENERAL === */
 .footer {
   width: 100%;
-  padding: 20px 40px;
+  background-color: #F9FAFB; /* Blanco Hielo */
   color: #333;
-  font-size: 13px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: flex-start;
+  padding: 24px 40px;
   box-sizing: border-box;
-  flex-wrap: wrap;
   border-top: 1px solid #ccc;
+  font-family: 'Segoe UI', sans-serif;
 }
 
+/* === IZQUIERDA: GitHub + Soporte === */
 .footer-section {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-.footer-section.footer-links {
-  flex-direction: row;
-  gap: 30px;
+.footer-text {
+  margin: 0;
+  color: #333;
+  font-weight: 400;
 }
 
 .footer-link {
@@ -35,15 +38,28 @@
   text-decoration: underline;
 }
 
+/* === CENTRO Y DERECHA: Enlaces === */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-links.right {
+  justify-content: flex-end;
+}
+
+/* === RESPONSIVE PARA MÓVIL === */
 @media (max-width: 768px) {
   .footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 20px;
+    padding: 20px;
   }
 
-  .footer-section.footer-links {
-    flex-wrap: wrap;
-    gap: 20px;
+  .footer-links,
+  .footer-links.right {
+    justify-content: flex-start;
   }
 }

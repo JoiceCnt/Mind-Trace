@@ -140,3 +140,42 @@ body {
   color: white;
   border-radius: 8px;
 }
+
+/* === POLICY CONTAINER === */
+.policy-container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #F9FAFB; /* Blanco Hielo */
+  color: #333;
+  font-family: "Helvetica Neue", sans-serif;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(92, 128, 188, 0.2); /* Azul Serenity translúcido */
+}
+
+.policy-container h1 {
+  color: #5C80BC; /* Azul Serenity */
+  margin-bottom: 20px;
+}
+
+.policy-container h2 {
+  color: #333;
+  margin-top: 24px;
+  font-size: 18px;
+}
+
+.policy-container p, .policy-container li {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.policy-container a {
+  color: #5C80BC;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.policy-container a:hover {
+  text-decoration: underline;
+}
+
