@@ -3,13 +3,13 @@ import axios from "axios";
 import "../Styles/EditProfile.css";
 
 function EditProfile() {
-  const [profile, setProfile] = useState({ name: "", email: "", birthday: "" });
+  const [profile, setProfile] = useState({ name: "", email: "", birthDate: "" });
   const [originalProfile, setOriginalProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
   const patientsId = localStorage.getItem("patient");
-  axios.get(`http://localhost:5005/patients/${patientsId}`)
+  axios.get(`http://localhost:5005/patients/${patientsId.id}`)
     .then((res) => {
       setProfile(res.data);
       setOriginalProfile(res.data);
@@ -72,12 +72,12 @@ function EditProfile() {
           <input
             type="date"
             name="birthday"
-            value={profile.birthday}
+            value={profile.birthDate}
             onChange={handleChange}
             className="edit-input"
           />     
           ) : (
-            <p className="edit-input">{profile.birthday}</p>
+            <p className="edit-input">{profile.birthDate}</p>
         )}
 
       {isEditing ? (

@@ -46,7 +46,10 @@ function ProfessionalCalendar() {
     const existing = appointments.find(
       (a) => a.date === date && a.time === time
     );
-    setSelectedSlot({ date, time, ...existing });
+    setSelectedSlot(
+      existing
+      ? { ...existing }
+      : { date, time, id: null });
     setFormData({
       patientId: existing?.patientId || "",
       note: existing?.note || "",
@@ -96,8 +99,8 @@ function ProfessionalCalendar() {
       let appointmentId = selectedSlot.id;
 
       if (!appointmentId) {
-        const res = await axios.get(`http://localhost:5005/appointments`);
-        const found = res.data.find(
+       //* const res = await axios.get(`http://localhost:5005/appointments`);
+        const found = appointments.find(
           (a) =>
             a.date === selectedSlot.date &&
             a.time === selectedSlot.time &&
