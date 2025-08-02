@@ -15,6 +15,8 @@ import ProfessionalLogin from "./Pages/ProfessionalLogin";
 import PatientAppointments from "./Pages/PatientAppointments";
 import CreatePatient from "./Pages/CreatePatient.jsx";
 import PatientReschedule from "./Pages/PatientReschedule.jsx";
+import TermsOfUse from "./Pages/TermsOfUse.jsx";
+import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 function App() {
   return (
     <div className="app-container">
@@ -46,6 +48,8 @@ function App() {
             path="/reschedule/:appointmentId"
             element={<PatientReschedule />}
           />
+          <Route path="/terms-of-use" element={<TermsOfUse />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </div>
       <Footer />

@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import blueBurgerIcon from "../assets/blueburger.png";
-import greenBurgerIcon from "../assets/greenburger.png";
 import "../Styles/App.css";
 import DropdownMenu from "./DropdownMenu";
 import { useNavigate } from "react-router-dom";
@@ -25,24 +24,42 @@ const Navbar = () => {
   }, []);
 
    
-  const isPatient = location.pathname.includes("/patient");
-  const emotionSelector = location.pathname.includes("/EmotionSelectorPage");
-  const emotionLog = location.pathname.includes("/emotion-log");
-  const submissionConfirmation = location.pathname.includes("/submission-confirmation");
-  const patientLogs = location.pathname.includes("/patient/Logs");
-  const patientlog = location.pathname.includes("/patient/log");
-  const professionalCalendar = location.pathname.includes("/ProfessionalCalendar");
-  const editProfile = location.pathname.includes("/edit-profile");
-  const isProfessional = location.pathname.includes("/professional");
+  const isPatient =
+    location.pathname.includes("/patient") ||
+    location.pathname.includes("/EmotionSelectorPage") ||
+    location.pathname.includes("/emotion-log") ||
+    location.pathname.includes("/submission-confirmation") ||
+    location.pathname.includes("/patient/Logs") ||
+    location.pathname.includes("/patient/log") ||
+    location.pathname.includes("/edit-profile") ||
+    location.pathname.includes("/appointments");
+
+  const isProfessional = 
+    location.pathname.includes("/professional") ||
+    location.pathname.includes("/ProfessionalCalendar") ||
+    location.pathname.includes("/create-patient") ||
+    location.pathname.includes("/Professional-Home");
+
   const isHomePage = location.pathname === "/";
 
-  const showMenuButton = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog || professionalCalendar || editProfile;
+  const showMenuButton = 
+    location.pathname.includes("/EmotionSelectorPage") ||
+    location.pathname.includes("/emotion-log") ||
+    location.pathname.includes("/submission-confirmation") ||
+    location.pathname.includes("/edit-profile") ||
+    location.pathname.includes("/appointments") ||
+    location.pathname.includes("/patient/Logs");
 
-  const navbarBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation || patientLogs  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
-  const buttonBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
-  const dropdownBgColor = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
+  const showLogoutButton = 
+    location.pathname.includes("/ProfessionalCalendar") ||
+    location.pathname.includes("/create-patient") ||
+    location.pathname.includes("/Professional-Home");
+
+  const navbarBgColor = isPatient ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+  const buttonBgColor = isPatient ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+  const dropdownBgColor = isPatient ? "#A8D5BA" : "#e0e0e0";
   
-  const burgerIcon = emotionSelector || emotionLog || submissionConfirmation || patientLogs || patientlog || professionalCalendar || editProfile ? blueBurgerIcon : greenBurgerIcon;
+  const burgerIcon = blueBurgerIcon;
 
   const handleLogout = () => {
     localStorage.removeItem("user");
@@ -60,6 +77,12 @@ const Navbar = () => {
           {!isHomePage && (
             <button className="home-button" onClick={() => navigate("/")}>
             Home
+            </button>
+          )}
+
+          {showLogoutButton && (
+            <button className="logout-button" onClick={() => navigate("/login/professional")}>
+            Logout
             </button>
           )}
           

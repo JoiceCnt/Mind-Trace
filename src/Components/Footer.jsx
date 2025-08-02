@@ -11,12 +11,19 @@ function Footer() {
   const emotionSelector = location.pathname.includes("/EmotionSelectorPage");
   const emotionLog = location.pathname.includes("/emotion-log");
   const submissionConfirmation = location.pathname.includes("/submission-confirmation");
-  const professionalCalendar = location.pathname.includes("/ProfessionalCalendar");
   const editProfile = location.pathname.includes("/edit-profile");
+  const appointments = location.pathname.includes("/appointments");
+
   const isProfessional = location.pathname.includes("/professional");
+  const professionalCalendar = location.pathname.includes("/ProfessionalCalendar");
+  const createPatient = location.pathname.includes("/create-patient");
+  const professionalHome = location.pathname.includes("/Professional-Home");
+  
+  
+  
 
 
- const footerBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation  || editProfile ? "#A8D5BA" : isProfessional || professionalCalendar ? "#B8B5E0" : "#e0e0e0";
+ const footerBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation  || editProfile || appointments ? "#A8D5BA" : isProfessional || professionalCalendar || professionalHome || createPatient ? "#B8B5E0" : "#e0e0e0";
 
   return (
     <footer className="footer" style={{ backgroundColor: footerBgColor }}>

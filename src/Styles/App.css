@@ -52,6 +52,22 @@ body {
 .home-button:hover {
   background-color: rgba(0, 0, 0, 0.15);
 }
+.logout-button {
+  font-size: 16px;
+  color: rgb(68, 67, 67);
+  background-color: transparent;
+  border: none;
+  border-radius: 12px;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  transition: all 0.2s ease;
+  transform: scale(1.05);
+}
+.logout-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
 .menu-button {
   display: flex;
   align-items: center;
@@ -74,7 +90,7 @@ body {
 }
 .dropdown-menu {
   position: absolute;
-  top: 90px;
+  top: 150px;
   right: 1rem;
   background-color: #F9FAFB;
   border-radius: 12px;
