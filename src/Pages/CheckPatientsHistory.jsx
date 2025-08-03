@@ -46,7 +46,6 @@ const CheckPatientsHistory = () => {
       log.patientName,
       log.date,
       log.nameId,
-      log.nameId,
       log.description,
     ]);
 
@@ -106,7 +105,7 @@ const CheckPatientsHistory = () => {
             </div>
           ))
         )}
-      </div>git
+      </div>
     </div>
   );
 };
