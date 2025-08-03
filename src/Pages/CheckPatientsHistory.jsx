@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/CheckPatientsHistory.css";
 import jsPDF from "jspdf";
-import "jspdf-autotable";
+import autoTable from "jspdf-autotable";
 
 const CheckPatientsHistory = () => {
   const [logs, setLogs] = useState([]);
@@ -50,7 +50,7 @@ const CheckPatientsHistory = () => {
       log.description,
     ]);
 
-    doc.autoTable({
+    autoTable(doc, {
       startY: 30,
       head: [["Name", "Date", "Emotion", "Comment"]],
       body: tableData,
@@ -106,7 +106,7 @@ const CheckPatientsHistory = () => {
             </div>
           ))
         )}
-      </div>
+      </div>git
     </div>
   );
 };
