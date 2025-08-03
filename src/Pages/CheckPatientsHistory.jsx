@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../Styles/CheckPatientsHistory.css";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const CheckPatientsHistory = () => {
   const [logs, setLogs] = useState([]);
@@ -33,6 +35,32 @@ const CheckPatientsHistory = () => {
   setFilteredLogs(filtered);
 };
 
+
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("Patient Emotional History", 14, 20);
+
+    const tableData = filteredLogs.map((log) => [
+      log.patientName,
+      log.date,
+      log.nameId,
+      log.nameId,
+      log.description,
+    ]);
+
+    doc.autoTable({
+      startY: 30,
+      head: [["Name", "Date", "Emotion", "Comment"]],
+      body: tableData,
+      styles: { fontSize: 10 },
+      headStyles: { fillColor: [92, 128, 188] },
+    });
+
+    doc.save("patient-history.pdf");
+  }
+
   return (
     <div className="history-container">
       <h2>Check Patient's History</h2>
@@ -62,6 +90,7 @@ const CheckPatientsHistory = () => {
         </label>
         
         <button onClick={handleFilter}>Filter</button>
+        <button onClick={handleDownloadPDF}>Download PDF</button>
       </div>
 
       <div className="log-list">
@@ -72,8 +101,8 @@ const CheckPatientsHistory = () => {
             <div key={log.id} className="log-entry">
               <p><strong>Name:</strong> {log.patientName}</p>
               <p><strong>Date:</strong> {log.date}</p>
-              <p><strong>Emotion:</strong> {log.emotion}</p>
-              <p><strong>Comment:</strong> {log.comment}</p>
+              <p><strong>Emotion:</strong> {log.nameId}</p>
+              <p><strong>Comment:</strong> {log.description}</p>
             </div>
           ))
         )}
