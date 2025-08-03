@@ -9,17 +9,19 @@ const CheckPatientsHistory = () => {
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
 
   useEffect(() => {
-  axios.get("http://localhost:5005/logs")
-    .then((response) => {
+    axios.get("http://localhost:5005/logs")
+      .then((response) => {
       console.log("Fetched logs:", response.data);
-      // Se for response.data.logs, atualize aqui
-      setLogs(Array.isArray(response.data) ? response.data : response.data.logs);
-    })
-    .catch((error) => {
+        // Se for response.data.logs, atualize aqui
+        setLogs(Array.isArray(response.data) ? response.data : response.data.logs);
+      })
+      .catch((error) => {
       console.error("Error fetching logs:", error);
-    });
-}, []);const handleFilter = () => {
-  const filtered = logs.filter((log) => {
+      });
+  }, []);
+  
+  const handleFilter = () => {
+    const filtered = logs.filter((log) => {
     const nameMatch =
       patientName === "" ||
       log.patientName.toLowerCase().includes(patientName.toLowerCase());    const logDate = new Date(log.date);
