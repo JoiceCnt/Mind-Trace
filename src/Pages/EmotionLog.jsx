@@ -12,7 +12,9 @@ function EmotionLog() {
 
   const handleSubmit = () => {
     const patientId = localStorage.getItem("patientId");
+    const patientName = localStorage.setItem("patientName");
     const newLog = {
+      patientName: patientName,
       patientId: patientId,
       date: new Date().toISOString().split("T")[0],
       emojiId: emotion.id,

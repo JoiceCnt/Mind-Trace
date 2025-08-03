@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // ✅ Importa o hook de navegação
+import { useNavigate } from "react-router-dom";
 
 function ProfessionalLogin() {
   const [user, setUser] = useState("");

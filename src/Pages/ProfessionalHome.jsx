@@ -17,7 +17,10 @@ function ProfessionalHome() {
           <button onClick={() => navigate("/ProfessionalCalendar")}>
             Manage your calendar and check your agenda
           </button>
-          <button>Check Patient’s History</button>
+
+          <button onClick={() => navigate("/CheckPatientsHistory")}>
+            Check Patient’s History
+          </button>
 
           <button onClick={() => navigate("/create-patient")}>
             Create a New Patient

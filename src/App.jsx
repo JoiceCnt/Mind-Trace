@@ -17,6 +17,7 @@ import CreatePatient from "./Pages/CreatePatient.jsx";
 import PatientReschedule from "./Pages/PatientReschedule.jsx";
 import TermsOfUse from "./Pages/TermsOfUse.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
+import CheckPatientsHistory from "./Pages/CheckPatientsHistory.jsx";
 function App() {
   return (
     <div className="app-container">
@@ -50,6 +51,7 @@ function App() {
           />
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/CheckPatientsHistory" element={<CheckPatientsHistory />} />
         </Routes>
       </div>
       <Footer />

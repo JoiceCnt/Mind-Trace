@@ -38,7 +38,8 @@ const Navbar = () => {
     location.pathname.includes("/professional") ||
     location.pathname.includes("/ProfessionalCalendar") ||
     location.pathname.includes("/create-patient") ||
-    location.pathname.includes("/Professional-Home");
+    location.pathname.includes("/Professional-Home") ||
+    location.pathname.includes("/CheckPatientsHistory")
 
   const isHomePage = location.pathname === "/";
 
@@ -48,12 +49,14 @@ const Navbar = () => {
     location.pathname.includes("/submission-confirmation") ||
     location.pathname.includes("/edit-profile") ||
     location.pathname.includes("/appointments") ||
-    location.pathname.includes("/patient/Logs");
+    location.pathname.includes("/patient/Logs") ||
+    location.pathname.includes("/patient/log");
 
   const showLogoutButton = 
     location.pathname.includes("/ProfessionalCalendar") ||
     location.pathname.includes("/create-patient") ||
-    location.pathname.includes("/Professional-Home");
+    location.pathname.includes("/Professional-Home") ||
+    location.pathname.includes("/CheckPatientsHistory");
 
   const navbarBgColor = isPatient ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
   const buttonBgColor = isPatient ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
