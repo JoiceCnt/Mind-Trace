@@ -103,7 +103,7 @@ function ProfessionalCalendar() {
       let appointmentId = selectedSlot.id;
 
       if (!appointmentId) {
-       //* const res = await axios.get(`http://localhost:5005/appointments`);
+        //* const res = await axios.get(`http://localhost:5005/appointments`);
         const found = appointments.find(
           (a) =>
             a.date === selectedSlot.date &&

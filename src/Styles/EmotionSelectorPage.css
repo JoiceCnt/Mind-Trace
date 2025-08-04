@@ -1,6 +1,6 @@
-/* Container da página */
+/* Container */
 .emotion-selector-page {
-  background-color: #F9FAFB;
+  background-color: #f9fafb;
   width: 90%;
   max-width: 900px;
   margin: 0 auto;
@@ -10,8 +10,8 @@
   align-items: center;
 }
 .intro-text {
-  font-size: 1.2rem;
-  color: #5C80BC; /* Azul Serenity */
+  font-size: 18px;
+  color: #5c80bc;
   font-weight: 500;
   margin-bottom: 2.5rem;
   text-align: center;
@@ -19,11 +19,12 @@
   margin-left: auto;
   margin-right: auto;
 }
+
 .question-box {
-  background-color: #E0E0E0;
+  background-color: #e0e0e0;
   padding: 15px 25px;
   border-radius: 16px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(#333);
   margin-bottom: 2.5rem;
   text-align: center;
   max-width: 900px;
@@ -38,7 +39,7 @@
   grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   padding: 40px;
-  justify-items: center; /* novo */
+  justify-items: center;
 }
 /*===EMOJI CARD === */
 .emoji-card {

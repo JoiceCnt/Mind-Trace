@@ -10,8 +10,6 @@ function PatientLogs() {
   const patientId = localStorage.getItem("patientId");
   console.log("Logged in patientId:", patientId);
 
-
-
   // load the logssi
   useEffect(() => {
     fetch(`http://localhost:5005/logs`)
@@ -37,7 +35,18 @@ function PatientLogs() {
   };
 
   return (
-    <div className="logs-container">
+    <div
+      className="logs-container"
+      style={{
+        width: "60%",
+        margin: "0 auto",
+        justifyContent: "center",
+        minHeight: "25vh",
+        flexDirection: "column",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "8px",
+      }}
+    >
       <h2>History</h2>
 
       <div className="logs-header">

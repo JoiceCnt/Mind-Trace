@@ -7,27 +7,48 @@ function PatientAppointments() {
   const [appointments, setAppointments] = useState([]);
   const navigate = useNavigate();
   const patientId = localStorage.getItem("patientId");
-  const today = new Date().toISOString().split("T")[0];
 
   useEffect(() => {
     if (!patientId) return;
 
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5005/appointments?patientId=${patientId}`
+        const response = await axios.get(`http://localhost:5005/appointments`);
+
+        console.log("ALL APPOINTMENTS:", response.data);
+        console.log("PATIENT LOGGED ID:", patientId);
+
+        const filteredAppointments = response.data.filter(
+          (appt) =>
+            appt.status === "booked" &&
+            String(appt.patient) === String(patientId)
         );
-        setAppointments(response.data);
+
+        console.log("Patient Appointments:", filteredAppointments);
+        setAppointments(filteredAppointments);
       } catch (error) {
-        console.error("Erro ao buscar agendamentos:", error);
+        console.error("Error findng appointments:", error);
       }
     };
 
     fetchAppointments();
   }, [patientId]);
 
+  const now = new Date();
+
   return (
-    <div className="appointments-container">
+    <div
+      className="appointments-container"
+      style={{
+        width: "60%",
+        margin: "0 auto",
+        justifyContent: "center",
+        minHeight: "25vh",
+        flexDirection: "column",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "8px",
+      }}
+    >
       <h2 className="appointments-title">Appointments</h2>
 
       {appointments.length === 0 ? (
@@ -35,7 +56,8 @@ function PatientAppointments() {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {appointments.map((appt) => {
-            const isFuture = appt.date >= today;
+            const appointmentDateTime = new Date(`${appt.date}T${appt.time}`);
+            const isFuture = appointmentDateTime > now;
             const isPending = appt.status === "booked" && isFuture;
             const rowClass = `appointment-item ${
               isPending ? "pending" : "done"
@@ -44,7 +66,9 @@ function PatientAppointments() {
             return (
               <div key={appt.id} className={rowClass}>
                 <div>{isPending ? "Pending" : "Done"}</div>
-                <div>{appt.date}</div>
+                <div>
+                  {appt.date} – {appt.time}
+                </div>
                 <div>Professional’s name</div>
                 <div>
                   {isPending ? (

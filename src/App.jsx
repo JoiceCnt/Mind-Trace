@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
 import PatientLogin from "./Pages/PatientLogin";
 import EmotionLog from "./Pages/EmotionLog.jsx";
-import CustomCalendar from "./Pages/CustomCalendar.jsx";
+
 import PatientLogs from "./Pages/PatientLogs.jsx";
 import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
 import ProfessionalCalendar from "./Components/ProfessionalCalendar.jsx";
@@ -30,7 +30,7 @@ function App() {
           <Route path="/EmotionSelectorPage" element={<EmotionSelectorPage />} />
           <Route path="/login/patient" element={<PatientLogin />} />
           <Route path="/emotion-log" element={<EmotionLog />} />
-          <Route path="/Calendar" element={<CustomCalendar />} />
+
           <Route path="/patient/logs" element={<PatientLogs />} />
           <Route path="/submission-confirmation" element={<SubmissionConfirmation />} />
           <Route path="/edit-profile" element={<EditProfile />} />
@@ -47,7 +47,10 @@ function App() {
           />
           <Route path="/terms-of-use" element={<TermsOfUse />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/CheckPatientsHistory" element={<CheckPatientsHistory />} />
+          <Route
+            path="/CheckPatientsHistory"
+            element={<CheckPatientsHistory />}
+          />
         </Routes>
       </div>
       <Footer />

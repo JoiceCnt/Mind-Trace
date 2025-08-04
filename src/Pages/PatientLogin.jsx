@@ -37,45 +37,98 @@ function PatientLogin() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "60px", position: "relative", padding: "2rem" }}>
-      <button className="backButton" onClick={() => navigate("/")} style={{
-        position: "fixed",
-        top: "250px",
-        right: "30px",
-        backgroundColor: "transparent", 
-        border: "none",
-        cursor: "pointer",
-        fontSize: "24px",
-        color:  "#5C80BC",
+    <div
+      style={{
+        width: "60%",
+        margin: "0 auto",
+        justifyContent: "center",
+        minHeight: "25vh",
+        flexDirection: "column",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "8px",
       }}
-        title="Back"
+    >
+      <h2
+        style={{
+          fontSize: "25px",
+          marginBottom: "30px",
+          color: "#333",
+          textAlign: "center",
+        }}
       >
-        <TbArrowBackUp />
-      </button>
-      <h2>Login as Patient</h2>
+        Login as Patient
+      </h2>
       {logged ? (
-        <p>Login successful. Redirecting...</p>
+        <h2
+          style={{
+            fontSize: "30px",
+            marginBottom: "20x",
+            color: "#333",
+            textAlign: "center",
+          }}
+        >
+          Login successful. Redirecting...
+        </h2>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "12px",
+            width: "100%",
+          }}
+        >
           <input
             type="text"
             placeholder="User"
             value={user}
             onChange={(e) => setUser(e.target.value)}
             required
+            style={{
+              padding: "12px",
+              fontSize: "25px ",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+              width: "80%",
+              textAlign: "center",
+            }}
           />
-          <br />
-          <br />
+
           <input
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            style={{
+              padding: "12px",
+              fontSize: "25px ",
+              borderRadius: "8px",
+              border: "1px solid #ccc",
+              width: "80%",
+              textAlign: "center",
+            }}
           />
           <br />
           <br />
-          <button type="submit">Enter</button>
+          <button
+            type="submit"
+            style={{
+              marginTop: "20px",
+              padding: "10px 25px",
+              backgroundColor: "#a8d5ba",
+              border: "none",
+              borderRadius: "8px",
+              fontSize: "30px",
+              cursor: "pointer",
+              transition: "background-color 0.3s ease",
+              width: "80%",
+            }}
+          >
+            Enter
+          </button>
         </form>
       )}
     </div>

@@ -11,30 +11,34 @@ const CheckPatientsHistory = () => {
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
 
   useEffect(() => {
-    axios.get("http://localhost:5005/logs")
+    axios
+      .get("http://localhost:5005/logs")
       .then((response) => {
-      console.log("Fetched logs:", response.data);
+        console.log("Fetched logs:", response.data);
         // Se for response.data.logs, atualize aqui
-        setLogs(Array.isArray(response.data) ? response.data : response.data.logs);
+        setLogs(
+          Array.isArray(response.data) ? response.data : response.data.logs
+        );
       })
       .catch((error) => {
-      console.error("Error fetching logs:", error);
+        console.error("Error fetching logs:", error);
       });
   }, []);
-  
+
   const handleFilter = () => {
     const filtered = logs.filter((log) => {
-    const nameMatch =
-      patientName === "" ||
-      log.patientName.toLowerCase().includes(patientName.toLowerCase());    const logDate = new Date(log.date);
-    const fromDate = dateRange.from ? new Date(dateRange.from) : null;
-    const toDate = dateRange.to ? new Date(dateRange.to) : null;
-    const fromMatch = !fromDate || logDate >= fromDate;
-    const toMatch = !toDate || logDate <= toDate;    return nameMatch && fromMatch && toMatch; // :marca_de_verificación_blanca:
-  });
-  setFilteredLogs(filtered);
-};
-
+      const nameMatch =
+        patientName === "" ||
+        log.patientName.toLowerCase().includes(patientName.toLowerCase());
+      const logDate = new Date(log.date);
+      const fromDate = dateRange.from ? new Date(dateRange.from) : null;
+      const toDate = dateRange.to ? new Date(dateRange.to) : null;
+      const fromMatch = !fromDate || logDate >= fromDate;
+      const toMatch = !toDate || logDate <= toDate;
+      return nameMatch && fromMatch && toMatch; // :marca_de_verificación_blanca:
+    });
+    setFilteredLogs(filtered);
+  };
 
   const handleDownloadPDF = () => {
     const doc = new jsPDF();
@@ -58,7 +62,7 @@ const CheckPatientsHistory = () => {
     });
 
     doc.save("patient-history.pdf");
-  }
+  };
 
   return (
     <div className="history-container">
@@ -71,12 +75,14 @@ const CheckPatientsHistory = () => {
           value={patientName}
           onChange={(e) => setPatientName(e.target.value)}
         />
-         <label>
+        <label>
           From:
           <input
             type="date"
             value={dateRange.from}
-            onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })}
+            onChange={(e) =>
+              setDateRange({ ...dateRange, from: e.target.value })
+            }
           />
         </label>
         <label>
@@ -98,10 +104,18 @@ const CheckPatientsHistory = () => {
         ) : (
           filteredLogs.map((log) => (
             <div key={log.id} className="log-entry">
-              <p><strong>Name:</strong> {log.patientName}</p>
-              <p><strong>Date:</strong> {log.date}</p>
-              <p><strong>Emotion:</strong> {log.nameId}</p>
-              <p><strong>Comment:</strong> {log.description}</p>
+              <p>
+                <strong>Name:</strong> {log.patientName}
+              </p>
+              <p>
+                <strong>Date:</strong> {log.date}
+              </p>
+              <p>
+                <strong>Emotion:</strong> {log.nameId}
+              </p>
+              <p>
+                <strong>Comment:</strong> {log.description}
+              </p>
             </div>
           ))
         )}
