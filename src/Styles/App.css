@@ -126,6 +126,17 @@ body {
   background-color: #A1B8E1;
   color: #fff
 }
+.close-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #5C80BC;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  cursor: pointer;
+}
 
 /*=== PROMPT TEXT ===*/
 .prompt {

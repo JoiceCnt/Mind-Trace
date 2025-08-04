@@ -11,7 +11,6 @@ function ProfessionalLogin() {
     e.preventDefault();
     console.log("Professional login:", user, password);
 
-
     navigate("/Professional-Home");
   };
 
