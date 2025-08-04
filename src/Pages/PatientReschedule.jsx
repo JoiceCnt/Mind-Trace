@@ -14,15 +14,15 @@ function PatientReschedule() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/appointments?date=${formattedDate}`)
+      .get(
+        `http://localhost:5005/appointments?date=${formattedDate}¬status=available`
+      )
       .then((res) => {
-        // Mostrar apenas horários não ocupados
-        const bookedHours = res.data.map((appt) => appt.time);
-        const allHours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
-        const freeHours = allHours.filter(
-          (hour) => !bookedHours.includes(hour)
-        );
-        setAvailableHours(freeHours);
+        const available = res.data.map((appt) => appt.time);
+        setAvailableHours(available);
+      })
+      .catch((err) => {
+        console.error("Erro ao buscar horários disponíveis:", err);
       });
   }, [formattedDate]);
 
@@ -43,18 +43,73 @@ function PatientReschedule() {
   return (
     <div
       style={{
-        padding: "40px",
-        maxWidth: "600px",
+        width: "60%",
         margin: "0 auto",
-        textAlign: "center",
+        justifyContent: "center",
+        minHeight: "25vh",
+        flexDirection: "column",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "8px",
       }}
     >
-      <h2>Reschedule Appointment</h2>
-      <p>Select a new date:</p>
-      <Calendar onChange={setSelectedDate} value={selectedDate} />
-      <h3 style={{ marginTop: "30px" }}>Available Hours on {formattedDate}</h3>
+      <h3
+        style={{
+          fontSize: "25px",
+          marginBottom: "10px",
+          color: "#333",
+          textAlign: "center",
+        }}
+      >
+        Reschedule Appointment
+      </h3>
+      <h2
+        style={{
+          fontSize: "20px",
+          marginBottom: "30px",
+          color: "#333",
+          textAlign: "center",
+          border: "2px solid rgb(224,224,224)",
+          padding: "10px 20px",
+          borderRadius: "8px",
+          backgroundColor: "white",
+          width: "50%",
+          margin: "0 auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <em>Select a new date:</em>
+      </h2>
+      <Calendar
+        onChange={setSelectedDate}
+        value={selectedDate}
+        style={{
+          transform: "scale(2.0)",
+          transformOrigin: "top center",
+        }}
+      />
+      <h2
+        style={{
+          fontSize: "20px",
+          marginBottom: "30px",
+          color: "#333",
+          textAlign: "center",
+        }}
+      >
+        <em>Available Hours on {formattedDate}</em>
+      </h2>
       {availableHours.length === 0 ? (
-        <p>No hours available</p>
+        <h2
+          style={{
+            fontSize: "25px",
+            marginBottom: "10px",
+            color: "red",
+            textAlign: "center",
+          }}
+        >
+          No hours available
+        </h2>
       ) : (
         <div
           style={{

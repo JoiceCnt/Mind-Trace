@@ -37,7 +37,18 @@ function PatientAppointments() {
   const now = new Date();
 
   return (
-    <div className="appointments-container">
+    <div
+      className="appointments-container"
+      style={{
+        width: "60%",
+        margin: "0 auto",
+        justifyContent: "center",
+        minHeight: "25vh",
+        flexDirection: "column",
+        backgroundColor: "#f9f9f9",
+        borderRadius: "8px",
+      }}
+    >
       <h2 className="appointments-title">Appointments</h2>
 
       {appointments.length === 0 ? (

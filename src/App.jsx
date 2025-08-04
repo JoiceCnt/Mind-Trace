@@ -18,6 +18,7 @@ import PatientReschedule from "./Pages/PatientReschedule.jsx";
 import TermsOfUse from "./Pages/TermsOfUse.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import CheckPatientsHistory from "./Pages/CheckPatientsHistory.jsx";
+import EditProfile from "./Pages/EditProfile.jsx";
 function App() {
   return (
     <div className="app-container">
@@ -25,22 +26,17 @@ function App() {
       <div className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route
-            path="/EmotionSelectorPage"
-            element={<EmotionSelectorPage />}
-          />
+          {/* PATIENT ROUTES */}
+          <Route path="/EmotionSelectorPage" element={<EmotionSelectorPage />} />
           <Route path="/login/patient" element={<PatientLogin />} />
           <Route path="/emotion-log" element={<EmotionLog />} />
 
           <Route path="/patient/logs" element={<PatientLogs />} />
-          <Route
-            path="/submission-confirmation"
-            element={<SubmissionConfirmation />}
-          />
-          <Route
-            path="/ProfessionalCalendar"
-            element={<ProfessionalCalendar />}
-          />
+          <Route path="/submission-confirmation" element={<SubmissionConfirmation />} />
+          <Route path="/edit-profile" element={<EditProfile />} />
+
+          {/* PROFESSIONAL ROUTES */}
+          <Route path="/ProfessionalCalendar" element={<ProfessionalCalendar />} />
           <Route path="/professional-home" element={<ProfessionalHome />} />
           <Route path="/login/professional" element={<ProfessionalLogin />} />
           <Route path="/appointments" element={<PatientAppointments />} />
