@@ -3,13 +3,13 @@ import axios from "axios";
 import "../Styles/EditProfile.css";
 
 function EditProfile() {
-  const [profile, setProfile] = useState({ name: "", email: "", birthDate: "" });
+  const [profile, setProfile] = useState({ id: "", name: "", email: "", birthDate: "" });
   const [originalProfile, setOriginalProfile] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
-  const patientsId = localStorage.getItem("patient");
-  axios.get(`http://localhost:5005/patients/${patientsId.id}`)
+  const patientsId = localStorage.getItem("patientId");
+  axios.get(`http://localhost:5005/patients/${patientsId}`)
     .then((res) => {
       setProfile(res.data);
       setOriginalProfile(res.data);

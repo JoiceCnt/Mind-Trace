@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TbArrowBackUp } from "react-icons/tb";
 
 function PatientLogin() {
   const [user, setUser] = useState("");
@@ -36,7 +37,21 @@ function PatientLogin() {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "60px" }}>
+    <div style={{ textAlign: "center", marginTop: "60px", position: "relative", padding: "2rem" }}>
+      <button className="backButton" onClick={() => navigate("/")} style={{
+        position: "fixed",
+        top: "250px",
+        right: "30px",
+        backgroundColor: "transparent", 
+        border: "none",
+        cursor: "pointer",
+        fontSize: "24px",
+        color:  "#5C80BC",
+      }}
+        title="Back"
+      >
+        <TbArrowBackUp />
+      </button>
       <h2>Login as Patient</h2>
       {logged ? (
         <p>Login successful. Redirecting...</p>

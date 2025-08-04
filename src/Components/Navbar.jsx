@@ -25,23 +25,24 @@ const Navbar = () => {
 
    
   const isPatient =
-    location.pathname.includes("/patient") ||
-    location.pathname.includes("/EmotionSelectorPage") ||
     location.pathname.includes("/emotion-log") ||
     location.pathname.includes("/submission-confirmation") ||
     location.pathname.includes("/patient/Logs") ||
-    location.pathname.includes("/patient/log") ||
     location.pathname.includes("/edit-profile") ||
     location.pathname.includes("/appointments");
 
+  const PatientLogin = location.pathname.includes("/login/patient");
+  const EmotionSelectorPage = location.pathname.includes("/EmotionSelectorPage")
+
   const isProfessional = 
-    location.pathname.includes("/professional") ||
     location.pathname.includes("/ProfessionalCalendar") ||
     location.pathname.includes("/create-patient") ||
-    location.pathname.includes("/Professional-Home") ||
-    location.pathname.includes("/CheckPatientsHistory")
+    location.pathname.includes("/CheckPatientsHistory");
 
-  const isHomePage = location.pathname === "/";
+  const ProfessionalLogin = location.pathname.includes("/login/professional");
+  const ProfessionalHome = location.pathname.includes("/Professional-Home")
+
+  const showHomeButton = isPatient || isProfessional;
 
   const showMenuButton = 
     location.pathname.includes("/EmotionSelectorPage") ||
@@ -57,16 +58,17 @@ const Navbar = () => {
     location.pathname.includes("/create-patient") ||
     location.pathname.includes("/Professional-Home") ||
     location.pathname.includes("/CheckPatientsHistory");
+    
 
-  const navbarBgColor = isPatient ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
-  const buttonBgColor = isPatient ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
-  const dropdownBgColor = isPatient ? "#A8D5BA" : "#e0e0e0";
+  const navbarBgColor = isPatient || PatientLogin || EmotionSelectorPage ? "#A8D5BA" : isProfessional || ProfessionalLogin || ProfessionalHome ? "#B8B5E0" : "#e0e0e0";
+  const buttonBgColor = isPatient || EmotionSelectorPage ? "#A8D5BA" : isProfessional ? "#B8B5E0" : "#e0e0e0";
+  const dropdownBgColor = isPatient || EmotionSelectorPage ? "#A8D5BA" : "#e0e0e0";
   
   const burgerIcon = blueBurgerIcon;
 
   const handleLogout = () => {
     localStorage.removeItem("user");
-    navigate("/");
+    navigate("/login/patient");
   }
   
   return (
@@ -77,8 +79,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-actions">
-          {!isHomePage && (
-            <button className="home-button" onClick={() => navigate("/")}>
+          {showHomeButton && (
+            <button className="home-button" onClick={() => navigate(isPatient ? "/EmotionSelectorPage" : "/Professional-Home")}>
             Home
             </button>
           )}

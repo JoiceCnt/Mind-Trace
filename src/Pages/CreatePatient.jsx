@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import "../Styles/CreatePatient.css";
 
 function CreatePatient() {
   const [formData, setFormData] = useState({
     name: "",
     username: "",
     password: "",
+    email: "",
+    birthDate: ""
   });
   const navigate = useNavigate();
 
@@ -29,11 +32,12 @@ function CreatePatient() {
   };
 
   return (
-    <div style={{ padding: "40px", textAlign: "center" }}>
-      <h2>Create a New Patient</h2>
+    <div className="create-patient-container">
+      <div className="create-patient-content">
+      <h2 className="create-patient-title">Create a New Patient</h2>
       <form
         onSubmit={handleSubmit}
-        style={{ maxWidth: "400px", margin: "auto" }}
+        className="create-patient-form"
       >
         <input
           type="text"
@@ -65,8 +69,32 @@ function CreatePatient() {
         />
         <br />
         <br />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <br />
+        <p>
+          BirthDate
+        </p>
+        <input
+          type="date"
+          name="birthDate"
+          placeholder="birthDate"
+          value={formData.birthDate}
+          onChange={handleChange}
+          required
+        />
+        <br />
+        <br />
         <button type="submit">Create Patient</button>
       </form>
+      </div>
     </div>
   );
 }
