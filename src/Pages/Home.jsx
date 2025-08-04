@@ -49,7 +49,7 @@ function Home() {
         }}
       />
 
-      <p style={{ fontSize: "18px", marginBottom: "30px", color: "#333" }}>
+      <p style={{ fontSize: "25px", marginBottom: "30px", color: "#333" }}>
         <strong>Select the option below to login:</strong>
       </p>
 
