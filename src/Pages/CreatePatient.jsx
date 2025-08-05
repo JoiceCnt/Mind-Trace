@@ -9,7 +9,7 @@ function CreatePatient() {
     username: "",
     password: "",
     email: "",
-    birthDate: ""
+    birthDate: "",
   });
   const navigate = useNavigate();
 
@@ -22,7 +22,7 @@ function CreatePatient() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5005/patients", formData);
+      await axios.post("${import.meta.env.JSONSERVER_URL}/patients", formData);
       alert("Patient created successfully!");
       navigate("/professional-home");
     } catch (error) {
@@ -34,66 +34,61 @@ function CreatePatient() {
   return (
     <div className="create-patient-container">
       <div className="create-patient-content">
-      <h2 className="create-patient-title">Create a New Patient</h2>
-      <form
-        onSubmit={handleSubmit}
-        className="create-patient-form"
-      >
-        <input
-          type="text"
-          name="name"
-          placeholder="Full name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
-        <p>
-          BirthDate
-        </p>
-        <input
-          type="date"
-          name="birthDate"
-          placeholder="birthDate"
-          value={formData.birthDate}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
-        <button type="submit">Create Patient</button>
-      </form>
+        <h2 className="create-patient-title">Create a New Patient</h2>
+        <form onSubmit={handleSubmit} className="create-patient-form">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+          <br />
+          <br />
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+          <br />
+          <br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <br />
+          <br />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <br />
+          <br />
+          <p>BirthDate</p>
+          <input
+            type="date"
+            name="birthDate"
+            placeholder="birthDate"
+            value={formData.birthDate}
+            onChange={handleChange}
+            required
+          />
+          <br />
+          <br />
+          <button type="submit">Create Patient</button>
+        </form>
       </div>
     </div>
   );

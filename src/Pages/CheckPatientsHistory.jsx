@@ -12,7 +12,7 @@ const CheckPatientsHistory = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5005/logs")
+      .get("${import.meta.env.JSONSERVER_URL}/logs")
       .then((response) => {
         console.log("Fetched logs:", response.data);
         // Se for response.data.logs, atualize aqui
@@ -71,7 +71,7 @@ const CheckPatientsHistory = () => {
 
         <div className="filters">
           <input
-           type="text"
+            type="text"
             placeholder="Enter patient name"
             value={patientName}
             onChange={(e) => setPatientName(e.target.value)}
@@ -79,24 +79,30 @@ const CheckPatientsHistory = () => {
           <label>
             From:
             <input
-             type="date"
+              type="date"
               value={dateRange.from}
-             onChange={(e) =>
+              onChange={(e) =>
                 setDateRange({ ...dateRange, from: e.target.value })
               }
             />
           </label>
           <label>
-           To:
+            To:
             <input
               type="date"
               value={dateRange.to}
-              onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
+              onChange={(e) =>
+                setDateRange({ ...dateRange, to: e.target.value })
+              }
             />
           </label>
-        
-          <button className="filter-bt" onClick={handleFilter}>Filter</button>
-          <button className="downloadPDF-bt" onClick={handleDownloadPDF}>Download PDF</button>
+
+          <button className="filter-bt" onClick={handleFilter}>
+            Filter
+          </button>
+          <button className="downloadPDF-bt" onClick={handleDownloadPDF}>
+            Download PDF
+          </button>
         </div>
 
         <div className="log-list">

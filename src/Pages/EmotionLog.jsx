@@ -14,7 +14,7 @@ function EmotionLog() {
     const patientId = localStorage.getItem("patientId");
     const patientName = localStorage.getItem("patientName");
 
-    const newLog = {   
+    const newLog = {
       patientId: patientId,
       patientName: patientName,
       date: new Date().toISOString().split("T")[0],
@@ -24,7 +24,7 @@ function EmotionLog() {
       description: text,
     };
 
-    fetch("http://localhost:5005/logs", {
+    fetch("${import.meta.env.JSONSERVER_URL}/logs", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newLog),

@@ -13,7 +13,9 @@ function PatientAppointments() {
 
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get(`http://localhost:5005/appointments`);
+        const response = await axios.get(
+          `${import.meta.env.JSONSERVER_URL}/appointments`
+        );
 
         console.log("ALL APPOINTMENTS:", response.data);
         console.log("PATIENT LOGGED ID:", patientId);

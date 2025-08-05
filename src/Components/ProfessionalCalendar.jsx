@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+function formatLocalDate(d) {
+  const date = d instanceof Date ? d : new Date(d);
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`; // "YYYY-MM-DD"
+}
+
 function ProfessionalCalendar() {
   const [appointments, setAppointments] = useState([]);
   const [patients, setPatients] = useState([]);
@@ -15,23 +23,23 @@ function ProfessionalCalendar() {
   const days = Array.from({ length: 5 }, (_, i) => {
     const d = new Date();
     d.setDate(d.getDate() + startOffset + i);
-    return d.toISOString().split("T")[0];
+    return formatLocalDate(d);
   });
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [startOffset]); // refetch if you want data to reflect week change
 
   const fetchData = async () => {
     try {
       const [apptRes, patientRes] = await Promise.all([
-        axios.get("http://localhost:5005/appointments"),
-        axios.get("http://localhost:5005/patients"),
+        axios.get(`${import.meta.env.JSONSERVER_URL}/appointments`),
+        axios.get(`${import.meta.env.JSONSERVER_URL}/patients`),
       ]);
       setAppointments(apptRes.data);
       setPatients(patientRes.data);
-      console.log(patientRes.data);
-      console.log(apptRes.data);
+      console.log("Patients:", patientRes.data);
+      console.log("Appointments:", apptRes.data);
     } catch (error) {
       console.error("Erro ao carregar dados:", error);
     }
@@ -39,17 +47,13 @@ function ProfessionalCalendar() {
 
   const getPatientName = (patientId) => {
     const found = patients.find((p) => p.id == patientId);
-    console.log(patientId, patients, found);
     return found ? found.name : "—";
   };
 
   const handleCellClick = (date, time) => {
-    console.log(date, time);
-
     const existing = appointments.find(
       (a) => a.date === date && a.time === time
     );
-    console.log(existing, appointments);
     setSelectedSlot({ date, time, ...existing });
     setFormData({
       patientId: existing?.patientId || "",
@@ -58,6 +62,7 @@ function ProfessionalCalendar() {
   };
 
   const handleSave = async () => {
+    if (!selectedSlot) return;
     const slot = {
       date: selectedSlot.date,
       time: selectedSlot.time,
@@ -68,23 +73,22 @@ function ProfessionalCalendar() {
 
     try {
       if (selectedSlot.id) {
-        // ✏️ Update existing appointment
+        // Update existing appointment
         await axios.put(
-          `http://localhost:5005/appointments/${selectedSlot.id}`,
+          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
           {
             ...slot,
             id: selectedSlot.id,
           }
         );
       } else {
-        // ➕ Create a new appointment with a unique ID
-        await axios.post("http://localhost:5005/appointments", {
-          ...slot,
-          /*id: crypto.randomUUID(),*/ //  safe unique string ID
-        });
+        // Create new appointment
+        await axios.post(
+          `${import.meta.env.JSONSERVER_URL}/appointments`,
+          slot
+        );
       }
 
-      // 🔄 Reset UI and reload data
       setSelectedSlot(null);
       setFormData({ patientId: "", note: "" });
       fetchData();
@@ -95,15 +99,9 @@ function ProfessionalCalendar() {
 
   const handleDelete = async () => {
     try {
-      /* await axios.delete(
-        `http://localhost:5005/appointments/${selectedSlot.id}`
-      );*/
-      console.log("Trying to delete:", selectedSlot);
-
-      let appointmentId = selectedSlot.id;
+      let appointmentId = selectedSlot?.id;
 
       if (!appointmentId) {
-        //* const res = await axios.get(`http://localhost:5005/appointments`);
         const found = appointments.find(
           (a) =>
             a.date === selectedSlot.date &&
@@ -115,7 +113,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `http://localhost:5005/appointments/${appointmentId}`
+          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
@@ -134,15 +132,11 @@ function ProfessionalCalendar() {
       <h2>Agenda</h2>
 
       <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => setStartOffset(startOffset - 5)}>
-          ⏮ Last Week
-        </button>
+        <button onClick={() => setStartOffset((o) => o - 5)}>⏮ Last Week</button>
         <button onClick={() => setStartOffset(0)} style={{ margin: "0 1rem" }}>
           Today
         </button>
-        <button onClick={() => setStartOffset(startOffset + 5)}>
-          ⏭ Next Week
-        </button>
+        <button onClick={() => setStartOffset((o) => o + 5)}>⏭ Next Week</button>
       </div>
 
       <table style={{ borderCollapse: "collapse", width: "100%" }}>
@@ -154,7 +148,7 @@ function ProfessionalCalendar() {
                 padding: "8px",
                 background: "#f0f0f0",
                 tableLayout: "fixed",
-                width: "100"
+                width: "100px",
               }}
             >
               Hour
@@ -282,3 +276,4 @@ function ProfessionalCalendar() {
 }
 
 export default ProfessionalCalendar;
+

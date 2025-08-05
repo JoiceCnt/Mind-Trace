@@ -27,92 +27,33 @@ function PatientReschedule() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5005/appointments/${appointmentId}`)
+      .get(
+        `http://localhost:5005/appointments?date=${formattedDate}¬status=available`
+      )
       .then((res) => {
-       setCurrentAppointment(res.data);
-       // Construir date local para evitar desfase de zona horaria
-        const parts = res.data.date.split("-");
-        const localDate = new Date(
-          Number(parts[0]),
-          Number(parts[1]) - 1,
-          Number(parts[2])
-        );
-        setSelectedDate(localDate);
-      })
-      .catch((err) => {
-       console.error("Error fetching current appointment:", err);
-     });  
-  }, [appointmentId]);
-
-
-  useEffect(() => {
-    if (!currentAppointment) return;
-
-     const formattedDate = formatLocalDate(selectedDate); 
-
-    axios
-      .get(`http://localhost:5005/appointments?date=${formattedDate}`)
-      .then((res) => {
-        const occupied = res.data.filter(
-        (appt) =>
-          appt.id !== currentAppointment.id && appt.status === "booked"
-      );
-
-      const occupiedTimes = occupied.map((appt) => appt.time);
-
-      const TIME_SLOTS = [
-        "09:00",
-        "10:00",
-        "11:00",
-        "12:00",
-        "13:00",
-        "14:00",
-        "15:00",
-        "16:00",
-        "17:00",
-      ];
-
-      let available = TIME_SLOTS.filter(
-        (slot) => !occupiedTimes.includes(slot)
-      );
-
-      const appointmentDateFormatted = formatLocalDate(
-          currentAppointment.date);
-
-      if (
-        appointmentDateFormatted === formattedDate && 
-        !available.includes(currentAppointment.time)
-      ) {
-         available.push(currentAppointment.time);
-        available.sort(); // orden opcional
-      }
-
+        const available = res.data.map((appt) => appt.time);
         setAvailableHours(available);
       })
       .catch((err) => {
-        console.error("Erro ao buscar horários disponíveis:", err);
+        console.error("Error to find available time:", err);
       });
   }, [selectedDate, currentAppointment]);
 
  
 
   const handleReschedule = async (time) => {
-  try {
-    const formattedDate = formatLocalDate(selectedDate);
-    
-    await axios.patch(`http://localhost:5005/appointments/${appointmentId}`, {
-      date: formattedDate,
-      time: time,
-    });
-    
-    alert("Appointment rescheduled successfully.");
-    navigate("/appointments");
-  } catch (error) {
-    console.error("Error rescheduling:", error);
-  }
-};
-
-const displayDate = formatLocalDate(selectedDate);
+    try {
+      // Atualiza o agendamento com nova data/hora
+      await axios.patch(`http://localhost:5005/appointments/${appointmentId}`, {
+        date: formattedDate,
+        time: time,
+      });
+      alert("Appointment rescheduled successfully.");
+      navigate("/appointments");
+    } catch (error) {
+      console.error("Error rescheduling:", error);
+    }
+  };
 
   return (
     <div
@@ -142,10 +83,7 @@ const displayDate = formatLocalDate(selectedDate);
           marginBottom: "30px",
           color: "#333",
           textAlign: "center",
-          border: "2px solid rgb(224,224,224)",
           padding: "10px 20px",
-          borderRadius: "8px",
-          backgroundColor: "white",
           width: "50%",
           margin: "0 auto",
           display: "flex",
@@ -158,12 +96,16 @@ const displayDate = formatLocalDate(selectedDate);
       <Calendar
         onChange={setSelectedDate}
         value={selectedDate}
-        tileDisabled={({ date }) => isWeekend(date)}
         style={{
-          transform: "scale(2.0)",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "2rem",
+          transform: "scale(1.3)",
           transformOrigin: "top center",
         }}
-      />
+      >
+        <Calendar onChange={setSelectedDate} value={selectedDate} />
+      </div>
       <h2
         style={{
           fontSize: "20px",

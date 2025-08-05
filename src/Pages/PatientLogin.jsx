@@ -13,7 +13,9 @@ function PatientLogin() {
 
     try {
       const res = await fetch(
-        `http://localhost:5005/patients?username=${user}&password=${password}`
+        `${
+          import.meta.env.JSONSERVER_URL
+        }/patients?username=${user}&password=${password}`
       );
 
       const data = await res.json();
@@ -37,17 +39,19 @@ function PatientLogin() {
   };
 
   return (
-    <div className="logs-container"
+    <div
+      className="logs-container"
       style={{
         padding: "20px",
         width: "70%",
         margin: "0 auto",
         backgroundColor: "#F9FAFB",
         textAlign: "center",
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"     
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
-      <div className="logs-content"
+      <div
+        className="logs-content"
         style={{
           width: "100%",
           backgroundColor: "#ffffff",
@@ -57,17 +61,19 @@ function PatientLogin() {
           boxSizing: "border-box",
         }}
       >
-
-        <button className="backButton" onClick={() => navigate("/")} style={{
-          position: "fixed",
-          top: "250px",
-          right: "30px",
-          backgroundColor: "transparent", 
-          border: "none",
-          cursor: "pointer",
-          fontSize: "24px",
-          color:  "#5C80BC",
-        }}
+        <button
+          className="backButton"
+          onClick={() => navigate("/")}
+          style={{
+            position: "fixed",
+            top: "250px",
+            right: "30px",
+            backgroundColor: "transparent",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "24px",
+            color: "#5C80BC",
+          }}
           title="Back"
         >
           <TbArrowBackUp />
@@ -78,7 +84,7 @@ function PatientLogin() {
             marginBottom: "30px",
             color: "#5C80BC",
             textAlign: "center",
-         }}
+          }}
         >
           Login as Patient
         </h2>
@@ -156,7 +162,7 @@ function PatientLogin() {
             </button>
           </form>
         )}
-        </div>
+      </div>
     </div>
   );
 }
