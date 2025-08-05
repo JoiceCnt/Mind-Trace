@@ -8,7 +8,7 @@ const EmotionSelectorPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5005/emojis")
+    fetch("${import.meta.env.JSONSERVER_URL}/emojis")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -32,7 +32,7 @@ const EmotionSelectorPage = () => {
   return (
     <div className="emotion-selector-page">
       <p className="intro-text">
-      Welcome to the app where your feelings matter, every single day.
+        Welcome to the app where your feelings matter, every single day.
       </p>
 
       <div className="question-box">

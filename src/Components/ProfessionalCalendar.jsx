@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { TbLayout } from "react-icons/tb";
 
 function ProfessionalCalendar() {
   const [appointments, setAppointments] = useState([]);
@@ -13,10 +12,20 @@ function ProfessionalCalendar() {
   });
 
   const hours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
+
+  const formatDate = (date) => date.toISOString().split("T")[0];
+
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0 (domingo) a 6 (sábado)
+  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+
+  const monday = new Date(today);
+  monday.setDate(today.getDate() + mondayOffset + startOffset);
+
   const days = Array.from({ length: 5 }, (_, i) => {
-    const d = new Date();
-    d.setDate(d.getDate() + startOffset + i);
-    return d.toISOString().split("T")[0];
+    const date = new Date(monday);
+    date.setDate(monday.getDate() + i);
+    return formatDate(date);
   });
 
   useEffect(() => {
@@ -26,13 +35,11 @@ function ProfessionalCalendar() {
   const fetchData = async () => {
     try {
       const [apptRes, patientRes] = await Promise.all([
-        axios.get("http://localhost:5005/appointments"),
-        axios.get("http://localhost:5005/patients"),
+        axios.get("${import.meta.env.JSONSERVER_URL}/appointments"),
+        axios.get("${import.meta.env.JSONSERVER_URL}/patients"),
       ]);
       setAppointments(apptRes.data);
       setPatients(patientRes.data);
-      console.log(patientRes.data);
-      console.log(apptRes.data);
     } catch (error) {
       console.error("Erro ao carregar dados:", error);
     }
@@ -40,18 +47,16 @@ function ProfessionalCalendar() {
 
   const getPatientName = (patientId) => {
     const found = patients.find((p) => p.id == patientId);
-    console.log(patientId, patients, found);
     return found ? found.name : "—";
   };
 
   const handleCellClick = (date, time) => {
-    console.log(date, time);
-
     const existing = appointments.find(
       (a) => a.date === date && a.time === time
     );
-    console.log(existing, appointments);
-    setSelectedSlot({ date, time, ...existing });
+
+    setSelectedSlot(existing ? { ...existing } : { date, time });
+
     setFormData({
       patientId: existing?.patientId || "",
       note: existing?.note || "",
@@ -69,23 +74,17 @@ function ProfessionalCalendar() {
 
     try {
       if (selectedSlot.id) {
-        // ✏️ Update existing appointment
         await axios.put(
-          `http://localhost:5005/appointments/${selectedSlot.id}`,
-          {
-            ...slot,
-            id: selectedSlot.id,
-          }
+          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
+          { ...slot, id: selectedSlot.id }
         );
       } else {
-        // ➕ Create a new appointment with a unique ID
-        await axios.post("http://localhost:5005/appointments", {
-          ...slot,
-          /*id: crypto.randomUUID(),*/ //  safe unique string ID
-        });
+        await axios.post(
+          "${import.meta.env.JSONSERVER_URL}/appointments",
+          slot
+        );
       }
 
-      // 🔄 Reset UI and reload data
       setSelectedSlot(null);
       setFormData({ patientId: "", note: "" });
       fetchData();
@@ -96,15 +95,9 @@ function ProfessionalCalendar() {
 
   const handleDelete = async () => {
     try {
-      /* await axios.delete(
-        `http://localhost:5005/appointments/${selectedSlot.id}`
-      );*/
-      console.log("Trying to delete:", selectedSlot);
-
       let appointmentId = selectedSlot.id;
 
       if (!appointmentId) {
-        //* const res = await axios.get(`http://localhost:5005/appointments`);
         const found = appointments.find(
           (a) =>
             a.date === selectedSlot.date &&
@@ -116,7 +109,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `http://localhost:5005/appointments/${appointmentId}`
+          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
@@ -131,123 +124,147 @@ function ProfessionalCalendar() {
   };
 
   return (
-    <div style={{ padding: "1rem" }}>
-      <h2>Agenda</h2>
+    <div style={{ padding: "1rem", textAlign: "center", marginBottom: "4rem" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          marginBottom: "1.5rem",
+          marginTop: "1rem",
+          fontSize: "35px",
+        }}
+      >
+        Agenda
+      </h2>
 
       <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => setStartOffset(startOffset - 5)}>
+        <button onClick={() => setStartOffset(startOffset - 7)}>
           ⏮ Last Week
         </button>
-        <button onClick={() => setStartOffset(0)} style={{ margin: "0 1rem" }}>
+        <button onClick={() => setStartOffset(0)} style={{ margin: "0 3rem" }}>
           Today
         </button>
-        <button onClick={() => setStartOffset(startOffset + 5)}>
+        <button onClick={() => setStartOffset(startOffset + 7)}>
           ⏭ Next Week
         </button>
       </div>
-
-      <table style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
-          <tr>
-            <th
-              style={{
-                border: "1px solid #ccc",
-                padding: "8px",
-                background: "#f0f0f0",
-                tableLayout: "fixed",
-                width: "100"
-              }}
-            >
-              Hour
-            </th>
-            {days.map((day) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <table
+          style={{
+            borderCollapse: "collapse",
+            width: "50rem",
+            margin: "0 auto",
+            marginBottom: "2rem",
+          }}
+        >
+          <thead>
+            <tr>
               <th
-                key={day}
                 style={{
                   border: "1px solid #ccc",
                   padding: "8px",
                   background: "#f0f0f0",
                 }}
               >
-                {new Date(day).toLocaleDateString()}
+                Hour
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {hours.map((hour) => (
-            <tr key={hour}>
-              <td
-                style={{
-                  fontWeight: "bold",
-                  padding: "8px",
-                  border: "1px solid #ccc",
-                }}
-              >
-                {hour}
-              </td>
-              {days.map((day) => {
-                const slot = appointments.find(
-                  (a) => a.date === day && a.time === hour
-                );
-                const isBooked = slot && slot.status === "booked";
-
-                return (
-                  <td
-                    key={`${day}-${hour}`}
-                    onClick={() => handleCellClick(day, hour)}
-                    style={{
-                      padding: "8px",
-                      border: "1px solid #ccc",
-                      backgroundColor: isBooked
-                        ? "#ffd6d6"
-                        : slot
-                        ? "#eaffea"
-                        : "#f9f9f9",
-                      textAlign: "center",
-                      fontSize: "0.9rem",
-                      cursor: "pointer",
-                    }}
-                    title="Clique para editar"
-                  >
-                    {slot ? (
-                      isBooked ? (
-                        <>
-                          🔒
-                          <br />
-                          <strong>{getPatientName(slot.patientId)}</strong>
-                        </>
-                      ) : (
-                        "✅ Livre"
-                      )
-                    ) : (
-                      "—"
-                    )}
-                  </td>
-                );
-              })}
+              {days.map((day) => (
+                <th
+                  key={day}
+                  style={{
+                    border: "1px solid #ccc",
+                    padding: "8px",
+                    background: "#f0f0f0",
+                  }}
+                >
+                  {day}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {hours.map((hour) => (
+              <tr key={hour}>
+                <td
+                  style={{
+                    fontWeight: "bold",
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                  }}
+                >
+                  {hour}
+                </td>
+                {days.map((day) => {
+                  const slot = appointments.find(
+                    (a) => a.date === day && a.time === hour
+                  );
+                  const isBooked = slot && slot.status === "booked";
+
+                  return (
+                    <td
+                      key={`${day}-${hour}`}
+                      onClick={() => handleCellClick(day, hour)}
+                      style={{
+                        padding: "3px",
+                        border: "1px solid #ccc",
+                        backgroundColor: isBooked
+                          ? "#ffd6d6"
+                          : slot
+                          ? "#eaffea"
+                          : "#f9f9f9",
+                        textAlign: "center",
+                        fontSize: "0.9rem",
+                        cursor: "pointer",
+                        minHeight: "30px",
+                        height: "30px",
+                        verticalAlign: "middle",
+                      }}
+                      title="Click to edit"
+                    >
+                      {slot ? (
+                        isBooked ? (
+                          <>
+                            🔒
+                            <br />
+                            <strong>{getPatientName(slot.patientId)}</strong>
+                          </>
+                        ) : (
+                          "✅ Livre"
+                        )
+                      ) : (
+                        "—"
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       {selectedSlot && (
         <div
           style={{
-            marginTop: "2rem",
-            padding: "1rem",
             border: "1px solid #ccc",
             background: "#f9f9f9",
-            maxWidth: "400px",
+            width: "100%",
           }}
         >
-          <h3>Edit Appointment</h3>
+          <h3 style={{ marginTop: "1rem", fontSize: "20px" }}>
+            Edit Appointment
+          </h3>
           <p>
             <strong>Date:</strong> {selectedSlot.date}
             <br />
-            <strong>Hours:</strong> {selectedSlot.time}
+            <strong>Hour:</strong> {selectedSlot.time}
           </p>
-          <label>Patiente:</label>
+          <label>Patient:</label>
           <select
             value={formData.patientId}
             onChange={(e) =>
@@ -267,15 +284,62 @@ function ProfessionalCalendar() {
           <br />
           <textarea
             rows="3"
-            style={{ width: "100%" }}
+            style={{ width: "60%", borderRadius: "3px" }}
             value={formData.note}
             onChange={(e) => setFormData({ ...formData, note: e.target.value })}
           ></textarea>
           <br />
           <br />
-          <button onClick={handleSave}>💾 Save</button>{" "}
-          {selectedSlot.id && <button onClick={handleDelete}>🗑️ Delete</button>}{" "}
-          <button onClick={() => setSelectedSlot(null)}>Cancel</button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "10px",
+              marginTop: "1rem",
+            }}
+          >
+            <button
+              onClick={handleSave}
+              style={{
+                minWidth: "120px",
+                padding: "8px 16px",
+                marginRight: "10px",
+                marginBottom: "1rem",
+                borderRadius: "3px",
+                borderColor: "#cac4c4ff",
+              }}
+            >
+              💾 Save
+            </button>{" "}
+            {selectedSlot.id && (
+              <button
+                onClick={handleDelete}
+                style={{
+                  minWidth: "120px",
+                  padding: "8px 16px",
+                  marginRight: "10px",
+                  marginBottom: "1rem",
+                  borderRadius: "3px",
+                  borderColor: "#cac4c4ff",
+                }}
+              >
+                🗑️ Delete
+              </button>
+            )}{" "}
+            <button
+              onClick={() => setSelectedSlot(null)}
+              style={{
+                minWidth: "120px",
+                padding: "8px 16px",
+                marginRight: "10px",
+                marginBottom: "1rem",
+                borderRadius: "3px",
+                borderColor: "#cac4c4ff",
+              }}
+            >
+              ❌ Cancel
+            </button>
+          </div>
         </div>
       )}
     </div>

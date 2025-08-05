@@ -15,24 +15,29 @@ function PatientReschedule() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5005/appointments?date=${formattedDate}¬status=available`
+        `${import.meta.env.JSONSERVER_URL}/appointments?date=${formattedDate}`
       )
       .then((res) => {
-        const available = res.data.map((appt) => appt.time);
-        setAvailableHours(available);
+        const available = res.data.filter(
+          (appt) => appt.status === "available"
+        );
+        const times = available.map((appt) => appt.time);
+        setAvailableHours(times);
       })
       .catch((err) => {
-        console.error("Erro ao buscar horários disponíveis:", err);
+        console.error("Error to find available time:", err);
       });
   }, [formattedDate]);
 
   const handleReschedule = async (time) => {
     try {
-      // Atualiza o agendamento com nova data/hora
-      await axios.patch(`http://localhost:5005/appointments/${appointmentId}`, {
-        date: formattedDate,
-        time: time,
-      });
+      await axios.patch(
+        `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`,
+        {
+          date: formattedDate,
+          time: time,
+        }
+      );
       alert("Appointment rescheduled successfully.");
       navigate("/appointments");
     } catch (error) {
@@ -68,10 +73,7 @@ function PatientReschedule() {
           marginBottom: "30px",
           color: "#333",
           textAlign: "center",
-          border: "2px solid rgb(224,224,224)",
           padding: "10px 20px",
-          borderRadius: "8px",
-          backgroundColor: "white",
           width: "50%",
           margin: "0 auto",
           display: "flex",
@@ -81,14 +83,17 @@ function PatientReschedule() {
       >
         <em>Select a new date:</em>
       </h2>
-      <Calendar
-        onChange={setSelectedDate}
-        value={selectedDate}
+      <div
         style={{
-          transform: "scale(2.0)",
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "2rem",
+          transform: "scale(1.3)",
           transformOrigin: "top center",
         }}
-      />
+      >
+        <Calendar onChange={setSelectedDate} value={selectedDate} />
+      </div>
       <h2
         style={{
           fontSize: "20px",
