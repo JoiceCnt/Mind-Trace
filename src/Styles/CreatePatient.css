@@ -1,16 +1,17 @@
 .create-patient-container {
   display: flex;
   justify-content: center;
-  width: 50vw;
-  padding: 40px;
+  align-items: center;
+  width: 40%;
+  padding: 20px;
   text-align: center;
   background-color: #F9FAFB;
-  min-height: 80vh;
+  height: 95%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .create-patient-content {
-  width: 90%; /* Más ancho de izquierda a derecha */
+  width: 70%;
   max-width: 1000px;
   background-color: #ffffff;
   padding: 40px 60px;
@@ -21,22 +22,25 @@
 .create-patient-title {
   font-size: 28px;
   color: #5C80BC;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  margin-top: 0px;
 }
 
 .create-patient-form {
-  max-width: 400px;
-  margin: auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
+  padding: 20px;
+  border-radius: 10px 0;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 .create-patient-form input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
+  width: 85%;
+  padding: 10px;
+  margin-bottom: 5px;
   border: 1px solid #E0E0E0;
   border-radius: 8px;
   font-size: 16px;
@@ -51,15 +55,18 @@
 }
 
 .create-patient-form button {
-  width: 100%;
+  width: 200px;
   padding: 12px;
   background-color: #5C80BC;
   color: white;
   border: none;
   border-radius: 8px;
+  position: center;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin: 10px auto 0 auto;
+  display: block;
 }
 
 .create-patient-form button:hover {

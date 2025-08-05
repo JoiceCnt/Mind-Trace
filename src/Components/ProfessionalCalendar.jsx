@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { TbLayout } from "react-icons/tb";
 
 function ProfessionalCalendar() {
   const [appointments, setAppointments] = useState([]);
@@ -153,6 +154,8 @@ function ProfessionalCalendar() {
                 border: "1px solid #ccc",
                 padding: "8px",
                 background: "#f0f0f0",
+                tableLayout: "fixed",
+                width: "100"
               }}
             >
               Hour
@@ -212,7 +215,7 @@ function ProfessionalCalendar() {
                         <>
                           🔒
                           <br />
-                          <strong>{getPatientName(slot.patient)}</strong>
+                          <strong>{getPatientName(slot.patientId)}</strong>
                         </>
                       ) : (
                         "✅ Livre"
