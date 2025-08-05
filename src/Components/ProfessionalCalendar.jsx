@@ -62,7 +62,7 @@ function ProfessionalCalendar() {
       date: selectedSlot.date,
       time: selectedSlot.time,
       status: formData.patientId ? "booked" : "available",
-      patient: formData.patientId || null,
+      patientId: formData.patientId || null,
       note: formData.note,
     };
 

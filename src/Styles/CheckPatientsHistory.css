@@ -6,20 +6,27 @@
   min-height: 100vh;
   box-sizing: border-box;
 }
-
+.history-title {
+  text-align: center;
+  color: #5C80BC;
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
 .filters {
   display: flex;
-  flex-direction: row;
-  gap: 15px;
-  margin-bottom: 30px;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  max-width: 1000px;
+  gap: 12px;
+  margin-bottom: 0 auto 30px auto;
+  justify-content: center;
 }
 
 .filters input {
-  padding: 10px 14px;
+  padding: 12px 16px;
   border: 1px solid  #B8B5E0;
   border-radius: 10px;
-  font-size: 16px;
+  font-size: 15px;
   color: #333;
   background-color: #fff;
   transition: border-color 0.3s ease;
@@ -31,32 +38,39 @@
   box-shadow: 0 0 5px #5C80BC;
 }
 
+.filter-bt,
+.downloadPDF-bt {
+  background-color: #5C80BC;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-bt:hover,
+.downloadPDF-bt:hover {
+  background-color: #466aa3 ;
+}
+
 .log-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .log-entry {
-  background-color: #E0E0E0;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.log-entry {
-  background-color: #E0E0E0; /* Gris Neutro */
-  padding: 20px 25px;
+  width: 60%;
+  background-color: #E0E0E0; 
+  padding: 15px 15px;
   border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(92, 128, 188, 0.15); /* Sombra suave Azul Serenity */
+  box-shadow: 0 4px 8px rgba(92, 128, 188, 0.15); 
   color: #2E2E2E;
-  font-size: 17px;
+  font-size: 14px;
   line-height: 1.5;
-  transition: background-color 0.3s ease;
 }
 
-.log-entry:hover {
-  background-color: #B8B5E0; /* Lavanda Suave */
-  color: white;
-  box-shadow: 0 6px 12px rgba(92, 128, 188, 0.3);
-}
+
+

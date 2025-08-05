@@ -66,7 +66,7 @@ const CheckPatientsHistory = () => {
 
   return (
     <div className="history-container">
-      <h2>Check Patient's History</h2>
+      <h2 className="history-title">Check Patient's History</h2>
 
       <div className="filters">
         <input
@@ -93,9 +93,9 @@ const CheckPatientsHistory = () => {
             onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
           />
         </label>
-
-        <button onClick={handleFilter}>Filter</button>
-        <button onClick={handleDownloadPDF}>Download PDF</button>
+        
+        <button className="filter-bt" onClick={handleFilter}>Filter</button>
+        <button className="downloadPDF-bt" onClick={handleDownloadPDF}>Download PDF</button>
       </div>
 
       <div className="log-list">

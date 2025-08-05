@@ -50,8 +50,7 @@ const Navbar = () => {
     location.pathname.includes("/submission-confirmation") ||
     location.pathname.includes("/edit-profile") ||
     location.pathname.includes("/appointments") ||
-    location.pathname.includes("/patient/Logs") ||
-    location.pathname.includes("/patient/log");
+    location.pathname.includes("/patient/Logs");
 
   const showLogoutButton = 
     location.pathname.includes("/ProfessionalCalendar") ||
@@ -68,6 +67,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    setIsOpen(false);
     navigate("/login/patient");
   }
   
@@ -107,6 +107,7 @@ const Navbar = () => {
             handleLogout={handleLogout}
             menuRef={menuRef}
             dropdownBgColor={dropdownBgColor}
+            onClose={() => setIsOpen(false)}
           />
         )}
       </nav>
