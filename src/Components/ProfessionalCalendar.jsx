@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { TbLayout } from "react-icons/tb";
 
 function ProfessionalCalendar() {
   const [appointments, setAppointments] = useState([]);

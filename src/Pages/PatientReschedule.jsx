@@ -4,6 +4,19 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useParams, useNavigate } from "react-router-dom";
 
+function formatLocalDate(date) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function isWeekend(date) {
+  const day = date.getDay();
+  return day === 0 || day === 6;
+}
+
 function PatientReschedule() {
   const { appointmentId } = useParams();
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -11,15 +24,21 @@ function PatientReschedule() {
   const [currentAppointment, setCurrentAppointment] = useState(null);
   const navigate = useNavigate();
 
-  const formattedDate = selectedDate.toISOString().split("T")[0];
 
   useEffect(() => {
     axios
       .get(`http://localhost:5005/appointments/${appointmentId}`)
       .then((res) => {
        setCurrentAppointment(res.data);
-       setSelectedDate(new Date(res.data.date));
-     })
+       // Construir date local para evitar desfase de zona horaria
+        const parts = res.data.date.split("-");
+        const localDate = new Date(
+          Number(parts[0]),
+          Number(parts[1]) - 1,
+          Number(parts[2])
+        );
+        setSelectedDate(localDate);
+      })
       .catch((err) => {
        console.error("Error fetching current appointment:", err);
      });  
@@ -28,6 +47,8 @@ function PatientReschedule() {
 
   useEffect(() => {
     if (!currentAppointment) return;
+
+     const formattedDate = formatLocalDate(selectedDate); 
 
     axios
       .get(`http://localhost:5005/appointments?date=${formattedDate}`)
@@ -55,11 +76,14 @@ function PatientReschedule() {
         (slot) => !occupiedTimes.includes(slot)
       );
 
-      const appointmentDateFormatted = new Date(currentAppointment.date).toISOString().split("T")[0];
+      const appointmentDateFormatted = formatLocalDate(
+          currentAppointment.date);
 
       if (
-        appointmentDateFormatted === formattedDate && !available.includes(currentAppointment.time)) {
-        available.push(currentAppointment.time);
+        appointmentDateFormatted === formattedDate && 
+        !available.includes(currentAppointment.time)
+      ) {
+         available.push(currentAppointment.time);
         available.sort(); // orden opcional
       }
 
@@ -68,23 +92,27 @@ function PatientReschedule() {
       .catch((err) => {
         console.error("Erro ao buscar horários disponíveis:", err);
       });
-  }, [formattedDate, currentAppointment]);
+  }, [selectedDate, currentAppointment]);
 
  
 
   const handleReschedule = async (time) => {
-    try {
-      // Atualiza o agendamento com nova data/hora
-      await axios.patch(`http://localhost:5005/appointments/${appointmentId}`, {
-        date: formattedDate,
-        time: time,
-      });
-      alert("Appointment rescheduled successfully.");
-      navigate("/appointments");
-    } catch (error) {
-      console.error("Error rescheduling:", error);
-    }
-  };
+  try {
+    const formattedDate = formatLocalDate(selectedDate);
+    
+    await axios.patch(`http://localhost:5005/appointments/${appointmentId}`, {
+      date: formattedDate,
+      time: time,
+    });
+    
+    alert("Appointment rescheduled successfully.");
+    navigate("/appointments");
+  } catch (error) {
+    console.error("Error rescheduling:", error);
+  }
+};
+
+const displayDate = formatLocalDate(selectedDate);
 
   return (
     <div
@@ -130,6 +158,7 @@ function PatientReschedule() {
       <Calendar
         onChange={setSelectedDate}
         value={selectedDate}
+        tileDisabled={({ date }) => isWeekend(date)}
         style={{
           transform: "scale(2.0)",
           transformOrigin: "top center",
@@ -143,7 +172,7 @@ function PatientReschedule() {
           textAlign: "center",
         }}
       >
-        <em>Available Hours on {formattedDate}</em>
+        <em>Available Hours on {displayDate}</em>
       </h2>
       {availableHours.length === 0 ? (
         <h2
