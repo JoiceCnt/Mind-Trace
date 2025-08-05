@@ -77,7 +77,7 @@ const Navbar = () => {
     <div>
       <nav className="navbar" style={{ backgroundColor: navbarBgColor }}>
         <div>
-          <img src={logo} alt="Logo" className="logo" />
+          <img src={logo} alt="Logo" className="logo-button" onClick={() => navigate("/")} style={{ cursor: 'pointer' }}/>
         </div>
 
         <div className="navbar-actions">

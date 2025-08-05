@@ -1,0 +1,117 @@
+.navbar {
+  height: 90px;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  height: 120px;
+  margin-left: 1.5rem;
+}
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.home-button {
+  font-size: 16px;
+  color: rgb(68, 67, 67);
+  background-color: transparent;
+  border: none;
+  border-radius: 12px;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  transition: all 0.2s ease;
+  transform: scale(1.05);
+}
+.home-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.logout-button {
+  font-size: 16px;
+  color: rgb(68, 67, 67);
+  background-color: transparent;
+  border: none;
+  border-radius: 12px;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  transition: all 0.2s ease;
+  transform: scale(1.05);
+}
+.logout-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  transition: all 0.2s ease;
+  transform: scale(1.05);
+}
+.menu-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.menu-icon {
+  width: 60px;
+  height: 60px;
+}
+.dropdown-menu {
+  position: absolute;
+  top: 150px;
+  right: 1rem;
+  background-color: #F9FAFB;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  width: 220px;
+  z-index: 100;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  border: 1px solid #E0E0E0;
+}
+.dropdown-title {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  display: block;
+  text-align: right;
+  font-size: 15px;
+  color: #5C80BC;
+}
+.dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dropdown-list li {
+  padding: 0.6rem 0.8rem;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.dropdown-list li:hover {
+  background-color: #A1B8E1;
+  color: #fff
+}
+.close-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: #5C80BC;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  cursor: pointer;
+}
