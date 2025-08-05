@@ -22,8 +22,6 @@ body, #root {
   overflow-y: auto;
 }
 
-
-
 /*=== PROMPT TEXT ===*/
 .prompt {
   margin-top: 20px;
