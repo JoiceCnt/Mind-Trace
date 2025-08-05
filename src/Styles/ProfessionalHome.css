@@ -1,15 +1,18 @@
 .professional-main {
-  flex: 1;
+  background-color: #f9fafb;
+  width: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  padding: 40px 0;
   align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
+  border-radius: 12px;
 }
 
 .professional-main h2 {
   color: #5c80bc;
-  font-weight: 300;
+  font-weight: 30;
   font-size: 20px;
   margin-bottom: 40px;
   text-align: center;
