@@ -66,59 +66,61 @@ const CheckPatientsHistory = () => {
 
   return (
     <div className="history-container">
-      <h2 className="history-title">Check Patient's History</h2>
+      <div className="history-patient-content">
+        <h2 className="history-title">Check Patient's History</h2>
 
-      <div className="filters">
-        <input
-          type="text"
-          placeholder="Enter patient name"
-          value={patientName}
-          onChange={(e) => setPatientName(e.target.value)}
-        />
-        <label>
-          From:
+        <div className="filters">
           <input
-            type="date"
-            value={dateRange.from}
-            onChange={(e) =>
-              setDateRange({ ...dateRange, from: e.target.value })
-            }
+           type="text"
+            placeholder="Enter patient name"
+            value={patientName}
+            onChange={(e) => setPatientName(e.target.value)}
           />
-        </label>
-        <label>
-          To:
-          <input
-            type="date"
-            value={dateRange.to}
-            onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
-          />
-        </label>
+          <label>
+            From:
+            <input
+             type="date"
+              value={dateRange.from}
+             onChange={(e) =>
+                setDateRange({ ...dateRange, from: e.target.value })
+              }
+            />
+          </label>
+          <label>
+           To:
+            <input
+              type="date"
+              value={dateRange.to}
+              onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
+            />
+          </label>
         
-        <button className="filter-bt" onClick={handleFilter}>Filter</button>
-        <button className="downloadPDF-bt" onClick={handleDownloadPDF}>Download PDF</button>
-      </div>
+          <button className="filter-bt" onClick={handleFilter}>Filter</button>
+          <button className="downloadPDF-bt" onClick={handleDownloadPDF}>Download PDF</button>
+        </div>
 
-      <div className="log-list">
-        {filteredLogs.length === 0 ? (
-          <p>No records found.</p>
-        ) : (
-          filteredLogs.map((log) => (
-            <div key={log.id} className="log-entry">
-              <p>
-                <strong>Name:</strong> {log.patientName}
-              </p>
-              <p>
-                <strong>Date:</strong> {log.date}
-              </p>
-              <p>
-                <strong>Emotion:</strong> {log.nameId}
-              </p>
-              <p>
-                <strong>Comment:</strong> {log.description}
-              </p>
-            </div>
-          ))
-        )}
+        <div className="log-list">
+          {filteredLogs.length === 0 ? (
+            <p>No records found.</p>
+          ) : (
+            filteredLogs.map((log) => (
+              <div key={log.id} className="log-entry">
+                <p>
+                  <strong>Name:</strong> {log.patientName}
+                </p>
+                <p>
+                  <strong>Date:</strong> {log.date}
+                </p>
+                <p>
+                  <strong>Emotion:</strong> {log.nameId}
+                </p>
+                <p>
+                  <strong>Comment:</strong> {log.description}
+                </p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

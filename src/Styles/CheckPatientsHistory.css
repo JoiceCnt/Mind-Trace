@@ -1,9 +1,18 @@
 .history-container {
-  padding: 30px 40px;
+  padding: 20px;
+  text-align: center;
   background-color: #F9FAFB;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-  min-height: 100vh;
+  width: 70%;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.history-patient-content {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
 }
 .history-title {
@@ -62,7 +71,7 @@
 }
 
 .log-entry {
-  width: 60%;
+  width: 100%; /* en lugar de 60% */
   background-color: #E0E0E0; 
   padding: 15px 15px;
   border-radius: 16px;
@@ -70,6 +79,7 @@
   color: #2E2E2E;
   font-size: 14px;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 
 

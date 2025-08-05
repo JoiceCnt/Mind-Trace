@@ -11,6 +11,7 @@
   box-sizing: border-box;
   border-top: 1px solid #ccc;
   font-family: 'Segoe UI', sans-serif;
+  height: 100px;
 }
 
 /* === IZQUIERDA: GitHub + Soporte === */
@@ -27,7 +28,7 @@
 }
 
 .footer-link {
-  font-weight: 600;
+  font-weight: 700;
   color: #5C80BC; /* Azul Serenity */
   text-decoration: none;
   transition: color 0.3s ease;
@@ -38,7 +39,6 @@
   text-decoration: underline;
 }
 
-/* === CENTRO Y DERECHA: Enlaces === */
 .footer-links {
   display: flex;
   justify-content: center;

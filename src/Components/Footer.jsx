@@ -46,11 +46,11 @@ function Footer() {
       </div>
 
       <nav className="footer-links">
-        <Link to="/terms-of-use" className="footer-link">Terms of Use</Link>
+        <Link to="/terms-of-use" className="footer-link" style={{ fontSize: "16px" }}>Terms of Use</Link>
       </nav>
 
       <nav className="footer-links right">
-        <Link to="/privacy-policy" className="footer-link">Privacy Policy</Link>
+        <Link to="/privacy-policy" className="footer-link" style={{ fontSize: "16px" }}>Privacy Policy</Link>
       </nav>
     </footer>
   );
