@@ -34,7 +34,7 @@ function Home() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "100vh",
+        minHeight: "50vh",
         fontFamily: "Arial, sans-serif",
         textAlign: "center",
       }}
