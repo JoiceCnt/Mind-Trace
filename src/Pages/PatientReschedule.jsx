@@ -8,23 +8,69 @@ function PatientReschedule() {
   const { appointmentId } = useParams();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableHours, setAvailableHours] = useState([]);
+  const [currentAppointment, setCurrentAppointment] = useState(null);
   const navigate = useNavigate();
 
   const formattedDate = selectedDate.toISOString().split("T")[0];
 
   useEffect(() => {
     axios
-      .get(
-        `http://localhost:5005/appointments?date=${formattedDate}¬status=available`
-      )
+      .get(`http://localhost:5005/appointments/${appointmentId}`)
       .then((res) => {
-        const available = res.data.map((appt) => appt.time);
+       setCurrentAppointment(res.data);
+       setSelectedDate(new Date(res.data.date));
+     })
+      .catch((err) => {
+       console.error("Error fetching current appointment:", err);
+     });  
+  }, [appointmentId]);
+
+
+  useEffect(() => {
+    if (!currentAppointment) return;
+
+    axios
+      .get(`http://localhost:5005/appointments?date=${formattedDate}`)
+      .then((res) => {
+        const occupied = res.data.filter(
+        (appt) =>
+          appt.id !== currentAppointment.id && appt.status === "booked"
+      );
+
+      const occupiedTimes = occupied.map((appt) => appt.time);
+
+      const TIME_SLOTS = [
+        "09:00",
+        "10:00",
+        "11:00",
+        "12:00",
+        "13:00",
+        "14:00",
+        "15:00",
+        "16:00",
+        "17:00",
+      ];
+
+      let available = TIME_SLOTS.filter(
+        (slot) => !occupiedTimes.includes(slot)
+      );
+
+      const appointmentDateFormatted = new Date(currentAppointment.date).toISOString().split("T")[0];
+
+      if (
+        appointmentDateFormatted === formattedDate && !available.includes(currentAppointment.time)) {
+        available.push(currentAppointment.time);
+        available.sort(); // orden opcional
+      }
+
         setAvailableHours(available);
       })
       .catch((err) => {
         console.error("Erro ao buscar horários disponíveis:", err);
       });
-  }, [formattedDate]);
+  }, [formattedDate, currentAppointment]);
+
+ 
 
   const handleReschedule = async (time) => {
     try {

@@ -24,7 +24,7 @@ body, #root {
 
 /* ===NAVBAR=== */
 .navbar {
-  height: 100px;
+  height: 90px;
   padding: 10px 30px;
   display: flex;
   align-items: center;

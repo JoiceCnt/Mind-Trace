@@ -21,7 +21,7 @@ function PatientAppointments() {
         const filteredAppointments = response.data.filter(
           (appt) =>
             appt.status === "booked" &&
-            String(appt.patient) === String(patientId)
+            String(appt.patientId) === String(patientId)
         );
 
         console.log("Patient Appointments:", filteredAppointments);
