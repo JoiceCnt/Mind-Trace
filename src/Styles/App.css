@@ -7,20 +7,7 @@ body, #root {
   overflow: auto;
 }
 
-/*=== CONTAINER ===*/
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.main-content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
-  overflow-y: auto;
-}
+/*=== NAVBAR ===*/
 .navbar {
   height: 90px;
   padding: 10px 30px;
@@ -29,8 +16,18 @@ body, #root {
   justify-content: space-between;
 }
 .logo {
-  height: 50px;
-  margin-left: 1.5rem;
+  height: 90px;
+}
+.logo-button {
+  height: 150px;  
+  border: none;
+  background-color: transparent;
+  border-radius: 12px;
+  width: 150px;
+  height: 150px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  transform: scale(1.05);
 }
 .navbar-actions {
   display: flex;
@@ -138,6 +135,22 @@ body, #root {
   left: 10px;
   cursor: pointer;
 }
+
+/*=== CONTAINER ===*/
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  overflow-y: auto;
+}
+
 /*=== PROMPT TEXT ===*/
 .prompt {
   margin-top: 20px;

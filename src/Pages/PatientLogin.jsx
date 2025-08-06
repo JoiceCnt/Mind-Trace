@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { TbArrowBackUp } from "react-icons/tb";
 
 function PatientLogin() {
+console.log("Variables de entorno:", import.meta.env);
+
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [logged, setLogged] = useState(false);
@@ -13,10 +15,12 @@ function PatientLogin() {
     e.preventDefault();
 
     try {
-      const url = `${import.meta.env.VITE_JSONSERVER_URL}/patients?username=${user}&password=${password}`;
-      console.log("URL solicitada:", url);
+     // const url = `${import.meta.env.VITE_JSONSERVER_URL}/patients?username=${user}&password=${password}`;
+     // console.log("URL solicitada:", url);
 
-      const res = await fetch(url);
+      const API_URL = import.meta.env.VITE_JSONSERVER_URL;
+
+      const res = await fetch(`${API_URL}/patients?username=${user}`)
 
       // Verificamos si la respuesta es JSON válida
       const contentType = res.headers.get("content-type");

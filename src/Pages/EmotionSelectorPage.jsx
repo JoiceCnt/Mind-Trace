@@ -8,7 +8,7 @@ const EmotionSelectorPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("${import.meta.env.JSONSERVER_URL}/emojis")
+    fetch(`${import.meta.env.VITE_JSONSERVER_URL}/emojis`)
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {

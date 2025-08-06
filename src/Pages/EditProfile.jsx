@@ -15,7 +15,7 @@ function EditProfile() {
   useEffect(() => {
     const patientsId = localStorage.getItem("patientId");
     axios
-      .get(`${import.meta.env.JSONSERVER_URL}/patients/${patientsId}`)
+      .get(`${import.meta.env.VITE_JSONSERVER_URL}/patients/${patientsId}`)
       .then((res) => {
         setProfile(res.data);
         setOriginalProfile(res.data);
@@ -29,7 +29,7 @@ function EditProfile() {
 
   const handleSave = () => {
     axios
-      .put(`${import.meta.env.JSONSERVER_URL}/patients/${profile.id}`, profile)
+      .put(`${import.meta.env.VITE_JSONSERVER_URL}/patients/${profile.id}`, profile)
       .then(() => {
         alert("Profile updated!");
         setIsEditing(false);

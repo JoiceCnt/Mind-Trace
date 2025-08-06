@@ -77,8 +77,9 @@ const Navbar = () => {
     <div>
       <nav className="navbar" style={{ backgroundColor: navbarBgColor }}>
         <div>
-          <img src={logo} alt="Logo" className="logo-button" />
-          
+          <button className="logo-button" onClick={() => navigate("/")}>
+            <img src={logo} alt="logo" className="logo" />
+          </button>
         </div>
 
         <div className="navbar-actions">

@@ -12,7 +12,7 @@ function PatientLogs() {
 
   // load the logssi
   useEffect(() => {
-    fetch(`${import.meta.env.JSONSERVER_URL}/logs`)
+    fetch(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
       .then((res) => res.json())
       .then((data) => {
         setLogs(data);

@@ -12,7 +12,7 @@ const CheckPatientsHistory = () => {
 
   useEffect(() => {
     axios
-      .get("${import.meta.env.JSONSERVER_URL}/logs")
+      .get("${import.meta.env.VITE_JSONSERVER_URL}/logs")
       .then((response) => {
         console.log("Fetched logs:", response.data);
         // Se for response.data.logs, atualize aqui

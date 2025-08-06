@@ -28,7 +28,7 @@ function PatientReschedule() {
   // Cargar la cita actual y fijar selectedDate correctamente (local)
   useEffect(() => {
     axios
-      .get(`${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`)
+      .get(`${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`)
       .then((res) => {
         setCurrentAppointment(res.data);
         // Construir fecha local desde el string "YYYY-MM-DD"
@@ -54,7 +54,7 @@ function PatientReschedule() {
     const formattedDate = formatLocalDate(selectedDate);
 
     axios
-      .get(`${import.meta.env.JSONSERVER_URL}/appointments?date=${formattedDate}`)
+      .get(`${import.meta.env.VITE_JSONSERVER_URL}/appointments?date=${formattedDate}`)
       .then((res) => {
         const occupied = res.data.filter(
           (appt) =>
@@ -101,7 +101,7 @@ function PatientReschedule() {
     try {
       const formattedDate = formatLocalDate(selectedDate);
       await axios.patch(
-        `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`,
+        `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`,
         {
           date: formattedDate,
           time,

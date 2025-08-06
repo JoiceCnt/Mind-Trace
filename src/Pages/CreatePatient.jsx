@@ -22,7 +22,7 @@ function CreatePatient() {
     e.preventDefault();
 
     try {
-      await axios.post("${import.meta.env.JSONSERVER_URL}/patients", formData);
+      await axios.post("${import.meta.env.VITE_JSONSERVER_URL}/patients", formData);
       alert("Patient created successfully!");
       navigate("/professional-home");
     } catch (error) {

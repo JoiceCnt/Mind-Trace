@@ -33,8 +33,8 @@ function ProfessionalCalendar() {
   const fetchData = async () => {
     try {
       const [apptRes, patientRes] = await Promise.all([
-        axios.get(`${import.meta.env.JSONSERVER_URL}/appointments`),
-        axios.get(`${import.meta.env.JSONSERVER_URL}/patients`),
+        axios.get(`${import.meta.env.VITE_JSONSERVER_URL}/appointments`),
+        axios.get(`${import.meta.env.VITE_JSONSERVER_URL}/patients`),
       ]);
       setAppointments(apptRes.data);
       setPatients(patientRes.data);
@@ -75,7 +75,7 @@ function ProfessionalCalendar() {
       if (selectedSlot.id) {
         // Update existing appointment
         await axios.put(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${selectedSlot.id}`,
           {
             ...slot,
             id: selectedSlot.id,
@@ -84,7 +84,7 @@ function ProfessionalCalendar() {
       } else {
         // Create new appointment
         await axios.post(
-          `${import.meta.env.JSONSERVER_URL}/appointments`,
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments`,
           slot
         );
       }
@@ -113,7 +113,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
