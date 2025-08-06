@@ -74,8 +74,8 @@
 }
 
 .create-patient-form p {
-  text-align: left;
+  text-align: center;
   margin: 0 0 6px 0;
   color: #5C80BC;
-  font-weight: 500;
+  font-weight: 600;
 }

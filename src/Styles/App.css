@@ -43,7 +43,7 @@ body, #root {
   width: 64px;
   height: 64px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   transform: scale(1.05);
 }
@@ -59,7 +59,7 @@ body, #root {
   width: 64px;
   height: 64px;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   transform: scale(1.05);
 }
@@ -75,9 +75,10 @@ body, #root {
   cursor: pointer;
   border: none;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* sombra suave */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
   transform: scale(1.05);
+  color: #5C80BC;
 }
 .menu-button:hover {
   background-color: rgba(0, 0, 0, 0.15);
@@ -88,8 +89,8 @@ body, #root {
 }
 .dropdown-menu {
   position: absolute;
-  top: 150px;
-  right: 1rem;
+  top: 95px;
+  right: 0.3rem;
   background-color: #F9FAFB;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -119,6 +120,7 @@ body, #root {
   font-size: 14px;
   color: #333;
   transition: background-color 0.2s ease, color 0.2s ease;
+  text-align: right;
 }
 .dropdown-list li:hover {
   background-color: #A1B8E1;

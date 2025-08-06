@@ -1,63 +1,84 @@
 .edit-profile-container {
-    max-width: 500px;
-    margin: 60 px auto;
-    background-color: #F9FAFB;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  padding: 20px;
+  text-align: center;
+  background-color: #F9FAFB;
+  height: 95%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.edit-profile-content {
+  width: 70%;
+  max-width: 1000px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .edit-profile-title {
-    text-align: center;
-    color: #5C80BC;
-    margin-bottom: 24px;
-    font-size: 24px;
+  font-size: 28px;
+  color: #5C80BC;
+  margin-bottom: 20px;
+  margin-top: 0px;
 }
 .edit-label {
-    display: block;
-    margin-bottom: 6px;
-    color: #444;
-    font-weight: 500;
+  text-align: center;
+  margin: auto 0 10px 0;
+  color: #444;
+  font-weight: 600;
 }
+
 .edit-input {
-    width: 100%;
-    padding: 10px 12px;
-    margin-bottom: 20px;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
-    background-color: #fff;
-    transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #E0E0E0;
+  font-size: 16px;
+  background-color: #F9FAFB;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: border 0.3s;
+  text-align: left;
 }
+
 .edit-input:focus {
   outline: none;
-  border-color: #A8D5BA;
-  box-shadow: 0 0 0 3px rgba(168, 213, 186, 0.3);
+  border-color: #5C80BC;
+  background-color: #ffffff;
 }
 .edit-save-button {
   background-color: #A8D5BA;
   color: #fff;
-  padding: 12px 24px;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
+  width: 150px;
+  padding: 10px;
+  position: center;
+  font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-  width: 100%;
+  transition: background-color 0.3s;
+  margin: 30px auto 0 auto;
+  display: block;
 }
 .edit-save-button:hover {
   background-color: #92c4a4;
   transform: scale(1.02);
 }
 .edit-cancel-button {
-  background-color: #e57373;
+  background-color: #eb7b7b;
   color: #fff;
-  padding: 12px 24px;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s, transform 0.1s;
-  width: 100%;
-  margin-top: 10px;
+  width: 150px;
+  padding: 9px;
+  position: center;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  margin: 10px auto 0 auto;
+  display: block;
 }
 
 .edit-cancel-button:hover {
