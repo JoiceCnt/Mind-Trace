@@ -6,36 +6,42 @@ function PatientLogin() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [logged, setLogged] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(
-        `${
-          import.meta.env.VITE_JSONSERVER_URL
-        }/patients?username=${user}&password=${password}`
-      
-      );
+      const url = `${import.meta.env.VITE_JSONSERVER_URL}/patients?username=${user}&password=${password}`;
+      console.log("URL solicitada:", url);
+
+      const res = await fetch(url);
+
+      // Verificamos si la respuesta es JSON válida
+      const contentType = res.headers.get("content-type");
+      if (!res.ok || !contentType || !contentType.includes("application/json")) {
+        const text = await res.text(); // Leemos el contenido aunque sea HTML
+        console.error("Respuesta inesperada del servidor:", text);
+        throw new Error("El servidor respondió con contenido no válido.");
+      }
 
       const data = await res.json();
 
       if (data.length > 0) {
         const patient = data[0];
-
         localStorage.setItem("patientId", patient.id);
         localStorage.setItem("patientName", patient.name);
-
         setLogged(true);
         setTimeout(() => {
           navigate("/EmotionSelectorPage");
         }, 1000);
       } else {
-        alert("Invalid username or password");
+        setErrorMsg("Usuario o contraseña incorrectos.");
       }
     } catch (error) {
       console.error("Login failed:", error);
+      setErrorMsg("Error al iniciar sesión. Intenta nuevamente.");
     }
   };
 
@@ -79,6 +85,7 @@ function PatientLogin() {
         >
           <TbArrowBackUp />
         </button>
+
         <h2
           style={{
             fontSize: "28px",
@@ -89,11 +96,12 @@ function PatientLogin() {
         >
           Login as Patient
         </h2>
+
         {logged ? (
           <h2
             style={{
               fontSize: "30px",
-              marginBottom: "20x",
+              marginBottom: "20px",
               color: "#333",
               textAlign: "center",
             }}
@@ -119,7 +127,7 @@ function PatientLogin() {
               required
               style={{
                 padding: "12px",
-                fontSize: "20px ",
+                fontSize: "20px",
                 borderRadius: "8px",
                 border: "1px solid #ccc",
                 width: "70%",
@@ -135,15 +143,18 @@ function PatientLogin() {
               required
               style={{
                 padding: "12px",
-                fontSize: "20px ",
+                fontSize: "20px",
                 borderRadius: "8px",
                 border: "1px solid #ccc",
                 width: "70%",
                 textAlign: "center",
               }}
             />
-            <br />
-            <br />
+
+            {errorMsg && (
+              <p style={{ color: "red", marginTop: "10px" }}>{errorMsg}</p>
+            )}
+
             <button
               type="submit"
               style={{
