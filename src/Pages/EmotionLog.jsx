@@ -24,7 +24,7 @@ function EmotionLog() {
       description: text,
     };
 
-    fetch("${import.meta.env.JSONSERVER_URL}/logs", {
+    fetch(`${import.meta.env.VITE_JSONSERVER_URL}/logs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newLog),

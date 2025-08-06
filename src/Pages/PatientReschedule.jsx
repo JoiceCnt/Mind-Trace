@@ -15,7 +15,9 @@ function PatientReschedule() {
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.JSONSERVER_URL}/appointments?date=${formattedDate}`
+        `${
+          import.meta.env.VITE_JSONSERVER_URL
+        }/appointments?date=${formattedDate}`
       )
       .then((res) => {
         const available = res.data.filter(
@@ -32,7 +34,7 @@ function PatientReschedule() {
   const handleReschedule = async (time) => {
     try {
       await axios.patch(
-        `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`,
+        `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`,
         {
           date: formattedDate,
           time: time,

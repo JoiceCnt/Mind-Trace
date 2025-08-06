@@ -15,19 +15,25 @@ function ProfessionalCalendar() {
 
   const formatDate = (date) => date.toISOString().split("T")[0];
 
-  const today = new Date();
-  const dayOfWeek = today.getDay(); // 0 (domingo) a 6 (sábado)
-  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+  const getMonday = (startOffset = 0) => {
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sunday
+    const diff = day === 0 ? -6 : 1 - day;
+    const base = new Date(now);
+    base.setDate(now.getDate() + diff + startOffset);
+    base.setHours(0, 0, 0, 0);
+    return base;
+  };
 
-  const monday = new Date(today);
-  monday.setDate(today.getDate() + mondayOffset + startOffset);
+  const monday = getMonday(startOffset);
 
-  const days = Array.from({ length: 5 }, (_, i) => {
-    const date = new Date(monday);
-    date.setDate(monday.getDate() + i);
-    return formatDate(date);
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday.getTime());
+    d.setDate(d.getDate() + i);
+    return formatDate(d);
   });
-
+  console.log("Day calculated as Monday", monday);
+  console.log("Days generated for the schedule header:", days);
   useEffect(() => {
     fetchData();
   }, []);
@@ -35,13 +41,13 @@ function ProfessionalCalendar() {
   const fetchData = async () => {
     try {
       const [apptRes, patientRes] = await Promise.all([
-        axios.get("${import.meta.env.JSONSERVER_URL}/appointments"),
-        axios.get("${import.meta.env.JSONSERVER_URL}/patients"),
+        axios.get(`${import.meta.env.VITE_JSONSERVER_URL}/appointments`),
+        axios.get(`${import.meta.env.VITE_JSONSERVER_URL}/patients`),
       ]);
       setAppointments(apptRes.data);
       setPatients(patientRes.data);
     } catch (error) {
-      console.error("Erro ao carregar dados:", error);
+      console.error("Error to load data:", error);
     }
   };
 
@@ -75,12 +81,14 @@ function ProfessionalCalendar() {
     try {
       if (selectedSlot.id) {
         await axios.put(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${
+            selectedSlot.id
+          }`,
           { ...slot, id: selectedSlot.id }
         );
       } else {
         await axios.post(
-          "${import.meta.env.JSONSERVER_URL}/appointments",
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments`,
           slot
         );
       }
@@ -109,7 +117,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
@@ -182,7 +190,11 @@ function ProfessionalCalendar() {
                     background: "#f0f0f0",
                   }}
                 >
-                  {day}
+                  {new Date(day).toLocaleDateString("en-EN", {
+                    weekday: "short",
+                    day: "2-digit",
+                    month: "2-digit",
+                  })}
                 </th>
               ))}
             </tr>

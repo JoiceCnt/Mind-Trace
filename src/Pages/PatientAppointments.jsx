@@ -14,7 +14,7 @@ function PatientAppointments() {
     const fetchAppointments = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.JSONSERVER_URL}/appointments`
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments`
         );
 
         console.log("ALL APPOINTMENTS:", response.data);
