@@ -14,8 +14,9 @@ function PatientLogin() {
     try {
       const res = await fetch(
         `${
-          import.meta.env.JSONSERVER_URL
+          import.meta.env.VITE_JSONSERVER_URL
         }/patients?username=${user}&password=${password}`
+      
       );
 
       const data = await res.json();
