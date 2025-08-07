@@ -26,6 +26,7 @@ function CreatePatient() {
         "${import.meta.env.VITE_JSONSERVER_URL}/patients",
         formData
       );
+
       alert("Patient created successfully!");
       navigate("/professional-home");
     } catch (error) {

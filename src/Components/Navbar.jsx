@@ -29,7 +29,8 @@ const Navbar = () => {
     location.pathname.includes("/submission-confirmation") ||
     location.pathname.includes("/patient/Logs") ||
     location.pathname.includes("/edit-profile") ||
-    location.pathname.includes("/appointments");
+    location.pathname.includes("/appointments") ||
+    location.pathname.includes("/reschedule");
 
   const PatientLogin = location.pathname.includes("/login/patient");
   const EmotionSelectorPage = location.pathname.includes("/EmotionSelectorPage")
@@ -50,7 +51,8 @@ const Navbar = () => {
     location.pathname.includes("/submission-confirmation") ||
     location.pathname.includes("/edit-profile") ||
     location.pathname.includes("/appointments") ||
-    location.pathname.includes("/patient/Logs");
+    location.pathname.includes("/patient/Logs") ||
+    location.pathname.includes("/reschedule");
 
   const showLogoutButton = 
     location.pathname.includes("/ProfessionalCalendar") ||
@@ -75,7 +77,9 @@ const Navbar = () => {
     <div>
       <nav className="navbar" style={{ backgroundColor: navbarBgColor }}>
         <div>
-          <img src={logo} alt="Logo" className="logo" />
+          <button className="logo-button" onClick={() => navigate("/")}>
+            <img src={logo} alt="logo" className="logo" />
+          </button>
         </div>
 
         <div className="navbar-actions">

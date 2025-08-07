@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+function formatLocalDate(d) {
+  const date = d instanceof Date ? d : new Date(d);
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`; // "YYYY-MM-DD"
+}
+
 function ProfessionalCalendar() {
   const [appointments, setAppointments] = useState([]);
   const [patients, setPatients] = useState([]);
@@ -13,7 +21,7 @@ function ProfessionalCalendar() {
 
   const hours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
 
-  const formatDate = (date) => date.toISOString().split("T")[0];
+  const formatDate = formatLocalDate;
 
   const getMonday = (startOffset = 0) => {
     const now = new Date();
@@ -46,8 +54,10 @@ function ProfessionalCalendar() {
       ]);
       setAppointments(apptRes.data);
       setPatients(patientRes.data);
+      console.log("Patients:", patientRes.data);
+      console.log("Appointments:", apptRes.data);
     } catch (error) {
-      console.error("Error to load data:", error);
+      console.error("Erro ao carregar dados:", error);
     }
   };
 
@@ -70,6 +80,7 @@ function ProfessionalCalendar() {
   };
 
   const handleSave = async () => {
+    if (!selectedSlot) return;
     const slot = {
       date: selectedSlot.date,
       time: selectedSlot.time,
@@ -81,14 +92,12 @@ function ProfessionalCalendar() {
     try {
       if (selectedSlot.id) {
         await axios.put(
-          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${
-            selectedSlot.id
-          }`,
+          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
           { ...slot, id: selectedSlot.id }
         );
       } else {
         await axios.post(
-          `${import.meta.env.VITE_JSONSERVER_URL}/appointments`,
+          "${import.meta.env.JSONSERVER_URL}/appointments",
           slot
         );
       }
@@ -117,7 +126,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
+          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
@@ -143,7 +152,6 @@ function ProfessionalCalendar() {
       >
         Agenda
       </h2>
-
       <div style={{ marginBottom: "1rem" }}>
         <button onClick={() => setStartOffset(startOffset - 7)}>
           ⏮ Last Week
@@ -190,11 +198,7 @@ function ProfessionalCalendar() {
                     background: "#f0f0f0",
                   }}
                 >
-                  {new Date(day).toLocaleDateString("en-EN", {
-                    weekday: "short",
-                    day: "2-digit",
-                    month: "2-digit",
-                  })}
+                  {day}
                 </th>
               ))}
             </tr>
@@ -258,103 +262,57 @@ function ProfessionalCalendar() {
             ))}
           </tbody>
         </table>
-      </div>
-
-      {selectedSlot && (
-        <div
-          style={{
-            border: "1px solid #ccc",
-            background: "#f9f9f9",
-            width: "100%",
-          }}
-        >
-          <h3 style={{ marginTop: "1rem", fontSize: "20px" }}>
-            Edit Appointment
-          </h3>
-          <p>
-            <strong>Date:</strong> {selectedSlot.date}
-            <br />
-            <strong>Hour:</strong> {selectedSlot.time}
-          </p>
-          <label>Patient:</label>
-          <select
-            value={formData.patientId}
-            onChange={(e) =>
-              setFormData({ ...formData, patientId: e.target.value })
-            }
-          >
-            <option value="">-- Available --</option>
-            {patients.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name}
-              </option>
-            ))}
-          </select>
-          <br />
-          <br />
-          <label>Note:</label>
-          <br />
-          <textarea
-            rows="3"
-            style={{ width: "60%", borderRadius: "3px" }}
-            value={formData.note}
-            onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-          ></textarea>
-          <br />
-          <br />
+        {selectedSlot && (
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "10px",
-              marginTop: "1rem",
+              marginTop: "2rem",
+              padding: "1rem",
+              border: "1px solid #ccc",
+              background: "#f9f9f9",
+              maxWidth: "400px",
+              textAlign: "left",
             }}
           >
-            <button
-              onClick={handleSave}
-              style={{
-                minWidth: "120px",
-                padding: "8px 16px",
-                marginRight: "10px",
-                marginBottom: "1rem",
-                borderRadius: "3px",
-                borderColor: "#cac4c4ff",
-              }}
+            <h3>Edit Appointment</h3>
+            <p>
+              <strong>Date:</strong> {selectedSlot.date}
+              <br />
+              <strong>Time:</strong> {selectedSlot.time}
+            </p>
+            <label>Patient:</label>
+            <select
+              value={formData.patientId}
+              onChange={(e) =>
+                setFormData({ ...formData, patientId: e.target.value })
+              }
+              style={{ width: "100%", marginBottom: "1rem" }}
             >
-              💾 Save
-            </button>{" "}
+              <option value="">-- Available --</option>
+              {patients.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+            <label>Note:</label>
+            <textarea
+              rows="3"
+              style={{ width: "100%", marginBottom: "1rem" }}
+              value={formData.note}
+              onChange={(e) =>
+                setFormData({ ...formData, note: e.target.value })
+              }
+            />
+            <button onClick={handleSave}>💾 Save</button>{" "}
             {selectedSlot.id && (
-              <button
-                onClick={handleDelete}
-                style={{
-                  minWidth: "120px",
-                  padding: "8px 16px",
-                  marginRight: "10px",
-                  marginBottom: "1rem",
-                  borderRadius: "3px",
-                  borderColor: "#cac4c4ff",
-                }}
-              >
-                🗑️ Delete
-              </button>
+              <button onClick={handleDelete}>🗑️ Delete</button>
             )}{" "}
-            <button
-              onClick={() => setSelectedSlot(null)}
-              style={{
-                minWidth: "120px",
-                padding: "8px 16px",
-                marginRight: "10px",
-                marginBottom: "1rem",
-                borderRadius: "3px",
-                borderColor: "#cac4c4ff",
-              }}
-            >
-              ❌ Cancel
-            </button>
+            <button onClick={() => setSelectedSlot(null)}>Cancel</button>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>{" "}
+      {/* Fecha a div aberta acima da <table> */}
+    </div> // Fecha o container principal
   );
 }
 

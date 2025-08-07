@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "../Styles/Footer.css";
@@ -13,6 +12,7 @@ function Footer() {
   const submissionConfirmation = location.pathname.includes("/submission-confirmation");
   const editProfile = location.pathname.includes("/edit-profile");
   const appointments = location.pathname.includes("/appointments");
+  const PatientReschedule = location.pathname.includes("/reschedule");
 
   const isProfessional = location.pathname.includes("/professional");
   const professionalCalendar = location.pathname.includes("/ProfessionalCalendar");
@@ -22,7 +22,7 @@ function Footer() {
   const professionalLogin = location.pathname.includes("/ProfessionalLogin");
   
   
- const footerBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation  || editProfile || appointments ? "#A8D5BA" : isProfessional || professionalCalendar || professionalHome || createPatient || checkPatientsHistory || professionalLogin ? "#B8B5E0" : "#e0e0e0";
+ const footerBgColor = isPatient || emotionSelector || emotionLog || submissionConfirmation  || editProfile || appointments || PatientReschedule ? "#A8D5BA" : isProfessional || professionalCalendar || professionalHome || createPatient || checkPatientsHistory || professionalLogin ? "#B8B5E0" : "#e0e0e0";
 
   return (
     <footer className="footer" style={{ backgroundColor: footerBgColor }}>

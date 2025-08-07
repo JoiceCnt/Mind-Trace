@@ -6,6 +6,8 @@ function EditProfile() {
   const [profile, setProfile] = useState({
     id: "",
     name: "",
+    username: "",
+    password: "",
     email: "",
     birthDate: "",
   });
@@ -15,7 +17,7 @@ function EditProfile() {
   useEffect(() => {
     const patientsId = localStorage.getItem("patientId");
     axios
-      .get(`${import.meta.env.JSONSERVER_URL}/patients/${patientsId}`)
+      .get(`${import.meta.env.VITE_JSONSERVER_URL}/patients/${patientsId}`)
       .then((res) => {
         setProfile(res.data);
         setOriginalProfile(res.data);
@@ -29,7 +31,7 @@ function EditProfile() {
 
   const handleSave = () => {
     axios
-      .put(`${import.meta.env.JSONSERVER_URL}/patients/${profile.id}`, profile)
+      .put(`${import.meta.env.VITE_JSONSERVER_URL}/patients/${profile.id}`, profile)
       .then(() => {
         alert("Profile updated!");
         setIsEditing(false);
@@ -45,61 +47,89 @@ function EditProfile() {
 
   return (
     <div className="edit-profile-container">
-      <h2 className="edit-profile-title">My Profile</h2>
+      <div className="edit-profile-content">
+        <h2 className="edit-profile-title">My Profile</h2>
 
-      <label className="edit-label">Name:</label>
-      {isEditing ? (
-        <input
-          type="text"
-          name="name"
-          value={profile.name}
-          onChange={handleChange}
-          className="edit-input"
-        />
-      ) : (
-        <p className="edit-input">{profile.name}</p>
-      )}
+        <label className="edit-label">Name:</label>
+        {isEditing ? (
+          <input
+            type="text"
+            name="name"
+            value={profile.name}
+            onChange={handleChange}
+            className="edit-input"
+          />
+        ) : (
+          <p className="edit-input">{profile.name}</p>
+        )}
 
-      <label className="edit-label">Email:</label>
-      {isEditing ? (
-        <input
-          type="email"
-          name="email"
-          value={profile.email}
-          onChange={handleChange}
-          className="edit-input"
-        />
-      ) : (
-        <p className="edit-input">{profile.email}</p>
-      )}
+        <label className="edit-label">Username:</label>
+        {isEditing ? (
+          <input
+            type="text"
+            name="username"
+            value={profile.username}
+            onChange={handleChange}
+            className="edit-input"
+          />
+        ) : (
+          <p className="edit-input">{profile.username}</p>
+        )}
 
-      <label>Birthday date:</label>
-      {isEditing ? (
-        <input
-          type="date"
-          name="birthday"
-          value={profile.birthDate}
-          onChange={handleChange}
-          className="edit-input"
-        />
-      ) : (
-        <p className="edit-input">{profile.birthDate}</p>
-      )}
+        <label className="edit-label">Password:</label>
+        {isEditing ? (
+          <input
+            type="text"
+            name="password"
+            value={profile.password}
+            onChange={handleChange}
+            className="edit-input"
+          />
+        ) : (
+          <p className="edit-input">{profile.password}</p>
+        )}
 
-      {isEditing ? (
-        <>
-          <button onClick={handleSave} className="edit-save-button">
-            Save
+        <label className="edit-label">Email:</label>
+        {isEditing ? (
+          <input
+            type="email"
+            name="email"
+            value={profile.email}
+            onChange={handleChange}
+            className="edit-input"
+          />
+        ) : (
+          <p className="edit-input">{profile.email}</p>
+        )}
+
+        <label>Birthday date:</label>
+        {isEditing ? (
+          <input
+            type="date"
+            name="birthDate"
+            value={profile.birthDate}
+            onChange={handleChange}
+            className="edit-input"
+          />
+        ) : (
+          <p className="edit-input">{profile.birthDate}</p>
+        )}
+
+        {isEditing ? (
+          <>
+            <button onClick={handleSave} className="edit-save-button">
+              Save
+            </button>
+            <button onClick={handleCancel} className="edit-cancel-button">
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button onClick={() => setIsEditing(true)} className="edit-save-button">
+            Edit Profile
           </button>
-          <button onClick={handleCancel} className="edit-cancel-button">
-            Cancel
-          </button>
-        </>
-      ) : (
-        <button onClick={() => setIsEditing(true)} className="edit-save-button">
-          Edit Profile
-        </button>
-      )}
+        )}
+      </div>
     </div>
   );
 }

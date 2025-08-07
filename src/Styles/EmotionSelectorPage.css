@@ -1,7 +1,7 @@
 /* Container */
 .emotion-selector-page {
   background-color: #f9fafb;
-  width: 90%;
+  width: 80%;
   max-width: 900px;
   margin: 0 auto;
   display: flex;
@@ -28,11 +28,13 @@
   margin-bottom: 2.5rem;
   text-align: center;
   max-width: 900px;
-  width: 80%;
+  width: 70%;
   font-size: 1.3rem;
   font-weight: 600;
   color: #5C80BC;  
+  height: 50%;
 }
+
 /*=== EMOJI GRID=== */
 .emoji-grid {
   display: grid;

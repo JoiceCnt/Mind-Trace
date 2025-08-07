@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TbArrowBackUp } from "react-icons/tb";
 
 function ProfessionalLogin() {
   const [user, setUser] = useState("");
@@ -30,23 +29,7 @@ function ProfessionalLogin() {
         textAlign: "center",
       }}
     >
-      <button
-        className="backButton"
-        onClick={() => navigate("/")}
-        style={{
-          position: "fixed",
-          top: "250px",
-          right: "30px",
-          backgroundColor: "transparent",
-          border: "none",
-          cursor: "pointer",
-          fontSize: "24px",
-          color: "#5C80BC",
-        }}
-        title="Back"
-      >
-        <TbArrowBackUp />
-      </button>
+      
       <h2>Login as Professional</h2>
       <form
         onSubmit={handleSubmit}
