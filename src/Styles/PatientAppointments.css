@@ -1,12 +1,30 @@
 .appointments-container {
-  padding: 40px;
-  max-width: 700px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+  background-color: #F9FAFB;
+  height: 95%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.appointments-content {
+  width: 70%;
+  max-width: 1000px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: 75%;
 }
 
 .appointments-title {
   text-align: center;
   margin-bottom: 30px;
+  font-size: 28px;
+  color: #5e7ebe;
 }
 
 .appointment-item {

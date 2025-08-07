@@ -2,80 +2,55 @@ import { useState, useEffect } from "react";
 import "../Styles/CheckPatientsHistory.css";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-
-const CheckPatientsHistory = () => {
+import axios from "axios";const CheckPatientsHistory = () => {
   const [logs, setLogs] = useState([]);
   const [filteredLogs, setFilteredLogs] = useState([]);
   const [patientName, setPatientName] = useState("");
-  const [dateRange, setDateRange] = useState({ from: "", to: "" });
-  const patientId = localStorage.getItem("patientId");
-
-  const handleReset = () => {
+  const [dateRange, setDateRange] = useState({ from: "", to: "" });  const handleReset = () => {
     localStorage.removeItem("patientId");
-    window.location.reload();
-  };
-
-  useEffect(() => {
+    setPatientName("");
+    setDateRange({ from: "", to: "" });
+    setFilteredLogs([]);
+  };  useEffect(() => {
     axios
-      .get("${${import.meta.env.VITE_JSONSERVER_URL}")
-      .get("${import.meta.env.VITE_JSONSERVER_URL}/logs")
-      .then((response) => {
-        console.log("Fetched logs:", response.data);
-        // Se for response.data.logs, atualize aqui
-        setLogs(
-          Array.isArray(response.data) ? response.data : response.data.logs
-        );
+      .get(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
+      .then((res) => {
+        const data = Array.isArray(res.data) ? res.data : res.data.logs;
+        setLogs(data);
+        setFilteredLogs([]);
       })
-      .catch((error) => {
-        console.error("Error fetching logs:", error);
-      });
-  }, []);
-
-  const handleFilter = () => {
+      .catch(console.error);
+  }, []);  const handleFilter = () => {
     const filtered = logs.filter((log) => {
       const nameMatch =
         patientName === "" ||
-        log.patientName.toLowerCase().includes(patientName.toLowerCase());
+        log.patientName?.toLowerCase().includes(patientName.toLowerCase());
       const logDate = new Date(log.date);
       const fromDate = dateRange.from ? new Date(dateRange.from) : null;
       const toDate = dateRange.to ? new Date(dateRange.to) : null;
       const fromMatch = !fromDate || logDate >= fromDate;
       const toMatch = !toDate || logDate <= toDate;
-      return nameMatch && fromMatch && toMatch; // :marca_de_verificación_blanca:
+      return nameMatch && fromMatch && toMatch;
     });
     setFilteredLogs(filtered);
-  };
-
-  const handleDownloadPDF = () => {
-    const doc = new jsPDF();
-
-    doc.setFontSize(16);
-    doc.text("Patient Emotional History", 14, 20);
-
-    const tableData = filteredLogs.map((log) => [
+  };  const handleDownloadPDF = () => {
+    const doc = new jsPDF();    doc.setFontSize(16);
+    doc.text("Patient Emotional History", 14, 20);    const tableData = filteredLogs.map((log) => [
       log.patientName,
       log.date,
       log.nameId,
       log.description,
-    ]);
-
-    autoTable(doc, {
+    ]);    autoTable(doc, {
       startY: 30,
       head: [["Name", "Date", "Emotion", "Comment"]],
       body: tableData,
       styles: { fontSize: 10 },
       headStyles: { fillColor: [92, 128, 188] },
-    });
-
-    doc.save("patient-history.pdf");
-  };
-
-  return (
+    });    doc.save("patient-history.pdf");
+  };  return (
     <div className="history-container">
       <div className="history-patient-content">
-        <h2 className="history-title">Check Patient's History</h2>
-
-        <div className="filters">
+        <h2 className="history-title">Check Patient's History</h2>        <div className="filters">
           <input
             type="text"
             placeholder="Enter patient name"
@@ -101,9 +76,7 @@ const CheckPatientsHistory = () => {
                 setDateRange({ ...dateRange, to: e.target.value })
               }
             />
-          </label>
-
-          <button className="filter-bt" onClick={handleFilter}>
+          </label>          <button className="filter-bt" onClick={handleFilter}>
             Filter
           </button>
           <button className="downloadPDF-bt" onClick={handleDownloadPDF}>
@@ -112,9 +85,7 @@ const CheckPatientsHistory = () => {
           <button className="refresh-bt" onClick={handleReset}>
             Search another patient
           </button>
-        </div>
-
-        <div className="log-list">
+        </div>        <div className="log-list">
           {filteredLogs.length === 0 ? (
             <p>No records found.</p>
           ) : (
@@ -139,6 +110,4 @@ const CheckPatientsHistory = () => {
       </div>
     </div>
   );
-};
-
-export default CheckPatientsHistory;
+};export default CheckPatientsHistory;

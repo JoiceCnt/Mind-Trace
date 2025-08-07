@@ -41,7 +41,7 @@ function PatientAppointments() {
   return (
     <div
       className="appointments-container"
-      style={{
+      /*style={{
         width: "60%",
         margin: "0 auto",
         justifyContent: "center",
@@ -49,47 +49,50 @@ function PatientAppointments() {
         flexDirection: "column",
         backgroundColor: "#f9f9f9",
         borderRadius: "8px",
-      }}
+      }}*/
     >
-      <h2 className="appointments-title">Appointments</h2>
+      <div className="appointments-content">
 
-      {appointments.length === 0 ? (
-        <p style={{ textAlign: "center" }}>No appointments found.</p>
-      ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          {appointments.map((appt) => {
-            const appointmentDateTime = new Date(`${appt.date}T${appt.time}`);
-            const isFuture = appointmentDateTime > now;
-            const isPending = appt.status === "booked" && isFuture;
-            const rowClass = `appointment-item ${
-              isPending ? "pending" : "done"
-            }`;
+        <h2 className="appointments-title">Appointments</h2>
 
-            return (
-              <div key={appt.id} className={rowClass}>
-                <div>{isPending ? "Pending" : "Done"}</div>
-                <div>
-                  {appt.date} – {appt.time}
+        {appointments.length === 0 ? (
+          <p style={{ textAlign: "center" }}>No appointments found.</p>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {appointments.map((appt) => {
+              const appointmentDateTime = new Date(`${appt.date}T${appt.time}`);
+              const isFuture = appointmentDateTime > now;
+              const isPending = appt.status === "booked" && isFuture;
+              const rowClass = `appointment-item ${
+                isPending ? "pending" : "done"
+              }`;
+
+              return (
+                <div key={appt.id} className={rowClass}>
+                  <div>{isPending ? "Pending" : "Done"}</div>
+                  <div>
+                    {appt.date} – {appt.time}
+                  </div>
+                  <div>Professional’s name</div>
+                  <div>
+                    {isPending ? (
+                      <button
+                        onClick={() => navigate(`/reschedule/${appt.id}`)}
+                        className="icon-button"
+                        title="Edit"
+                      >
+                        ✏️
+                      </button>
+                    ) : (
+                      <span className="icon-check">✔️</span>
+                    )}
+                  </div>
                 </div>
-                <div>Professional’s name</div>
-                <div>
-                  {isPending ? (
-                    <button
-                      onClick={() => navigate(`/reschedule/${appt.id}`)}
-                      className="icon-button"
-                      title="Edit"
-                    >
-                      ✏️
-                    </button>
-                  ) : (
-                    <span className="icon-check">✔️</span>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      )}
+              );
+            })}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

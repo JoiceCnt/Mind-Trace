@@ -1,79 +1,100 @@
-.create-patient-container {
+.emotion-selector-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40%;              /* ancho del contenedor padre */
-  padding: 20px;
-  text-align: center;
+  padding: 2cm 3cm;
   background-color: #F9FAFB;
-  height: 95%;
+  min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
-.create-patient-content {
-  width: 70%;              /* ancho del contenido interno */
-  max-width: 1000px;
+.emotion-page-content {
+  width: 95%;
+  max-width: 1100px;
   background-color: #ffffff;
-  padding: 40px 60px;
+  padding: 40px 50px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+  min-height: 80vh;
 
-.create-patient-title {
-  font-size: 28px;
-  color: #5C80BC;
-  margin: 0 0 20px 0;      /* margen arriba 0, abajo 20px */
-}
-
-.create-patient-form {
-  width: 90%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  background-color: #ffffff;
-  padding: 20px;
-  border-radius: 10px 0 0 10px; /* si quieres sólo bordes redondeados en la izquierda */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  align-items: center; /* Esto centra horizontalmente todo */
 }
 
-.create-patient-form input {
-  width: 85%;
-  padding: 10px;
-  margin-bottom: 5px;
-  border: 1px solid #E0E0E0;
-  border-radius: 8px;
-  font-size: 16px;
-  background-color: #F9FAFB;
-  transition: border 0.3s;
-}
-
-.create-patient-form input:focus {
-  outline: none;
-  border-color: #5C80BC;
-  background-color: #ffffff;
-}
-
-.create-patient-form button {
-  width: 200px;
-  padding: 12px;
-  background-color: #5C80BC;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  margin: 10px auto 0 auto;  /* centrado horizontal y margen arriba */
-  display: block;
-}
-
-.create-patient-form button:hover {
-  background-color: #466aa3;
-}
-
-.create-patient-form p {
+.intro-text {
+  font-size: 18px;
+  color: #5c80bc;
+  font-weight: 500;
+  margin-bottom: 2.5rem;
   text-align: center;
-  margin: 0 0 6px 0;
-  color: #5C80BC;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.question-box {
+  background-color: #e0e0e0;
+  padding: 8px 15px 12px 15px; /* menos padding superior e inferior */
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 600px;    /* más estrecho */
+  width: 90%;          /* ajustable */
+  font-size: 1rem;     /* más pequeño */
   font-weight: 600;
+  color: #5C80BC;  
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*=== EMOJI GRID === */
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 40px;
+  justify-items: center;
+}
+
+/*=== EMOJI CARD === */
+.emoji-card {
+  background-color: #f4f4f4;
+  border-radius: 12px;
+  padding: 12px;
+  width: 90px;   /* antes 110px */
+  height: 90px;  /* antes 110px */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.emoji-card:hover,
+.emoji-card.selected {
+  border: 2px solid #c9d9ee;
+  background-color: #e6f0fc;
+  transform: scale(1.05);
+}
+
+/* === EMOJI IMAGE === */
+.emoji-card img {
+  width: 32px;   /* antes 40px */
+  height: 32px;
+  margin-bottom: 5px;
+}
+
+.emoji {
+  font-size: 24px; /* antes 32px */
+  margin-bottom: 6px;
+}
+
+.emoji-label {
+  font-size: 13px;
+  color: #333;
 }
