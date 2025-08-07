@@ -11,10 +11,7 @@ function formatLocalDate(date) {
   const day = String(d.getDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
 }
-function isWeekend(date) {
-  const day = date.getDay();
-  return day === 0 || day === 6; // domingo=0, sábado=6
-}
+
 function PatientReschedule() {
   const { appointmentId } = useParams();
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -150,7 +147,7 @@ function PatientReschedule() {
       <Calendar
         onChange={setSelectedDate}
         value={selectedDate}
-        tileDisabled={({ date }) => isWeekend(date)}
+        /*tileDisabled={({ date }) => isWeekend(date)}*/
         style={{
           display: "flex",
           justifyContent: "center",

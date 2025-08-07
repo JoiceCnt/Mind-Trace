@@ -19,7 +19,7 @@ function ProfessionalCalendar() {
     note: "",
   });
 
-  const hours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
+  const hours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
 
   const formatDate = formatLocalDate;
 
@@ -92,12 +92,12 @@ function ProfessionalCalendar() {
     try {
       if (selectedSlot.id) {
         await axios.put(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${selectedSlot.id}`,
           { ...slot, id: selectedSlot.id }
         );
       } else {
         await axios.post(
-          "${import.meta.env.JSONSERVER_URL}/appointments",
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments`,
           slot
         );
       }
@@ -126,7 +126,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
