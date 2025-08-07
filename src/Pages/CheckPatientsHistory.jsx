@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "../Styles/CheckPatientsHistory.css";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -9,7 +9,6 @@ const CheckPatientsHistory = () => {
   const [patientName, setPatientName] = useState("");
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
   const patientId = localStorage.getItem("patientId");
-  console.log("Logged in patientId:", patientId);
 
   const handleReset = () => {
     localStorage.removeItem("patientId");
@@ -17,19 +16,20 @@ const CheckPatientsHistory = () => {
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
-      .then((res) => res.json())
-      .then((data) => {
-        const patientLogs = data.filter(
-          (log) =>
-            String(log.patientId) === String(patientId) ||
-            log.patientName === patientId
+    axios
+      .get("${${import.meta.env.VITE_JSONSERVER_URL}")
+      .get("${import.meta.env.VITE_JSONSERVER_URL}/logs")
+      .then((response) => {
+        console.log("Fetched logs:", response.data);
+        // Se for response.data.logs, atualize aqui
+        setLogs(
+          Array.isArray(response.data) ? response.data : response.data.logs
         );
-        setLogs(patientLogs);
-        setFilteredLogs(patientLogs);
-        console.log("Logs for patient:", patientLogs);
+      })
+      .catch((error) => {
+        console.error("Error fetching logs:", error);
       });
-  }, [patientId]);
+  }, []);
 
   const handleFilter = () => {
     const filtered = logs.filter((log) => {
@@ -41,7 +41,7 @@ const CheckPatientsHistory = () => {
       const toDate = dateRange.to ? new Date(dateRange.to) : null;
       const fromMatch = !fromDate || logDate >= fromDate;
       const toMatch = !toDate || logDate <= toDate;
-      return nameMatch && fromMatch && toMatch;
+      return nameMatch && fromMatch && toMatch; // :marca_de_verificación_blanca:
     });
     setFilteredLogs(filtered);
   };

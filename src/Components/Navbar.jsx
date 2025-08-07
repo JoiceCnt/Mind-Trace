@@ -28,6 +28,7 @@ const Navbar = () => {
     location.pathname.includes("/emotion-log") ||
     location.pathname.includes("/submission-confirmation") ||
     location.pathname.includes("/patient/Logs") ||
+    location.pathname.includes("/patient/logs") ||
     location.pathname.includes("/edit-profile") ||
     location.pathname.includes("/appointments") ||
     location.pathname.includes("/reschedule");
