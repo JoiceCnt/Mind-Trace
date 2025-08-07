@@ -19,7 +19,7 @@ function ProfessionalCalendar() {
     note: "",
   });
 
-  const hours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
+  const hours = ["09:00", "10:00", "12:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
 
   const formatDate = formatLocalDate;
 
@@ -71,7 +71,7 @@ function ProfessionalCalendar() {
       (a) => a.date === date && a.time === time
     );
 
-    setSelectedSlot(existing ? { ...existing } : { date, time });
+    setSelectedSlot(existing ? { ...existing } : { date, time, });
 
     setFormData({
       patientId: existing?.patientId || "",

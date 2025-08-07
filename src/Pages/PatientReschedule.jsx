@@ -3,7 +3,7 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useParams, useNavigate } from "react-router-dom";
-// Formatea sin pasar por UTC: "YYYY-MM-DD"
+
 function formatLocalDate(date) {
   const d = typeof date === "string" ? new Date(date) : date;
   const y = d.getFullYear();
@@ -18,7 +18,7 @@ function PatientReschedule() {
   const [availableHours, setAvailableHours] = useState([]);
   const [currentAppointment, setCurrentAppointment] = useState(null);
   const navigate = useNavigate();
-  // Cargar la cita actual y fijar selectedDate correctamente (local)
+  
   useEffect(() => {
     axios
       .get(
@@ -41,7 +41,7 @@ function PatientReschedule() {
         console.error("Error fetching current appointment:", err);
       });
   }, [appointmentId]);
-  // Obtener horas disponibles cada vez que cambie la fecha seleccionada o la cita actual
+
   useEffect(() => {
     if (!currentAppointment) return;
     const formattedDate = formatLocalDate(selectedDate);
