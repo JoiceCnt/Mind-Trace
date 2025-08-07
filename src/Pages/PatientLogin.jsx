@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function PatientLogin() {
-console.log("Variables de entorno:", import.meta.env);
+  console.log("Variables de entorno:", import.meta.env);
 
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -14,16 +14,20 @@ console.log("Variables de entorno:", import.meta.env);
     e.preventDefault();
 
     try {
-     // const url = `${import.meta.env.VITE_JSONSERVER_URL}/patients?username=${user}&password=${password}`;
-     // console.log("URL solicitada:", url);
+      // const url = `${import.meta.env.VITE_JSONSERVER_URL}/patients?username=${user}&password=${password}`;
+      // console.log("URL solicitada:", url);
 
       const API_URL = import.meta.env.VITE_JSONSERVER_URL;
 
-      const res = await fetch(`${API_URL}/patients?username=${user}`)
+      const res = await fetch(`${API_URL}/patients?username=${user}`);
 
       // Verificamos si la respuesta es JSON válida
       const contentType = res.headers.get("content-type");
-      if (!res.ok || !contentType || !contentType.includes("application/json")) {
+      if (
+        !res.ok ||
+        !contentType ||
+        !contentType.includes("application/json")
+      ) {
         const text = await res.text(); // Leemos el contenido aunque sea HTML
         console.error("Respuesta inesperada del servidor:", text);
         throw new Error("El servidor respondió con contenido no válido.");
@@ -71,7 +75,6 @@ console.log("Variables de entorno:", import.meta.env);
           boxSizing: "border-box",
         }}
       >
-       
         <h2
           style={{
             fontSize: "28px",

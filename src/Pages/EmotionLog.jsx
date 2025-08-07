@@ -9,7 +9,6 @@ function EmotionLog() {
   const [text, setText] = useState("");
 
   if (!emotion) return <p>No emotion selected.</p>;
-
   const handleSubmit = () => {
     const patientId = localStorage.getItem("patientId");
     const patientName = localStorage.getItem("patientName");
@@ -24,10 +23,18 @@ function EmotionLog() {
       description: text,
     };
 
-    console.log("🔁 Enviando a:", `${import.meta.env.VITE_JSONSERVER_URL}/logs`);
-    console.log("📝 Datos enviados:", newLog);
-    console.log("🌍 URL del servidor JSON:", import.meta.env.VITE_JSONSERVER_URL);
+    // Debug logs
+    console.log(
+      "🔁 Enviando a:",
+      `${import.meta.env.VITE_JSONSERVER_URL}/logs`
+    );
+    console.log("📝 Dados enviados:", newLog);
+    console.log(
+      "🌍 URL do servidor JSON:",
+      import.meta.env.VITE_JSONSERVER_URL
+    );
 
+    // Envio do log
     fetch(`${import.meta.env.VITE_JSONSERVER_URL}/logs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

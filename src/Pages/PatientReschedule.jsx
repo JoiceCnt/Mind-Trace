@@ -3,7 +3,6 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useParams, useNavigate } from "react-router-dom";
-
 // Formatea sin pasar por UTC: "YYYY-MM-DD"
 function formatLocalDate(date) {
   const d = typeof date === "string" ? new Date(date) : date;
@@ -12,23 +11,22 @@ function formatLocalDate(date) {
   const day = String(d.getDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
 }
-
 function isWeekend(date) {
   const day = date.getDay();
   return day === 0 || day === 6; // domingo=0, sábado=6
 }
-
 function PatientReschedule() {
   const { appointmentId } = useParams();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableHours, setAvailableHours] = useState([]);
   const [currentAppointment, setCurrentAppointment] = useState(null);
   const navigate = useNavigate();
-
   // Cargar la cita actual y fijar selectedDate correctamente (local)
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`)
+      .get(
+        `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
+      )
       .then((res) => {
         setCurrentAppointment(res.data);
         // Construir fecha local desde el string "YYYY-MM-DD"
@@ -46,22 +44,22 @@ function PatientReschedule() {
         console.error("Error fetching current appointment:", err);
       });
   }, [appointmentId]);
-
   // Obtener horas disponibles cada vez que cambie la fecha seleccionada o la cita actual
   useEffect(() => {
     if (!currentAppointment) return;
-
     const formattedDate = formatLocalDate(selectedDate);
-
     axios
-      .get(`${import.meta.env.VITE_JSONSERVER_URL}/appointments?date=${formattedDate}`)
+      .get(
+        `${
+          import.meta.env.VITE_JSONSERVER_URL
+        }/appointments?date=${formattedDate}`
+      )
       .then((res) => {
         const occupied = res.data.filter(
           (appt) =>
             appt.id !== currentAppointment.id && appt.status === "booked"
         );
         const occupiedTimes = occupied.map((appt) => appt.time);
-
         const TIME_SLOTS = [
           "09:00",
           "10:00",
@@ -73,15 +71,12 @@ function PatientReschedule() {
           "16:00",
           "17:00",
         ];
-
         let available = TIME_SLOTS.filter(
           (slot) => !occupiedTimes.includes(slot)
         );
-
         const appointmentDateFormatted = formatLocalDate(
           currentAppointment.date
         );
-
         if (
           appointmentDateFormatted === formattedDate &&
           !available.includes(currentAppointment.time)
@@ -89,14 +84,12 @@ function PatientReschedule() {
           available.push(currentAppointment.time);
           available.sort();
         }
-
         setAvailableHours(available);
       })
       .catch((err) => {
         console.error("Error fetching available hours:", err);
       });
   }, [selectedDate, currentAppointment]);
-
   const handleReschedule = async (time) => {
     try {
       const formattedDate = formatLocalDate(selectedDate);
@@ -114,9 +107,7 @@ function PatientReschedule() {
       alert("Failed to reschedule.");
     }
   };
-
   const displayDate = formatLocalDate(selectedDate);
-
   return (
     <div
       style={{
@@ -125,7 +116,7 @@ function PatientReschedule() {
         justifyContent: "center",
         minHeight: "25vh",
         flexDirection: "column",
-        backgroundColor: "#f9f9f9",
+        backgroundColor: "#F9F9F9",
         borderRadius: "8px",
         padding: "1rem",
       }}
@@ -156,7 +147,6 @@ function PatientReschedule() {
       >
         <em>Select a new date:</em>
       </h2>
-
       <Calendar
         onChange={setSelectedDate}
         value={selectedDate}
@@ -169,7 +159,6 @@ function PatientReschedule() {
           transformOrigin: "top center",
         }}
       />
-
       <h2
         style={{
           fontSize: "20px",
@@ -180,7 +169,6 @@ function PatientReschedule() {
       >
         <em>Available Hours on {displayDate}</em>
       </h2>
-
       {availableHours.length === 0 ? (
         <h2
           style={{
@@ -223,5 +211,4 @@ function PatientReschedule() {
     </div>
   );
 }
-
 export default PatientReschedule;
