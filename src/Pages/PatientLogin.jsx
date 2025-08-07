@@ -57,11 +57,12 @@ function PatientLogin() {
       className="logs-container"
       style={{
         padding: "20px",
+        textAlign: "center",
+        backgroundColor: "#f9fafb",
+        fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
         width: "70%",
         margin: "0 auto",
-        backgroundColor: "#F9FAFB",
-        textAlign: "center",
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        maxWidth: "600px",
       }}
     >
       <div
@@ -70,17 +71,18 @@ function PatientLogin() {
           width: "100%",
           backgroundColor: "#ffffff",
           padding: "40px 60px",
-          borderRadius: "16px",
+          borderRadius: "12px",
           boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
           boxSizing: "border-box",
         }}
       >
         <h2
           style={{
-            fontSize: "28px",
-            marginBottom: "30px",
-            color: "#5C80BC",
             textAlign: "center",
+            color: "#5c80bc",
+            fontSize: "28px",
+            fontWeight: "600",
+            marginBottom: "30px",
           }}
         >
           Login as Patient
@@ -89,7 +91,7 @@ function PatientLogin() {
         {logged ? (
           <h2
             style={{
-              fontSize: "30px",
+              fontSize: "20px",
               marginBottom: "20px",
               color: "#333",
               textAlign: "center",
@@ -115,12 +117,13 @@ function PatientLogin() {
               onChange={(e) => setUser(e.target.value)}
               required
               style={{
-                padding: "12px",
-                fontSize: "20px",
+                padding: "10px",
+                fontSize: "16px",
                 borderRadius: "8px",
                 border: "1px solid #ccc",
                 width: "70%",
                 textAlign: "center",
+                marginBottom: "10px",
               }}
             />
 
@@ -131,12 +134,13 @@ function PatientLogin() {
               onChange={(e) => setPassword(e.target.value)}
               required
               style={{
-                padding: "12px",
-                fontSize: "20px",
+                padding: "10px",
+                fontSize: "16px",
                 borderRadius: "8px",
                 border: "1px solid #ccc",
                 width: "70%",
                 textAlign: "center",
+                marginBottom: "10px",
               }}
             />
 
