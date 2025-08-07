@@ -44,11 +44,11 @@ function PatientLogin() {
           navigate("/EmotionSelectorPage");
         }, 1000);
       } else {
-        setErrorMsg("Usuario o contraseña incorrectos.");
+        setErrorMsg("Invalid username or password. Please try again.");
       }
     } catch (error) {
       console.error("Login failed:", error);
-      setErrorMsg("Error al iniciar sesión. Intenta nuevamente.");
+      setErrorMsg("Login failed. Please try again.");
     }
   };
 
