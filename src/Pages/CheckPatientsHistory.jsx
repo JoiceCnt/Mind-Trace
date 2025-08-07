@@ -11,24 +11,25 @@ const CheckPatientsHistory = () => {
   const patientId = localStorage.getItem("patientId");
 
   const handleReset = () => {
-  localStorage.removeItem("patientId");
-  window.location.reload();
+    localStorage.removeItem("patientId");
+    window.location.reload();
   };
 
   useEffect(() => {
-  fetch(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
-    .then((res) => res.json())
-    .then((data) => {
-      const patientLogs = data.filter(
-        (log) =>
-          String(log.patientId) === String(patientId) ||
-          log.patientName === patientId
-      );
-      setLogs(patientLogs);
-      setFilteredLogs(patientLogs);
-      console.log("Logs for patient:", patientLogs);
-    });
-}, [patientId]);
+    axios
+      .get("${${import.meta.env.VITE_JSONSERVER_URL}")
+      .get("${import.meta.env.VITE_JSONSERVER_URL}/logs")
+      .then((response) => {
+        console.log("Fetched logs:", response.data);
+        // Se for response.data.logs, atualize aqui
+        setLogs(
+          Array.isArray(response.data) ? response.data : response.data.logs
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching logs:", error);
+      });
+  }, []);
 
   const handleFilter = () => {
     const filtered = logs.filter((log) => {
@@ -40,7 +41,7 @@ const CheckPatientsHistory = () => {
       const toDate = dateRange.to ? new Date(dateRange.to) : null;
       const fromMatch = !fromDate || logDate >= fromDate;
       const toMatch = !toDate || logDate <= toDate;
-      return nameMatch && fromMatch && toMatch; 
+      return nameMatch && fromMatch && toMatch; // :marca_de_verificación_blanca:
     });
     setFilteredLogs(filtered);
   };

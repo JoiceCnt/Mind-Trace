@@ -1,0 +1,144 @@
+/* ProfessionalCalendar.css */
+
+.calendar-container {
+  padding: 1rem;
+  text-align: center;
+  background-color: #f9fafb;
+  width: 90%;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.calendar-title {
+  margin-bottom: 1.5rem;
+  margin-top: 1rem;
+  font-size: 28px;
+  color: #5c80bc;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.calendar-button {
+  width: 150px;
+  padding: 6px;
+  background-color: #5c80bc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.calendar-button:hover {
+  background-color: #4a6ea1;
+}
+
+.calendar-table-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar-table {
+  border-collapse: collapse;
+  width: 50rem;
+  margin-bottom: 2rem;
+}
+
+.calendar-table th,
+.calendar-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.calendar-table th {
+  background: #f0f0f0;
+}
+
+.hour-cell {
+  font-weight: bold;
+}
+
+.booked-slot {
+  background-color: #ffd6d6;
+  cursor: pointer;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.available-slot {
+  background-color: #eaffea;
+  cursor: pointer;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.empty-slot {
+  background-color: #f9f9f9;
+  cursor: pointer;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.edit-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  width: 800px;
+}
+
+.edit-container select,
+.edit-container textarea {
+  width: 70%;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  padding: 6px;
+}
+
+.edit-button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hour-cell,
+.hour-header {
+  background-color: #f0f0f0;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+.calendar-table th,
+.calendar-table td {
+  width: 100px;
+  max-width: 100px;
+  min-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+  padding: 2px;
+  text-align: center;
+}

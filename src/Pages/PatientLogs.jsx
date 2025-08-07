@@ -16,13 +16,13 @@ function PatientLogs() {
       .then((res) => res.json())
       .then((data) => {
         const patientLogs = data.filter(
-        (log) =>
-          log.patientId === patientId || log.patientName === patientId
-      );
-      setLogs(patientLogs);
-      setFilteredLogs(patientLogs);
-      console.log("Logs for patient:", patientLogs);
+          (log) => log.patientId === patientId || log.patientName === patientId
+        );
+        setLogs(patientLogs);
+        setFilteredLogs(patientLogs);
+        console.log("Logs for patient:", patientLogs);
       });
+  }, [patientId]);
   }, [patientId]);
 
   // Filter by date
@@ -39,7 +39,7 @@ function PatientLogs() {
   };
 
   return (
-    <div className="logs-container" >
+    <div className="logs-container">
       <div className="logs-content">
         <p className="logs-title">History</p>
 

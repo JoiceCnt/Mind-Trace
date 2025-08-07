@@ -1,8 +1,8 @@
 .history-container {
   padding: 20px;
   text-align: center;
-  background-color: #F9FAFB;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   width: 90%;
   margin: 0 auto;
   max-width: 1200px;
@@ -18,7 +18,7 @@
 }
 .history-title {
   text-align: center;
-  color: #5C80BC;
+  color: #5c80bc;
   font-size: 28px;
   font-weight: 600;
   margin-bottom: 30px;
@@ -34,7 +34,7 @@
 
 .filters input {
   padding: 12px 16px;
-  border: 1px solid  #B8B5E0;
+  border: 1px solid #b8b5e0;
   border-radius: 10px;
   font-size: 15px;
   color: #333;
@@ -44,14 +44,14 @@
 
 .filters input:focus {
   outline: none;
-  border-color: #5C80BC;
-  box-shadow: 0 0 5px #5C80BC;
+  border-color: #5c80bc;
+  box-shadow: 0 0 5px #5c80bc;
 }
 
 .filter-bt,
 .downloadPDF-bt,
 .refresh-bt {
-  background-color: #5C80BC;
+  background-color: #5c80bc;
   color: white;
   border: none;
   border-radius: 8px;
@@ -61,7 +61,7 @@
 
 .filter-bt:hover,
 .downloadPDF-bt:hover {
-  background-color: #466aa3 ;
+  background-color: #466aa3;
 }
 
 .log-list {
@@ -78,12 +78,18 @@
   background-color: #e0e0e0; 
   padding: 15px 15px;
   border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(92, 128, 188, 0.15); 
-  color: #2E2E2E;
+  box-shadow: 0 4px 8px rgba(92, 128, 188, 0.15);
+  color: #2e2e2e;
   font-size: 14px;
   line-height: 1.5;
   box-sizing: border-box;
 }
-
-
-
+.refresh-bt {
+  background-color: #466aa3;
+  color: #e0e0e0;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  margin-left: 8px;
+  cursor: pointer;
+  border-radius: 8px;
+}

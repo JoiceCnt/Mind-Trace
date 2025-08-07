@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../Styles/ProfessionalCalendar.css";
 
 function formatLocalDate(d) {
   const date = d instanceof Date ? d : new Date(d);
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
-  return `${y}-${m}-${day}`; // "YYYY-MM-DD"
+  return `${y}-${m}-${day}`;
 }
 
 function ProfessionalCalendar() {
@@ -14,10 +15,7 @@ function ProfessionalCalendar() {
   const [patients, setPatients] = useState([]);
   const [startOffset, setStartOffset] = useState(0);
   const [selectedSlot, setSelectedSlot] = useState(null);
-  const [formData, setFormData] = useState({
-    patientId: "",
-    note: "",
-  });
+  const [formData, setFormData] = useState({ patientId: "", note: "" });
 
   const hours = [
     "09:00",
@@ -31,11 +29,9 @@ function ProfessionalCalendar() {
     "17:00",
   ];
 
-  const formatDate = formatLocalDate;
-
   const getMonday = (startOffset = 0) => {
     const now = new Date();
-    const day = now.getDay(); // 0 = Sunday
+    const day = now.getDay();
     const diff = day === 0 ? -6 : 1 - day;
     const base = new Date(now);
     base.setDate(now.getDate() + diff + startOffset);
@@ -44,14 +40,12 @@ function ProfessionalCalendar() {
   };
 
   const monday = getMonday(startOffset);
-
   const days = Array.from({ length: 7 }, (_, i) => {
     const d = new Date(monday.getTime());
     d.setDate(d.getDate() + i);
-    return formatDate(d);
+    return formatLocalDate(d);
   });
-  console.log("Day calculated as Monday", monday);
-  console.log("Days generated for the schedule header:", days);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -64,8 +58,6 @@ function ProfessionalCalendar() {
       ]);
       setAppointments(apptRes.data);
       setPatients(patientRes.data);
-      console.log("Patients:", patientRes.data);
-      console.log("Appointments:", apptRes.data);
     } catch (error) {
       console.error("Erro ao carregar dados:", error);
     }
@@ -79,7 +71,7 @@ function ProfessionalCalendar() {
   const handleCellClick = (date, time) => {
     const selectedDateTime = new Date(`${date}T${time}`);
     const now = new Date();
-    if (selectedDateTime < now.setHours(0, 0, 0, 0)) return; // bloqueia data passada
+    if (selectedDateTime < now.setHours(0, 0, 0, 0)) return;
 
     const existing = appointments.find(
       (a) => a.date === date && a.time === time
@@ -116,7 +108,6 @@ function ProfessionalCalendar() {
           slot
         );
       }
-
       setSelectedSlot(null);
       setFormData({ patientId: "", note: "" });
       fetchData();
@@ -128,7 +119,6 @@ function ProfessionalCalendar() {
   const handleDelete = async () => {
     try {
       let appointmentId = selectedSlot.id;
-
       if (!appointmentId) {
         const found = appointments.find(
           (a) =>
@@ -138,14 +128,12 @@ function ProfessionalCalendar() {
         );
         appointmentId = found?.id;
       }
-
       if (appointmentId) {
         await axios.delete(
           `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
-
       setSelectedSlot(null);
       setFormData({ patientId: "", note: "" });
       fetchData();
@@ -154,107 +142,68 @@ function ProfessionalCalendar() {
       alert("Error deleting appointment.");
     }
   };
-
+  const getDayName = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", { weekday: "long" }); // ex: "Monday"
+  };
   return (
-    <div style={{ padding: "1rem", textAlign: "center", marginBottom: "4rem" }}>
-      <h2
-        style={{
-          textAlign: "center",
-          marginBottom: "1.5rem",
-          marginTop: "1rem",
-          fontSize: "35px",
-        }}
-      >
-        Agenda
-      </h2>
-      <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => setStartOffset(startOffset - 7)}>
+    <div className="calendar-container">
+      <h2 className="calendar-title">Agenda</h2>
+
+      <div className="button-group">
+        <button
+          onClick={() => setStartOffset(startOffset - 7)}
+          className="calendar-button"
+        >
           ⏮ Last Week
         </button>
-        <button onClick={() => setStartOffset(0)} style={{ margin: "0 3rem" }}>
+        <button onClick={() => setStartOffset(0)} className="calendar-button">
           Today
         </button>
-        <button onClick={() => setStartOffset(startOffset + 7)}>
+        <button
+          onClick={() => setStartOffset(startOffset + 7)}
+          className="calendar-button"
+        >
           ⏭ Next Week
         </button>
       </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <table
-          style={{
-            borderCollapse: "collapse",
-            width: "50rem",
-            margin: "0 auto",
-            marginBottom: "2rem",
-          }}
-        >
+
+      <div className="calendar-table-wrapper">
+        <table className="calendar-table">
           <thead>
             <tr>
-              <th
-                style={{
-                  border: "1px solid #ccc",
-                  padding: "8px",
-                  background: "#f0f0f0",
-                }}
-              >
-                Hour
-              </th>
+              <th></th>
               {days.map((day) => (
-                <th
-                  key={day}
-                  style={{
-                    border: "1px solid #ccc",
-                    padding: "8px",
-                    background: "#f0f0f0",
-                  }}
-                >
-                  {day}
-                </th>
+                <th key={day}>{getDayName(day)}</th>
+              ))}
+            </tr>
+            <tr>
+              <th>Hour</th>
+              {days.map((day) => (
+                <th key={`date-${day}`}>{day}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {hours.map((hour) => (
               <tr key={hour}>
-                <td
-                  style={{
-                    fontWeight: "bold",
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                  }}
-                >
-                  {hour}
-                </td>
+                <td className="hour-cell">{hour}</td>
                 {days.map((day) => {
                   const slot = appointments.find(
                     (a) => a.date === day && a.time === hour
                   );
                   const isBooked = slot && slot.status === "booked";
-
                   return (
                     <td
                       key={`${day}-${hour}`}
                       onClick={() => handleCellClick(day, hour)}
-                      style={{
-                        padding: "3px",
-                        border: "1px solid #ccc",
-                        backgroundColor: isBooked
-                          ? "#ffd6d6"
+                      className={
+                        isBooked
+                          ? "booked-slot"
                           : slot
-                          ? "#eaffea"
-                          : "#f9f9f9",
-                        textAlign: "center",
-                        fontSize: "0.9rem",
-                        cursor: "pointer",
-                        minHeight: "30px",
-                        height: "30px",
-                        verticalAlign: "middle",
-                      }}
+                          ? "available-slot"
+                          : "empty-slot"
+                      }
                       title="Click to edit"
                     >
                       {slot ? (
@@ -276,58 +225,64 @@ function ProfessionalCalendar() {
             ))}
           </tbody>
         </table>
+
         {selectedSlot && (
-          <div
-            style={{
-              marginTop: "2rem",
-              padding: "1rem",
-              border: "1px solid #ccc",
-              background: "#f9f9f9",
-              maxWidth: "400px",
-              textAlign: "left",
-            }}
-          >
+          <div className="edit-container">
             <h3>Edit Appointment</h3>
             <p>
               <strong>Date:</strong> {selectedSlot.date}
               <br />
               <strong>Time:</strong> {selectedSlot.time}
             </p>
-            <label>Patient:</label>
-            <select
-              value={formData.patientId}
-              onChange={(e) =>
-                setFormData({ ...formData, patientId: e.target.value })
-              }
-              style={{ width: "100%", marginBottom: "1rem" }}
-            >
-              <option value="">-- Available --</option>
-              {patients.map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
-            <label>Note:</label>
-            <textarea
-              rows="3"
-              style={{ width: "100%", marginBottom: "1rem" }}
-              value={formData.note}
-              onChange={(e) =>
-                setFormData({ ...formData, note: e.target.value })
-              }
-            />
-            <button onClick={handleSave}>💾 Save</button>{" "}
-            {selectedSlot.id && (
-              <button onClick={handleDelete}>🗑️ Delete</button>
-            )}
-            {`" "`}
-            <button onClick={() => setSelectedSlot(null)}>Cancel</button>
+
+            <div className="form-group">
+              <label>Patient:</label>
+              <select
+                value={formData.patientId}
+                onChange={(e) =>
+                  setFormData({ ...formData, patientId: e.target.value })
+                }
+              >
+                <option value="">-- Available --</option>
+                {patients.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Note:</label>
+              <textarea
+                rows="3"
+                value={formData.note}
+                onChange={(e) =>
+                  setFormData({ ...formData, note: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="edit-button-group">
+              <button onClick={handleSave} className="calendar-button">
+                💾 Save
+              </button>
+              {selectedSlot.id && (
+                <button onClick={handleDelete} className="calendar-button">
+                  🗑️ Delete
+                </button>
+              )}
+              <button
+                onClick={() => setSelectedSlot(null)}
+                className="calendar-button"
+              >
+                ❌ Cancel
+              </button>
+            </div>
           </div>
         )}
-      </div>{" "}
-      {/* Fecha a div aberta acima da <table> */}
-    </div> // Fecha o container principal
+      </div>
+    </div>
   );
 }
 
