@@ -19,7 +19,17 @@ function ProfessionalCalendar() {
     note: "",
   });
 
-  const hours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
+  const hours = [
+    "09:00",
+    "10:00",
+    "11:00",
+    "12:00",
+    "13:00",
+    "14:00",
+    "15:00",
+    "16:00",
+    "17:00",
+  ];
 
   const formatDate = formatLocalDate;
 
@@ -67,12 +77,15 @@ function ProfessionalCalendar() {
   };
 
   const handleCellClick = (date, time) => {
+    const selectedDateTime = new Date(`${date}T${time}`);
+    const now = new Date();
+    if (selectedDateTime < now.setHours(0, 0, 0, 0)) return; // bloqueia data passada
+
     const existing = appointments.find(
       (a) => a.date === date && a.time === time
     );
 
     setSelectedSlot(existing ? { ...existing } : { date, time });
-
     setFormData({
       patientId: existing?.patientId || "",
       note: existing?.note || "",
@@ -92,12 +105,14 @@ function ProfessionalCalendar() {
     try {
       if (selectedSlot.id) {
         await axios.put(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${
+            selectedSlot.id
+          }`,
           { ...slot, id: selectedSlot.id }
         );
       } else {
         await axios.post(
-          "${import.meta.env.JSONSERVER_URL}/appointments",
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments`,
           slot
         );
       }
@@ -126,7 +141,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
+          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
@@ -245,12 +260,11 @@ function ProfessionalCalendar() {
                       {slot ? (
                         isBooked ? (
                           <>
-                            🔒
                             <br />
                             <strong>{getPatientName(slot.patientId)}</strong>
                           </>
                         ) : (
-                          "✅ Livre"
+                          " Available"
                         )
                       ) : (
                         "—"
@@ -306,7 +320,8 @@ function ProfessionalCalendar() {
             <button onClick={handleSave}>💾 Save</button>{" "}
             {selectedSlot.id && (
               <button onClick={handleDelete}>🗑️ Delete</button>
-            )}{" "}
+            )}
+            {`" "`}
             <button onClick={() => setSelectedSlot(null)}>Cancel</button>
           </div>
         )}

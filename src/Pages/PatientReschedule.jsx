@@ -3,7 +3,8 @@ import axios from "axios";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useParams, useNavigate } from "react-router-dom";
-// Formatea sin pasar por UTC: "YYYY-MM-DD"
+
+// Função utilitária para formatar a data no formato "YYYY-MM-DD"
 function formatLocalDate(date) {
   const d = typeof date === "string" ? new Date(date) : date;
   const y = d.getFullYear();
@@ -11,17 +12,15 @@ function formatLocalDate(date) {
   const day = String(d.getDate()).padStart(2, "0");
   return `${y}-${m}-${day}`;
 }
-function isWeekend(date) {
-  const day = date.getDay();
-  return day === 0 || day === 6; // domingo=0, sábado=6
-}
+
 function PatientReschedule() {
   const { appointmentId } = useParams();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableHours, setAvailableHours] = useState([]);
   const [currentAppointment, setCurrentAppointment] = useState(null);
   const navigate = useNavigate();
-  // Cargar la cita actual y fijar selectedDate correctamente (local)
+
+  // Carrega a consulta atual
   useEffect(() => {
     axios
       .get(
@@ -29,7 +28,6 @@ function PatientReschedule() {
       )
       .then((res) => {
         setCurrentAppointment(res.data);
-        // Construir fecha local desde el string "YYYY-MM-DD"
         if (res.data.date) {
           const parts = res.data.date.split("-");
           const localDate = new Date(
@@ -44,10 +42,12 @@ function PatientReschedule() {
         console.error("Error fetching current appointment:", err);
       });
   }, [appointmentId]);
-  // Obtener horas disponibles cada vez que cambie la fecha seleccionada o la cita actual
+
+  // Atualiza as horas disponíveis quando a data mudar
   useEffect(() => {
     if (!currentAppointment) return;
     const formattedDate = formatLocalDate(selectedDate);
+
     axios
       .get(
         `${
@@ -55,41 +55,27 @@ function PatientReschedule() {
         }/appointments?date=${formattedDate}`
       )
       .then((res) => {
-        const occupied = res.data.filter(
-          (appt) =>
-            appt.id !== currentAppointment.id && appt.status === "booked"
-        );
-        const occupiedTimes = occupied.map((appt) => appt.time);
-        const TIME_SLOTS = [
-          "09:00",
-          "10:00",
-          "11:00",
-          "12:00",
-          "13:00",
-          "14:00",
-          "15:00",
-          "16:00",
-          "17:00",
-        ];
-        let available = TIME_SLOTS.filter(
-          (slot) => !occupiedTimes.includes(slot)
-        );
-        const appointmentDateFormatted = formatLocalDate(
-          currentAppointment.date
-        );
+        // Considera apenas horários marcados como "available"
+        const available = res.data
+          .filter((appt) => appt.status === "available")
+          .map((appt) => appt.time);
+
+        // Garante que o horário atual esteja disponível para não sumir da lista
         if (
-          appointmentDateFormatted === formattedDate &&
+          formattedDate === currentAppointment.date &&
           !available.includes(currentAppointment.time)
         ) {
           available.push(currentAppointment.time);
-          available.sort();
         }
+
+        available.sort(); // ordena os horários
         setAvailableHours(available);
       })
       .catch((err) => {
         console.error("Error fetching available hours:", err);
       });
   }, [selectedDate, currentAppointment]);
+
   const handleReschedule = async (time) => {
     try {
       const formattedDate = formatLocalDate(selectedDate);
@@ -107,7 +93,9 @@ function PatientReschedule() {
       alert("Failed to reschedule.");
     }
   };
+
   const displayDate = formatLocalDate(selectedDate);
+
   return (
     <div
       style={{
@@ -122,62 +110,40 @@ function PatientReschedule() {
       }}
     >
       <h3
-        style={{
-          fontSize: "25px",
-          marginBottom: "10px",
-          color: "#333",
-          textAlign: "center",
-        }}
+        style={{ fontSize: "25px", marginBottom: "10px", textAlign: "center" }}
       >
         Reschedule Appointment
       </h3>
+
       <h2
         style={{
           fontSize: "20px",
           marginBottom: "30px",
-          color: "#333",
           textAlign: "center",
           padding: "10px 20px",
-          width: "50%",
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
         }}
       >
         <em>Select a new date:</em>
       </h2>
-      <Calendar
-        onChange={setSelectedDate}
-        value={selectedDate}
-        tileDisabled={({ date }) => isWeekend(date)}
+
+      <div
         style={{
           display: "flex",
           justifyContent: "center",
           marginBottom: "2rem",
-          transform: "scale(1.3)",
-          transformOrigin: "top center",
         }}
-      />
+      >
+        <Calendar value={selectedDate} onChange={setSelectedDate} />
+      </div>
+
       <h2
-        style={{
-          fontSize: "20px",
-          marginBottom: "30px",
-          color: "#333",
-          textAlign: "center",
-        }}
+        style={{ fontSize: "20px", marginBottom: "20px", textAlign: "center" }}
       >
         <em>Available Hours on {displayDate}</em>
       </h2>
+
       {availableHours.length === 0 ? (
-        <h2
-          style={{
-            fontSize: "25px",
-            marginBottom: "10px",
-            color: "red",
-            textAlign: "center",
-          }}
-        >
+        <h2 style={{ color: "red", textAlign: "center" }}>
           No hours available
         </h2>
       ) : (
@@ -211,4 +177,5 @@ function PatientReschedule() {
     </div>
   );
 }
+
 export default PatientReschedule;

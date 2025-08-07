@@ -23,7 +23,7 @@ function CreatePatient() {
 
     try {
       await axios.post(
-        "${import.meta.env.VITE_JSONSERVER_URL}/patients",
+        `${import.meta.env.VITE_JSONSERVER_URL}/patients`,
         formData
       );
 
