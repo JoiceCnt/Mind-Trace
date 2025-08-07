@@ -3,17 +3,18 @@
   text-align: center;
   background-color: #F9FAFB;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 .history-patient-content {
-  width: 100%;
+  width: 90%;
   background-color: #ffffff;
   padding: 40px 60px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+  margin: 60px;
 }
 .history-title {
   text-align: center;
@@ -69,11 +70,12 @@
   gap: 15px;
   width: 100%;
   margin-top: 20px;
+  text-align: left;
 }
 
 .log-entry {
-  width: 100%; /* en lugar de 60% */
-  background-color: #E0E0E0; 
+  width: 100%; 
+  background-color: #e0e0e0; 
   padding: 15px 15px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(92, 128, 188, 0.15); 
