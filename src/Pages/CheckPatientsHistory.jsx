@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import "../Styles/CheckPatientsHistory.css";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
@@ -9,22 +8,27 @@ const CheckPatientsHistory = () => {
   const [filteredLogs, setFilteredLogs] = useState([]);
   const [patientName, setPatientName] = useState("");
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
+  const patientId = localStorage.getItem("patientId");
+
+  const handleReset = () => {
+  localStorage.removeItem("patientId");
+  window.location.reload();
+  };
 
   useEffect(() => {
-    axios
-      .get("${${import.meta.env.VITE_JSONSERVER_URL}")
-      .get("${import.meta.env.VITE_JSONSERVER_URL}/logs")
-      .then((response) => {
-        console.log("Fetched logs:", response.data);
-        // Se for response.data.logs, atualize aqui
-        setLogs(
-          Array.isArray(response.data) ? response.data : response.data.logs
-        );
-      })
-      .catch((error) => {
-        console.error("Error fetching logs:", error);
-      });
-  }, []);
+  fetch(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
+    .then((res) => res.json())
+    .then((data) => {
+      const patientLogs = data.filter(
+        (log) =>
+          String(log.patientId) === String(patientId) ||
+          log.patientName === patientId
+      );
+      setLogs(patientLogs);
+      setFilteredLogs(patientLogs);
+      console.log("Logs for patient:", patientLogs);
+    });
+}, [patientId]);
 
   const handleFilter = () => {
     const filtered = logs.filter((log) => {
@@ -36,7 +40,7 @@ const CheckPatientsHistory = () => {
       const toDate = dateRange.to ? new Date(dateRange.to) : null;
       const fromMatch = !fromDate || logDate >= fromDate;
       const toMatch = !toDate || logDate <= toDate;
-      return nameMatch && fromMatch && toMatch; // :marca_de_verificación_blanca:
+      return nameMatch && fromMatch && toMatch; 
     });
     setFilteredLogs(filtered);
   };
@@ -103,6 +107,9 @@ const CheckPatientsHistory = () => {
           </button>
           <button className="downloadPDF-bt" onClick={handleDownloadPDF}>
             Download PDF
+          </button>
+          <button className="refresh-bt" onClick={handleReset}>
+            Search another patient
           </button>
         </div>
 

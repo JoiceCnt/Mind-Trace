@@ -15,11 +15,15 @@ function PatientLogs() {
     fetch(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
       .then((res) => res.json())
       .then((data) => {
-        setLogs(data);
-        setFilteredLogs(data);
-        console.log(data);
+        const patientLogs = data.filter(
+        (log) =>
+          log.patientId === patientId || log.patientName === patientId
+      );
+      setLogs(patientLogs);
+      setFilteredLogs(patientLogs);
+      console.log("Logs for patient:", patientLogs);
       });
-  }, []);
+  }, [patientId]);
 
   // Filter by date
   const handleFilter = () => {

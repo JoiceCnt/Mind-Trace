@@ -48,7 +48,8 @@
 }
 
 .filter-bt,
-.downloadPDF-bt {
+.downloadPDF-bt,
+.refresh-bt {
   background-color: #5C80BC;
   color: white;
   border: none;
