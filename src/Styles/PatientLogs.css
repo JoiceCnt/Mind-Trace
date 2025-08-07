@@ -1,6 +1,31 @@
 .logs-container {
+  padding: 20px; 
+  margin: 0 auto;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  width: 50%;
   text-align: center;
-  padding: 20px;
+  background-color: #F9FAFB;
+  min-height: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logs-content {
+  width: 90%;
+  background-color: #ffffff;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.logs-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #5C80BC;
+  margin-bottom: 20px;
+  margin-top: 0px;
 }
 
 .logs-header {
@@ -14,7 +39,15 @@
 
 .logs-header button {
   padding: 6px 15px;
-  margin-left: 10px;
+  width: 100px;
+  background-color: #5C80BC;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px auto 0 auto;
 }
 
 .log-list {

@@ -20,15 +20,31 @@ function ProfessionalCalendar() {
   });
 
   const hours = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"];
-  const days = Array.from({ length: 5 }, (_, i) => {
-    const d = new Date();
-    d.setDate(d.getDate() + startOffset + i);
-    return formatLocalDate(d);
-  });
 
+  const formatDate = formatLocalDate;
+
+  const getMonday = (startOffset = 0) => {
+    const now = new Date();
+    const day = now.getDay(); // 0 = Sunday
+    const diff = day === 0 ? -6 : 1 - day;
+    const base = new Date(now);
+    base.setDate(now.getDate() + diff + startOffset);
+    base.setHours(0, 0, 0, 0);
+    return base;
+  };
+
+  const monday = getMonday(startOffset);
+
+  const days = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(monday.getTime());
+    d.setDate(d.getDate() + i);
+    return formatDate(d);
+  });
+  console.log("Day calculated as Monday", monday);
+  console.log("Days generated for the schedule header:", days);
   useEffect(() => {
     fetchData();
-  }, [startOffset]); // refetch if you want data to reflect week change
+  }, []);
 
   const fetchData = async () => {
     try {
@@ -54,7 +70,9 @@ function ProfessionalCalendar() {
     const existing = appointments.find(
       (a) => a.date === date && a.time === time
     );
-    setSelectedSlot({ date, time, ...existing });
+
+    setSelectedSlot(existing ? { ...existing } : { date, time });
+
     setFormData({
       patientId: existing?.patientId || "",
       note: existing?.note || "",
@@ -73,18 +91,13 @@ function ProfessionalCalendar() {
 
     try {
       if (selectedSlot.id) {
-        // Update existing appointment
         await axios.put(
-          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${selectedSlot.id}`,
-          {
-            ...slot,
-            id: selectedSlot.id,
-          }
+          `${import.meta.env.JSONSERVER_URL}/appointments/${selectedSlot.id}`,
+          { ...slot, id: selectedSlot.id }
         );
       } else {
-        // Create new appointment
         await axios.post(
-          `${import.meta.env.VITE_JSONSERVER_URL}/appointments`,
+          "${import.meta.env.JSONSERVER_URL}/appointments",
           slot
         );
       }
@@ -99,7 +112,7 @@ function ProfessionalCalendar() {
 
   const handleDelete = async () => {
     try {
-      let appointmentId = selectedSlot?.id;
+      let appointmentId = selectedSlot.id;
 
       if (!appointmentId) {
         const found = appointments.find(
@@ -113,7 +126,7 @@ function ProfessionalCalendar() {
 
       if (appointmentId) {
         await axios.delete(
-          `${import.meta.env.VITE_JSONSERVER_URL}/appointments/${appointmentId}`
+          `${import.meta.env.JSONSERVER_URL}/appointments/${appointmentId}`
         );
         alert("Appointment deleted successfully.");
       }
@@ -128,152 +141,179 @@ function ProfessionalCalendar() {
   };
 
   return (
-    <div style={{ padding: "1rem" }}>
-      <h2>Agenda</h2>
-
+    <div style={{ padding: "1rem", textAlign: "center", marginBottom: "4rem" }}>
+      <h2
+        style={{
+          textAlign: "center",
+          marginBottom: "1.5rem",
+          marginTop: "1rem",
+          fontSize: "35px",
+        }}
+      >
+        Agenda
+      </h2>
       <div style={{ marginBottom: "1rem" }}>
-        <button onClick={() => setStartOffset((o) => o - 5)}>⏮ Last Week</button>
-        <button onClick={() => setStartOffset(0)} style={{ margin: "0 1rem" }}>
+        <button onClick={() => setStartOffset(startOffset - 7)}>
+          ⏮ Last Week
+        </button>
+        <button onClick={() => setStartOffset(0)} style={{ margin: "0 3rem" }}>
           Today
         </button>
-        <button onClick={() => setStartOffset((o) => o + 5)}>⏭ Next Week</button>
+        <button onClick={() => setStartOffset(startOffset + 7)}>
+          ⏭ Next Week
+        </button>
       </div>
-
-      <table style={{ borderCollapse: "collapse", width: "100%" }}>
-        <thead>
-          <tr>
-            <th
-              style={{
-                border: "1px solid #ccc",
-                padding: "8px",
-                background: "#f0f0f0",
-                tableLayout: "fixed",
-                width: "100px",
-              }}
-            >
-              Hour
-            </th>
-            {days.map((day) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <table
+          style={{
+            borderCollapse: "collapse",
+            width: "50rem",
+            margin: "0 auto",
+            marginBottom: "2rem",
+          }}
+        >
+          <thead>
+            <tr>
               <th
-                key={day}
                 style={{
                   border: "1px solid #ccc",
                   padding: "8px",
                   background: "#f0f0f0",
                 }}
               >
-                {new Date(day).toLocaleDateString()}
+                Hour
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {hours.map((hour) => (
-            <tr key={hour}>
-              <td
-                style={{
-                  fontWeight: "bold",
-                  padding: "8px",
-                  border: "1px solid #ccc",
-                }}
-              >
-                {hour}
-              </td>
-              {days.map((day) => {
-                const slot = appointments.find(
-                  (a) => a.date === day && a.time === hour
-                );
-                const isBooked = slot && slot.status === "booked";
-
-                return (
-                  <td
-                    key={`${day}-${hour}`}
-                    onClick={() => handleCellClick(day, hour)}
-                    style={{
-                      padding: "8px",
-                      border: "1px solid #ccc",
-                      backgroundColor: isBooked
-                        ? "#ffd6d6"
-                        : slot
-                        ? "#eaffea"
-                        : "#f9f9f9",
-                      textAlign: "center",
-                      fontSize: "0.9rem",
-                      cursor: "pointer",
-                    }}
-                    title="Clique para editar"
-                  >
-                    {slot ? (
-                      isBooked ? (
-                        <>
-                          🔒
-                          <br />
-                          <strong>{getPatientName(slot.patientId)}</strong>
-                        </>
-                      ) : (
-                        "✅ Livre"
-                      )
-                    ) : (
-                      "—"
-                    )}
-                  </td>
-                );
-              })}
+              {days.map((day) => (
+                <th
+                  key={day}
+                  style={{
+                    border: "1px solid #ccc",
+                    padding: "8px",
+                    background: "#f0f0f0",
+                  }}
+                >
+                  {day}
+                </th>
+              ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {hours.map((hour) => (
+              <tr key={hour}>
+                <td
+                  style={{
+                    fontWeight: "bold",
+                    padding: "8px",
+                    border: "1px solid #ccc",
+                  }}
+                >
+                  {hour}
+                </td>
+                {days.map((day) => {
+                  const slot = appointments.find(
+                    (a) => a.date === day && a.time === hour
+                  );
+                  const isBooked = slot && slot.status === "booked";
 
-      {selectedSlot && (
-        <div
-          style={{
-            marginTop: "2rem",
-            padding: "1rem",
-            border: "1px solid #ccc",
-            background: "#f9f9f9",
-            maxWidth: "400px",
-          }}
-        >
-          <h3>Edit Appointment</h3>
-          <p>
-            <strong>Date:</strong> {selectedSlot.date}
-            <br />
-            <strong>Hours:</strong> {selectedSlot.time}
-          </p>
-          <label>Patiente:</label>
-          <select
-            value={formData.patientId}
-            onChange={(e) =>
-              setFormData({ ...formData, patientId: e.target.value })
-            }
-          >
-            <option value="">-- Available --</option>
-            {patients.map((p) => (
-              <option key={p.id} value={p.id}>
-                {p.name}
-              </option>
+                  return (
+                    <td
+                      key={`${day}-${hour}`}
+                      onClick={() => handleCellClick(day, hour)}
+                      style={{
+                        padding: "3px",
+                        border: "1px solid #ccc",
+                        backgroundColor: isBooked
+                          ? "#ffd6d6"
+                          : slot
+                          ? "#eaffea"
+                          : "#f9f9f9",
+                        textAlign: "center",
+                        fontSize: "0.9rem",
+                        cursor: "pointer",
+                        minHeight: "30px",
+                        height: "30px",
+                        verticalAlign: "middle",
+                      }}
+                      title="Click to edit"
+                    >
+                      {slot ? (
+                        isBooked ? (
+                          <>
+                            🔒
+                            <br />
+                            <strong>{getPatientName(slot.patientId)}</strong>
+                          </>
+                        ) : (
+                          "✅ Livre"
+                        )
+                      ) : (
+                        "—"
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
             ))}
-          </select>
-          <br />
-          <br />
-          <label>Note:</label>
-          <br />
-          <textarea
-            rows="3"
-            style={{ width: "100%" }}
-            value={formData.note}
-            onChange={(e) => setFormData({ ...formData, note: e.target.value })}
-          ></textarea>
-          <br />
-          <br />
-          <button onClick={handleSave}>💾 Save</button>{" "}
-          {selectedSlot.id && <button onClick={handleDelete}>🗑️ Delete</button>}{" "}
-          <button onClick={() => setSelectedSlot(null)}>Cancel</button>
-        </div>
-      )}
-    </div>
+          </tbody>
+        </table>
+        {selectedSlot && (
+          <div
+            style={{
+              marginTop: "2rem",
+              padding: "1rem",
+              border: "1px solid #ccc",
+              background: "#f9f9f9",
+              maxWidth: "400px",
+              textAlign: "left",
+            }}
+          >
+            <h3>Edit Appointment</h3>
+            <p>
+              <strong>Date:</strong> {selectedSlot.date}
+              <br />
+              <strong>Time:</strong> {selectedSlot.time}
+            </p>
+            <label>Patient:</label>
+            <select
+              value={formData.patientId}
+              onChange={(e) =>
+                setFormData({ ...formData, patientId: e.target.value })
+              }
+              style={{ width: "100%", marginBottom: "1rem" }}
+            >
+              <option value="">-- Available --</option>
+              {patients.map((p) => (
+                <option key={p.id} value={p.id}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+            <label>Note:</label>
+            <textarea
+              rows="3"
+              style={{ width: "100%", marginBottom: "1rem" }}
+              value={formData.note}
+              onChange={(e) =>
+                setFormData({ ...formData, note: e.target.value })
+              }
+            />
+            <button onClick={handleSave}>💾 Save</button>{" "}
+            {selectedSlot.id && (
+              <button onClick={handleDelete}>🗑️ Delete</button>
+            )}{" "}
+            <button onClick={() => setSelectedSlot(null)}>Cancel</button>
+          </div>
+        )}
+      </div>{" "}
+      {/* Fecha a div aberta acima da <table> */}
+    </div> // Fecha o container principal
   );
 }
 
 export default ProfessionalCalendar;
-

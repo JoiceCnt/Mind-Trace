@@ -102,7 +102,7 @@ function EditProfile() {
           <p className="edit-input">{profile.email}</p>
         )}
 
-        <label>Birthday date:</label>
+        <label className="edit-label">Birthday date:</label>
         {isEditing ? (
           <input
             type="date"

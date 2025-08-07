@@ -35,42 +35,33 @@ function PatientLogs() {
   };
 
   return (
-    <div
-      className="logs-container"
-      style={{
-        width: "60%",
-        margin: "0 auto",
-        justifyContent: "center",
-        minHeight: "25vh",
-        flexDirection: "column",
-        backgroundColor: "#f9f9f9",
-        borderRadius: "8px",
-      }}
-    >
-      <h2>History</h2>
+    <div className="logs-container" >
+      <div className="logs-content">
+        <p className="logs-title">History</p>
 
-      <div className="logs-header">
-        <input
-          type="date"
-          value={dateFrom}
-          onChange={(e) => setDateFrom(e.target.value)}
-        />
-        <input
-          type="date"
-          value={dateTo}
-          onChange={(e) => setDateTo(e.target.value)}
-        />
-        <button onClick={handleFilter}>Filter</button>
-      </div>
+        <div className="logs-header">
+          <input
+            type="date"
+            value={dateFrom}
+            onChange={(e) => setDateFrom(e.target.value)}
+          />
+          <input
+            type="date"
+            value={dateTo}
+            onChange={(e) => setDateTo(e.target.value)}
+          />
+          <button onClick={handleFilter}>Filter</button>
+        </div>
 
-      <div className="log-list">
-        {filteredLogs.map((log) => (
-          <div key={log.id} className="log-item">
-            <div className="log-emoji">{getEmojiById(log.emojiId)}</div>
-            <div className="log-date">{formatDate(log.date)}</div>
-            <div className="log-description">{log.description}</div>
-          </div>
-        ))}
+        <div className="log-list">
+          {filteredLogs.map((log) => (
+            <div key={log.id} className="log-item">
+              <div className="log-emoji">{getEmojiById(log.emojiId)}</div>
+              <div className="log-date">{formatDate(log.date)}</div>
+              <div className="log-description">{log.description}</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -24,16 +24,17 @@
   margin-top: 0px;
 }
 .edit-label {
+  display: block;
   text-align: center;
-  margin: auto 0 10px 0;
-  color: #444;
+  color: #5C80BC;
   font-weight: 600;
 }
 
 .edit-input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 10px;
   border: 1px solid #E0E0E0;
   font-size: 16px;
   background-color: #F9FAFB;

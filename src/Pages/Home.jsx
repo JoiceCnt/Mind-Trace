@@ -18,7 +18,7 @@ function Home() {
   const patientStyle = {
     ...baseButtonStyle,
     backgroundColor: "#A8D5BA",
-    color: "#060606ff",
+    color: "#262626ff",
   };
 
   const professionalStyle = {
@@ -49,7 +49,7 @@ function Home() {
         }}
       />
 
-      <p style={{ fontSize: "25px", marginBottom: "30px", color: "#333" }}>
+      <p style={{ fontSize: "30px", marginBottom: "40px", marginTop: "10px", color: "#5C80BC" }}>
         <strong>Select the option below to login:</strong>
       </p>
 
