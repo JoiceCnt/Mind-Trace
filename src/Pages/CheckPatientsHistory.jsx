@@ -2,46 +2,43 @@ import { useState, useEffect } from "react";
 import "../Styles/CheckPatientsHistory.css";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import axios from "axios";
 
 const CheckPatientsHistory = () => {
   const [logs, setLogs] = useState([]);
   const [filteredLogs, setFilteredLogs] = useState([]);
   const [patientName, setPatientName] = useState("");
   const [dateRange, setDateRange] = useState({ from: "", to: "" });
-  const patientId = localStorage.getItem("patientId");
 
   const handleReset = () => {
     localStorage.removeItem("patientId");
-    window.location.reload();
+    setPatientName("");
+    setDateRange({ from: "", to: "" });
+    setFilteredLogs([]);
   };
 
   useEffect(() => {
     axios
-      .get("${${import.meta.env.VITE_JSONSERVER_URL}")
-      .get("${import.meta.env.VITE_JSONSERVER_URL}/logs")
-      .then((response) => {
-        console.log("Fetched logs:", response.data);
-        // Se for response.data.logs, atualize aqui
-        setLogs(
-          Array.isArray(response.data) ? response.data : response.data.logs
-        );
+      .get(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
+      .then((res) => {
+        const data = Array.isArray(res.data) ? res.data : res.data.logs;
+        setLogs(data);
+        setFilteredLogs([]);
       })
-      .catch((error) => {
-        console.error("Error fetching logs:", error);
-      });
+      .catch(console.error);
   }, []);
 
   const handleFilter = () => {
     const filtered = logs.filter((log) => {
       const nameMatch =
         patientName === "" ||
-        log.patientName.toLowerCase().includes(patientName.toLowerCase());
+        log.patientName?.toLowerCase().includes(patientName.toLowerCase());
       const logDate = new Date(log.date);
       const fromDate = dateRange.from ? new Date(dateRange.from) : null;
       const toDate = dateRange.to ? new Date(dateRange.to) : null;
       const fromMatch = !fromDate || logDate >= fromDate;
       const toMatch = !toDate || logDate <= toDate;
-      return nameMatch && fromMatch && toMatch; // :marca_de_verificación_blanca:
+      return nameMatch && fromMatch && toMatch;
     });
     setFilteredLogs(filtered);
   };

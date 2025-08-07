@@ -23,7 +23,6 @@ function PatientLogs() {
         console.log("Logs for patient:", patientLogs);
       });
   }, [patientId]);
-  }, [patientId]);
 
   // Filter by date
   const handleFilter = () => {
