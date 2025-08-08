@@ -53,6 +53,7 @@ const Navbar = () => {
     location.pathname.includes("/edit-profile") ||
     location.pathname.includes("/appointments") ||
     location.pathname.includes("/patient/Logs") ||
+    location.pathname.includes("/patient/logs") ||
     location.pathname.includes("/reschedule");
 
   const showLogoutButton = 

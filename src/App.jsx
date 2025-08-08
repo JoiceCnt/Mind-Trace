@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
 import PatientLogin from "./Pages/PatientLogin";
 import EmotionLog from "./Pages/EmotionLog.jsx";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import PatientLogs from "./Pages/PatientLogs.jsx";
 import SubmissionConfirmation from "./Pages/SubmissionConfirmation.jsx";
@@ -19,7 +21,32 @@ import TermsOfUse from "./Pages/TermsOfUse.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import CheckPatientsHistory from "./Pages/CheckPatientsHistory.jsx";
 import EditProfile from "./Pages/EditProfile.jsx";
+
+
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    const scrollableRoutes = [
+      "/CheckPatientsHistory",
+      "/emotion-log",
+      "/EmotionSelectorPage",
+      "/appointments",
+      "/reschedule",
+      "/privacy-policy",
+      "/terms-of-use",
+      "/patient/Logs",
+      "/patient/logs",
+      "/ProfessionalCalendar"
+    ];
+
+    const isScrollable = scrollableRoutes.includes(location.pathname);
+
+    document.body.classList.remove("scroll-enabled", "scroll-disabled");
+    document.body.classList.add(isScrollable ? "scroll-enabled" : "scroll-disabled");
+  }, [location.pathname]);
+  
+
   return (
     <div className="app-container">
       <Navbar />
