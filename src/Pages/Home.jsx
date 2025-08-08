@@ -3,10 +3,10 @@ import MindTraceLogo from "../assets/logo.png";
 
 function Home() {
   const baseButtonStyle = {
-    width: "450px",
-    padding: "16px",
-    margin: "10px 0",
-    fontSize: "24px",
+    width: "250px",
+    padding: "8px 10px",
+    margin: "8px 0",
+    fontSize: "16px",
     fontWeight: "bold",
     border: "none",
     borderRadius: "8px",
@@ -28,28 +28,29 @@ function Home() {
   };
 
   return (
-    <div
+    <div className="home-container"
       style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        minHeight: "50vh",
+        justifyContent: "flex-start",
+        height: "30vh",
         fontFamily: "Arial, sans-serif",
         textAlign: "center",
+        paddingTop: "10px"
       }}
     >
       <img
         src={MindTraceLogo}
         alt="MindTrace Logo"
         style={{
-          width: "300px",
-          marginBottom: "50px",
+          width: "180px",
+          marginBottom: "20px",
           borderRadius: "12px",
         }}
       />
 
-      <p style={{ fontSize: "30px", marginBottom: "40px", marginTop: "10px", color: "#5C80BC" }}>
+      <p style={{ fontSize: "20px", marginBottom: "20px", marginTop: "5px", color: "#5C80BC" }}>
         <strong>Select the option below to login:</strong>
       </p>
 

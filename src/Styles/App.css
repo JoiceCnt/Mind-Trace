@@ -7,6 +7,30 @@ body, #root {
   overflow: hidden;
 }
 
+.scroll-enabled {
+  overflow-y: auto
+}
+
+.scroll-disabled {
+  overflow: hidden
+}
+
+/*=== CONTAINER ===*/
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+
 /*=== NAVBAR ===*/
 .navbar {
   height: 90px;
@@ -138,21 +162,6 @@ body, #root {
   cursor: pointer;
 }
 
-/*=== CONTAINER ===*/
-.app-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.main-content {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
-  overflow-y: auto;
-}
-
 /*=== PROMPT TEXT ===*/
 .prompt {
   margin-top: 20px;
@@ -221,11 +230,5 @@ body, #root {
   text-decoration: underline;
 }
 
-.scroll-enabled {
-  overflow-y: auto;
-}
 
-.scroll-disabled {
-  overflow: hidden;
-}
 

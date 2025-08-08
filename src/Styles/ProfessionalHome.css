@@ -1,13 +1,14 @@
 .professional-main {
   background-color: #f9fafb;
-  width: 100vh;
-  max-width: 900px;
+  width: 80%;
+  max-width: 800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  padding: 40px 0;
+  padding: 20px 0;
   align-items: center;
   border-radius: 12px;
+  height: 90vh;
 }
 
 .professional-main h2 {

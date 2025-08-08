@@ -40,12 +40,17 @@ function App() {
       "/ProfessionalCalendar"
     ];
 
-    const isScrollable = scrollableRoutes.includes(location.pathname);
+  const isScrollable = scrollableRoutes.some(route =>
+    location.pathname.startsWith(route)
+  );
+
+  console.log("Pathname:", location.pathname);
+  console.log("Is scrollable:", isScrollable);
 
     document.body.classList.remove("scroll-enabled", "scroll-disabled");
     document.body.classList.add(isScrollable ? "scroll-enabled" : "scroll-disabled");
   }, [location.pathname]);
-  
+
 
   return (
     <div className="app-container">
