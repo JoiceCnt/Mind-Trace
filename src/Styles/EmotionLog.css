@@ -55,3 +55,52 @@
 .submit-button:hover {
   background-color: #8bc9a0;
 }
+
+@media (max-width: 768px) {
+  .emotion-log-page {
+    padding: 30px 15px;
+  }
+
+  .prompt-text {
+    font-size: 18px;
+  }
+
+  .emotion-textarea {
+    height: 130px;
+    font-size: 15px;
+  }
+
+  .submit-button {
+    font-size: 18px;
+    padding: 9px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .emotion-log-page {
+    padding: 25px 10px;
+  }
+
+  .prompt-box {
+    padding: 16px;
+  }
+
+  .prompt-text {
+    font-size: 16px;
+  }
+
+  .emotion-textarea {
+    height: 120px;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .char-count {
+    font-size: 11px;
+  }
+
+  .submit-button {
+    font-size: 16px;
+    padding: 8px 18px;
+  }
+}

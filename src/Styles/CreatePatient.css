@@ -79,3 +79,59 @@
   color: #5C80BC;
   font-weight: 600;
 }
+
+/* Responsive para pantallas medianas (tablets) */
+@media (max-width: 1024px) {
+  .create-patient-container {
+    width: 70%;
+    padding: 15px;
+    height: auto;
+  }
+  .create-patient-content {
+    width: 90%;
+    padding: 30px 40px;
+  }
+  .create-patient-form input {
+    width: 100%;
+  }
+}
+
+/* Responsive para pantallas pequeñas (móviles grandes) */
+@media (max-width: 768px) {
+  .create-patient-container {
+    width: 90%;
+    padding: 10px;
+  }
+  .create-patient-content {
+    width: 100%;
+    padding: 20px 25px;
+  }
+  .create-patient-form input {
+    width: 100%;
+  }
+  .create-patient-form button {
+    width: 100%;
+  }
+}
+
+/* Responsive para móviles pequeños */
+@media (max-width: 480px) {
+  .create-patient-container {
+    width: 95%;
+    padding: 8px;
+  }
+  .create-patient-content {
+    padding: 15px 15px;
+  }
+  .create-patient-title {
+    font-size: 22px;
+  }
+  .create-patient-form input {
+    font-size: 14px;
+  }
+  .create-patient-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+

@@ -1,21 +1,46 @@
-.professional-main {
-  background-color: #f9fafb;
-  width: 80%;
-  max-width: 800px;
-  margin: 0 auto;
+.professional-container {
+  width: 100%;
+  max-width: 700px;
+  max-height: 450px; 
+  background-color: #F9FAFB;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.professional-header {
+  margin-bottom: -30px;
+  margin-top: -30px;
+}
+
+.logo {
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+.professional-main {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 600px;
+  margin: 5px auto;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 20px;
   align-items: center;
   border-radius: 12px;
-  height: 90vh;
+  height: auto;
+  box-sizing: auto;
 }
 
 .professional-main h2 {
   color: #5c80bc;
-  font-weight: 30;
+  font-weight: 500;
   font-size: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -41,8 +66,31 @@
 .menu-buttons button:hover {
   background-color: #4a6ba3;
 }
-.logo {
-  display: block;
-  margin: 0 auto;
-  height: 200px;
+
+@media (max-width: 600px) {
+  .professional-main {
+    width: 95%;
+    margin: 60px auto 20px auto;
+    padding: 20px 15px;
+  }
+
+  .professional-main h2 {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+
+  .menu-buttons {
+    max-width: 100%;
+  }
+
+  .menu-buttons button {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  .logo {
+    height: 140px;
+    margin-bottom: 20px;
+  }
 }
+

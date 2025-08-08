@@ -45,12 +45,11 @@ body, #root {
 .logo-button {
   border: none;
   background-color: transparent;
-  border-radius: 12px;
   width: 150px;
-  height: 150px;
+  height: 100px;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-top: -25px;
+  margin-top: -40px;
   margin-left: -20px;
 }
 .navbar-actions {

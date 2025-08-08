@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5cm 0.75cm;
+  padding: 1rem;
   background-color: #F9FAFB;
-  min-height: 100vh;
+  min-height: 70vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
 }
@@ -96,4 +96,87 @@
 .emoji-label {
   font-size: 11px;
   color: #333;
+}
+
+@media (max-width: 768px) {
+  .emotion-page-content {
+    padding: 16px 20px;
+  }
+
+  .emoji-grid {
+    grid-template-columns: repeat(4, 1fr); /* Menos columnas en pantallas pequeñas */
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .emoji-card {
+    width: 60px;
+    height: 60px;
+    padding: 6px;
+  }
+
+  .emoji-card img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .emoji {
+    font-size: 16px;
+  }
+
+  .emoji-label {
+    font-size: 10px;
+  }
+
+  .intro-text, .question-box {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .emotion-selector-page {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    height: auto;
+    padding-top: 1rem;
+    overflow-y: auto;
+  }
+
+  .emotion-page-content {
+    min-height: auto;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 0;
+  }
+  
+  .emoji-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 emojis por fila en móviles */
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .emoji-card {
+    width: 52px;
+    height: 52px;
+    padding: 5px;
+  }
+
+  .emoji-card img {
+    width: 18px;
+    height: 18px;
+  }
+
+  .emoji {
+    font-size: 14px;
+  }
+
+  .emoji-label {
+    font-size: 9px;
+  }
+
+  .intro-text, .question-box {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }

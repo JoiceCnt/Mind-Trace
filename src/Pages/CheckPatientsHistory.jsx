@@ -68,42 +68,51 @@ const CheckPatientsHistory = () => {
   return (
     <div className="history-container">
       <div className="history-patient-content">
-        <h2 className="history-title">Check Patient's History</h2>        <div className="filters">
-          <input
-            type="text"
-            placeholder="Enter patient name"
-            value={patientName}
-            onChange={(e) => setPatientName(e.target.value)}
-          />
-          <label>
-            From:
+        <h2 className="history-title">Check Patient's History</h2>        
+        <div className="filters">
+          <div className="filter-inputs">
             <input
-              type="date"
-              value={dateRange.from}
-              onChange={(e) =>
-                setDateRange({ ...dateRange, from: e.target.value })
-              }
+              type="text"
+              placeholder="Enter patient name"
+              value={patientName}
+              onChange={(e) => setPatientName(e.target.value)}
             />
-          </label>
-          <label>
-            To:
-            <input
-              type="date"
-              value={dateRange.to}
-              onChange={(e) =>
-                setDateRange({ ...dateRange, to: e.target.value })
-              }
-            />
-          </label>          <button className="filter-bt" onClick={handleFilter}>
-            Filter
-          </button>
-          <button className="downloadPDF-bt" onClick={handleDownloadPDF}>
-            Download PDF
-          </button>
-          <button className="refresh-bt" onClick={handleReset}>
-            Search another patient
-          </button>
-        </div>        <div className="log-list">
+            <label style={{ margin: "0 20px "}}>
+              From:
+              <input
+                type="date"
+                value={dateRange.from}
+                onChange={(e) =>
+                  setDateRange({ ...dateRange, from: e.target.value })
+                }
+              />
+            </label>
+            <label>
+              To:
+              <input
+                type="date"
+                value={dateRange.to}
+                onChange={(e) =>
+                  setDateRange({ ...dateRange, to: e.target.value })
+                }
+              />
+            </label>
+         </div> 
+
+         <div className="filter-buttons">       
+          <button className="filter-bt" onClick={handleFilter}>
+              Filter
+            </button>
+            <button className="downloadPDF-bt" onClick={handleDownloadPDF}>
+              Download PDF
+            </button>
+            <button className="refresh-bt" onClick={handleReset}>
+              Search another patient
+            </button>
+          </div> 
+        </div>        
+        
+        <div className="log-list">
           {filteredLogs.length === 0 ? (
             <p>No records found.</p>
           ) : (

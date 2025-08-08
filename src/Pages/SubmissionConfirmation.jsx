@@ -8,18 +8,19 @@ function SubmissionConfirmation() {
         justifyContent: "center",
         alignItems: "center",
         height: "80vh",
+        overflow: "hidden",
       }}
     >
       <div
         style={{
-          padding: "2rem",
+          padding: "1.4rem",
           textAlign: "center",
-          minHeight: "25vh",
-          width: "150%",
-          maxWidth: "700px",
+          minHeight: "20vh",
+          width: "100%",
+          maxWidth: "500px",
         }}
       >
-        <h1>Message sent successfully ✅</h1>
+        <h1 style={{color: "#5c80bc"}}>Message sent successfully ✅</h1>
         <p>
           Thank you for sharing. We’ve received your message, and please
           remember, you are not alone. <br />
@@ -30,12 +31,12 @@ function SubmissionConfirmation() {
         <Link to="/patient/logs">
           <button
             style={{
-              marginTop: "60px",
-              padding: "10px 25px",
+              marginTop: "40px",
+              padding: "7px 18px",
               backgroundColor: "#a8d5ba",
               border: "none",
               borderRadius: "8px",
-              fontSize: "25px",
+              fontSize: "18px",
               cursor: "pointer",
               transition: "background-color 0.3s ease",
               gap: "12x",

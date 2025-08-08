@@ -1,20 +1,22 @@
 .logs-container {
+  width: 100%;
+  max-width: 800px;
   padding: 10px; 
   margin: 0 auto;
   justify-content: center;
   flex-direction: column;
   display: flex;
   align-items: center;
-  width: 90%;
-  max-width: 700px;
   text-align: center;
   background-color: #F9FAFB;
   min-height: auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
 }
 
 .logs-content {
   width: 100%;
+  max-width: 700px;
   background-color: #ffffff;
   padding: 15px 20px;
   border-radius: 12px;
@@ -22,7 +24,7 @@
 }
 
 .logs-title {
-  font-size: 22px;
+  font-size: 28px;
   font-weight: bold;
   color: #5C80BC;
   margin-bottom: 15px;
@@ -35,12 +37,12 @@
 
 .logs-header input {
   width: 100%;
-  max-width: 150px;
+  max-width: 200px;
   padding: 10px;
   margin: 5px 5px;
-  font-size: 14px;
+  font-size: 18px;
   border: 1px solid #E0E0E0;
-  border-radius: 10px 0;
+  border-radius: 10px;
   background-color: #ffffff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: border 0.3s;
@@ -62,7 +64,7 @@
   background-color: #5C80BC;
   color: white;
   border: none;
-  border-radius: 10px 0;
+  border-radius: 10px;
   font-size: 14px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
@@ -146,22 +148,19 @@
   }
 
   .logs-title {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .logs-header {
-    width: 100%;
-    display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 10px;
   }
 
   .logs-header input,
   .logs-header button {
     width: 100%;
     max-width: none;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .log-item {
@@ -176,7 +175,7 @@
     min-height: auto;
     justify-content: flex-start;
     padding: 6px 10px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .log-emoji {
