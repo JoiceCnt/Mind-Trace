@@ -21,7 +21,7 @@ import TermsOfUse from "./Pages/TermsOfUse.jsx";
 import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
 import CheckPatientsHistory from "./Pages/CheckPatientsHistory.jsx";
 import EditProfile from "./Pages/EditProfile.jsx";
-
+import NotFoundPage from "./Pages/NotFoundPage";
 
 function App() {
   const location = useLocation();
@@ -59,16 +59,25 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           {/* PATIENT ROUTES */}
-          <Route path="/EmotionSelectorPage" element={<EmotionSelectorPage />} />
+          <Route
+            path="/EmotionSelectorPage"
+            element={<EmotionSelectorPage />}
+          />
           <Route path="/login/patient" element={<PatientLogin />} />
           <Route path="/emotion-log" element={<EmotionLog />} />
 
           <Route path="/patient/logs" element={<PatientLogs />} />
-          <Route path="/submission-confirmation" element={<SubmissionConfirmation />} />
+          <Route
+            path="/submission-confirmation"
+            element={<SubmissionConfirmation />}
+          />
           <Route path="/edit-profile" element={<EditProfile />} />
 
           {/* PROFESSIONAL ROUTES */}
-          <Route path="/ProfessionalCalendar" element={<ProfessionalCalendar />} />
+          <Route
+            path="/ProfessionalCalendar"
+            element={<ProfessionalCalendar />}
+          />
           <Route path="/professional-home" element={<ProfessionalHome />} />
           <Route path="/login/professional" element={<ProfessionalLogin />} />
           <Route path="/appointments" element={<PatientAppointments />} />
@@ -83,6 +92,7 @@ function App() {
             path="/CheckPatientsHistory"
             element={<CheckPatientsHistory />}
           />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
       <Footer />
