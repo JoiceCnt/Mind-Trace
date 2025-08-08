@@ -34,23 +34,23 @@ function Home() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        height: "30vh",
+        height: "40vh",
         fontFamily: "Arial, sans-serif",
         textAlign: "center",
-        paddingTop: "10px"
+        paddingTop: "20px"
       }}
     >
       <img
         src={MindTraceLogo}
         alt="MindTrace Logo"
         style={{
-          width: "180px",
-          marginBottom: "20px",
+          width: "240px",
+          marginBottom: "30px",
           borderRadius: "12px",
         }}
       />
 
-      <p style={{ fontSize: "20px", marginBottom: "20px", marginTop: "5px", color: "#5C80BC" }}>
+      <p style={{ fontSize: "24px", marginBottom: "30px", marginTop: "10px", color: "#5C80BC" }}>
         <strong>Select the option below to login:</strong>
       </p>
 

@@ -230,4 +230,111 @@ body, #root {
 }
 
 
+/* === RESPONSIVE PARA TABLETS (max-width: 1024px) === */
+
+@media (max-width: 1024px) {
+  .navbar {
+    height: auto;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .navbar-actions {
+    gap: 20px;
+  }
+
+  .logo-button {
+    width: 120px;
+    height: 80px;
+    margin-top: 0;
+    margin-left: 0;
+  }
+
+  .home-button,
+  .logout-button,
+  .menu-button {
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+  }
+
+  .menu-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .calendar-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  .policy-container {
+    margin: 40px 20px;
+    padding: 20px;
+  }
+}
+
+/* === RESPONSIVE PARA MÓVILES (max-width: 480px) === */
+
+@media (max-width: 480px) {
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 15px;
+  }
+
+  .logo-button {
+    width: 100px;
+    height: 70px;
+    margin: 0 auto 10px auto;
+  }
+
+  .navbar-actions {
+    width: 100%;
+    justify-content: space-around;
+    gap: 10px;
+  }
+
+  .home-button,
+  .logout-button,
+  .menu-button {
+    width: 44px;
+    height: 44px;
+    font-size: 12px;
+  }
+
+  .menu-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .calendar-container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .policy-container {
+    margin: 20px 10px;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .policy-container h1 {
+    font-size: 22px;
+  }
+
+  .policy-container h2 {
+    font-size: 16px;
+  }
+}
 

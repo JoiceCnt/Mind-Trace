@@ -63,3 +63,42 @@
     justify-content: flex-start;
   }
 }
+
+/* === FOOTER RESPONSIVE === */
+
+/* Para tablets y pantallas medianas */
+@media (max-width: 1024px) {
+  .footer {
+    grid-template-columns: 1fr 1fr; /* Dos columnas en lugar de tres */
+    height: auto; /* Que crezca si es necesario */
+    padding: 20px 30px;
+  }
+}
+
+/* Para móviles pequeños */
+@media (max-width: 480px) {
+  .footer {
+    grid-template-columns: 1fr; /* Una sola columna */
+    padding: 15px 20px;
+    height: auto;
+  }
+
+  .footer-section {
+    align-items: flex-start; /* Para que el contenido quede alineado a la izquierda */
+  }
+
+  .footer-text {
+    font-size: 13px; /* Un poco más pequeño para pantallas pequeñas */
+  }
+
+  .footer-link {
+    font-size: 14px;
+  }
+
+  .footer-links,
+  .footer-links.right {
+    justify-content: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
