@@ -35,7 +35,7 @@
 .filters input {
   padding: 12px 16px;
   border: 1px solid #b8b5e0;
-  border-radius: 10px;
+  border-radius: 10px 0;
   font-size: 15px;
   color: #333;
   background-color: #fff;
@@ -54,13 +54,18 @@
   background-color: #5c80bc;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 8px 0;
+  padding: 8px 12px;
+  margin-left: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
+
+
 .filter-bt:hover,
-.downloadPDF-bt:hover {
+.downloadPDF-bt:hover,
+.refresh-bt {
   background-color: #466aa3;
 }
 
@@ -84,12 +89,4 @@
   line-height: 1.5;
   box-sizing: border-box;
 }
-.refresh-bt {
-  background-color: #466aa3;
-  color: #e0e0e0;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  margin-left: 8px;
-  cursor: pointer;
-  border-radius: 8px;
-}
+

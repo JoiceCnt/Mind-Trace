@@ -57,3 +57,65 @@
   font-size: 18px;
   text-align: center;
 }
+
+
+.appointments-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 20px;
+  text-align: center;
+  background-color: #F9FAFB;
+  height: 95%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.appointments-content {
+  width: 70%;
+  max-width: 1000px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  height: 75%;
+}
+
+.appointments-title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #5e7ebe;
+}
+
+.appointment-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 40px;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.pending {
+  background-color: #5e7ebe;
+}
+
+.done {
+  background-color: #a8d5ba;
+}
+
+.icon-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.icon-check {
+  font-size: 18px;
+  text-align: center;
+}
+

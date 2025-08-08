@@ -60,7 +60,7 @@ function EditProfile() {
             className="edit-input"
           />
         ) : (
-          <p className="edit-input">{profile.name}</p>
+          <p className="edit-display-text">{profile.name}</p>
         )}
 
         <label className="edit-label">Username:</label>
@@ -73,7 +73,7 @@ function EditProfile() {
             className="edit-input"
           />
         ) : (
-          <p className="edit-input">{profile.username}</p>
+          <p className="edit-display-text">{profile.username}</p>
         )}
 
         <label className="edit-label">Password:</label>
@@ -86,7 +86,7 @@ function EditProfile() {
             className="edit-input"
           />
         ) : (
-          <p className="edit-input">{profile.password}</p>
+          <p className="edit-display-text">{profile.password}</p>
         )}
 
         <label className="edit-label">Email:</label>
@@ -99,7 +99,7 @@ function EditProfile() {
             className="edit-input"
           />
         ) : (
-          <p className="edit-input">{profile.email}</p>
+          <p className="edit-display-text">{profile.email}</p>
         )}
 
         <label className="edit-label">Birthday date:</label>
@@ -112,7 +112,7 @@ function EditProfile() {
             className="edit-input"
           />
         ) : (
-          <p className="edit-input">{profile.birthDate}</p>
+          <p className="edit-display-text">{profile.birthDate}</p>
         )}
 
         {isEditing ? (
