@@ -39,7 +39,6 @@
   color: #333;
   background-color: #fff;
   transition: border-color 0.3s ease;
-  gap: 10px;
 }
 
 .filters input:focus {
