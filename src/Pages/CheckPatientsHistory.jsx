@@ -2,16 +2,22 @@ import { useState, useEffect } from "react";
 import "../Styles/CheckPatientsHistory.css";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
-import axios from "axios";const CheckPatientsHistory = () => {
+import axios from "axios";
+
+const CheckPatientsHistory = () => {
   const [logs, setLogs] = useState([]);
   const [filteredLogs, setFilteredLogs] = useState([]);
   const [patientName, setPatientName] = useState("");
-  const [dateRange, setDateRange] = useState({ from: "", to: "" });  const handleReset = () => {
+  const [dateRange, setDateRange] = useState({ from: "", to: "" });
+
+  const handleReset = () => {
     localStorage.removeItem("patientId");
     setPatientName("");
     setDateRange({ from: "", to: "" });
     setFilteredLogs([]);
-  };  useEffect(() => {
+  };
+
+  useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_JSONSERVER_URL}/logs`)
       .then((res) => {
@@ -20,7 +26,9 @@ import axios from "axios";const CheckPatientsHistory = () => {
         setFilteredLogs([]);
       })
       .catch(console.error);
-  }, []);  const handleFilter = () => {
+  }, []);
+
+  const handleFilter = () => {
     const filtered = logs.filter((log) => {
       const nameMatch =
         patientName === "" ||
@@ -33,9 +41,15 @@ import axios from "axios";const CheckPatientsHistory = () => {
       return nameMatch && fromMatch && toMatch;
     });
     setFilteredLogs(filtered);
-  };  const handleDownloadPDF = () => {
-    const doc = new jsPDF();    doc.setFontSize(16);
-    doc.text("Patient Emotional History", 14, 20);    const tableData = filteredLogs.map((log) => [
+  };
+
+  const handleDownloadPDF = () => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("Patient Emotional History", 14, 20);
+
+    const tableData = filteredLogs.map((log) => [
       log.patientName,
       log.date,
       log.nameId,
@@ -46,8 +60,12 @@ import axios from "axios";const CheckPatientsHistory = () => {
       body: tableData,
       styles: { fontSize: 10 },
       headStyles: { fillColor: [92, 128, 188] },
-    });    doc.save("patient-history.pdf");
-  };  return (
+    });
+
+    doc.save("patient-history.pdf");
+  };
+
+  return (
     <div className="history-container">
       <div className="history-patient-content">
         <h2 className="history-title">Check Patient's History</h2>        <div className="filters">

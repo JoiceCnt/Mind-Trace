@@ -24,7 +24,6 @@ function PatientLogs() {
       });
   }, [patientId]);
 
-
   // Filter by date
   const handleFilter = () => {
     const from = new Date(dateFrom);
