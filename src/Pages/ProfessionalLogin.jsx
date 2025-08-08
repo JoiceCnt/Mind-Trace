@@ -8,40 +8,18 @@ function ProfessionalLogin() {
   const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    try {
-      const API_URL = import.meta.env.VITE_JSONSERVER_URL;
-      const res = await fetch(`${API_URL}/professionals?username=${user}`);
-
-      const contentType = res.headers.get("content-type");
-      if (
-        !res.ok ||
-        !contentType ||
-        !contentType.includes("application/json")
-      ) {
-        const text = await res.text(); // Leemos el contenido aunque sea HTML
-        console.error("Respuesta inesperada del servidor:", text);
-        throw new Error("El servidor respondió con contenido no válido.");
-      }
-
-      const data = await res.json();
-
-      if (data.length > 0) {
-        const professional = data[0];
-        localStorage.setItem("professionalId", professional.id);
-        localStorage.setItem("professionalName", professional.name);
-        setLogged(true);
-        setTimeout(() => {
-          navigate("/Professional-Home");
-        }, 1000);
-      } else {
-        setErrorMsg("Invalid username or password. Please try again.");
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-      setErrorMsg("Login failed. Please try again.");
+    // Apenas verifica se ambos os campos têm conteúdo
+    if (user.trim() && password.trim()) {
+      localStorage.setItem("professionalName", user);
+      setLogged(true);
+      setTimeout(() => {
+        navigate("/Professional-Home");
+      }, 1000);
+    } else {
+      setErrorMsg("Please enter username and password to continue.");
     }
   };
 
