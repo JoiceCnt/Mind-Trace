@@ -42,7 +42,7 @@ const Navbar = () => {
     location.pathname.includes("/CheckPatientsHistory");
 
   const ProfessionalLogin = location.pathname.includes("/login/professional");
-  const ProfessionalHome = location.pathname.includes("/Professional-Home")
+  const ProfessionalHome = location.pathname.includes("/Professional-Home") || location.pathname.includes("/professional-home");
 
   const showHomeButton = isPatient || isProfessional;
 
