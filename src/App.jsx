@@ -6,7 +6,8 @@ import { Routes, Route } from "react-router-dom";
 import EmotionSelectorPage from "./Pages/EmotionSelectorPage";
 import PatientLogin from "./Pages/PatientLogin";
 import EmotionLog from "./Pages/EmotionLog.jsx";
-import { useEffect, useLocation } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 
 import PatientLogs from "./Pages/PatientLogs.jsx";
