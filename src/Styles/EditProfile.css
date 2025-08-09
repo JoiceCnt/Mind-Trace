@@ -3,29 +3,22 @@
   justify-content: center;
   align-items: center;
   width: 40%;
-  max-width: 900px;
-  padding: 20px 30px;
-  margin: 0 auto;
+  padding: 20px;
   text-align: center;
   background-color: #F9FAFB;
-  min-height: 65vh;
+  height: 90%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  box-sizing: border-box;
-  overflow-y: hidden;
 }
 .edit-profile-content {
-  width: 100%;
+  width: 70%;
   max-width: 1000px;
-  padding: 15px 20px;
-  border-radius: 12px;
+  background-color: #ffffff;
+  padding: 40px 60px;
+  border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
 }
 .edit-profile-title {
-  font-size: 22px;
+  font-size: 28px;
   color: #5C80BC;
   margin-bottom: 15px;
   margin-top: 0px;
@@ -50,24 +43,21 @@
   border: 1px solid #E0E0E0;
   font-size: 14px;
   background-color: #F9FAFB;
-  border-radius: 10px 0;
+  border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: border 0.3s;
   text-align: left;
 }
 
 .edit-input {
-  width: 90%;
+  width: 85%;
   padding: 10px;
-  margin-bottom: 10px;
-  margin-top: 4px;
+  margin-bottom: 5px;
   border: 1px solid #E0E0E0;
-  font-size: 14px;
-  border-radius: 10px 0;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: border 0.3s, background-color 0.3s;
-  font-family: inherit;
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: #F9FAFB;
+  transition: border 0.3s;
 }
 
 .edit-input:focus {
