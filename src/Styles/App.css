@@ -40,7 +40,7 @@ body, #root {
   justify-content: space-between;
 }
 .logo {
-  height: 70px;
+  height: 60px;
   width: auto;
 }
 .logo-button {
@@ -53,6 +53,8 @@ body, #root {
   margin: 0;
   cursor: pointer;
   transition: all 0.2s ease;
+  height: 100%;
+  max-height: 80px;
 }
 .navbar-actions {
   display: flex;
