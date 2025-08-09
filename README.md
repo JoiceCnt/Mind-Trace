@@ -1,7 +1,7 @@
 # Mind-Trace
 
 📌 Overview
-The Emotion Tracker is a Single Page Application (SPA) built with React to support and strengthen the relationship between a counselor and their patients.
+Mind trace is a Single Page Application (SPA) built with React to support and strengthen the relationship between a counselor and their patients.
 It serves as a bridge between therapy sessions, allowing both parties to stay connected and informed about the patient’s emotional journey.
 
 The platform has two types of users:
