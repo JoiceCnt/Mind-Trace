@@ -7,17 +7,22 @@ function SubmissionConfirmation() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "80vh",
-        overflow: "hidden",
+        width: "40%",
+        padding: "20px",
+        textAlign: "center",
+        backgroundColor: "#F9FAFB",
+        height: "90%",
+        fontFamily: "Segoe UI', Tahoma, Geneva, Verdana, sansSerif",
       }}
     >
       <div
         style={{
-          padding: "1.4rem",
-          textAlign: "center",
-          minHeight: "20vh",
-          width: "100%",
-          maxWidth: "500px",
+          width: "70%",
+          maxWidth: "1000px",
+          backgroundColor:" #ffffff",
+          padding: "40px 60px",
+          borderRadius: "16px",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
         }}
       >
         <h1 style={{color: "#5c80bc"}}>Message sent successfully ✅</h1>

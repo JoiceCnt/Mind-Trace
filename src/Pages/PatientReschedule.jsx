@@ -99,81 +99,94 @@ function PatientReschedule() {
   return (
     <div
       style={{
-        width: "60%",
-        margin: "0 auto",
+        display: "flex",
         justifyContent: "center",
-        minHeight: "25vh",
-        flexDirection: "column",
-        backgroundColor: "#F9F9F9",
-        borderRadius: "8px",
-        padding: "1rem",
+        alignItems: "center",
+        width: "40%",
+        maxHeight: "1300px",
+        padding: "20px",
+        textAlign: "center",
+        backgroundColor: "#F9FAFB",
+        height: "90%",
+        fontFamily: "Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       }}
     >
-      <h3
-        style={{ fontSize: "25px", marginBottom: "10px", textAlign: "center" }}
-      >
-        Reschedule Appointment
-      </h3>
-
-      <h2
-        style={{
-          fontSize: "20px",
-          marginBottom: "30px",
-          textAlign: "center",
-          padding: "10px 20px",
-        }}
-      >
-        <em>Select a new date:</em>
-      </h2>
-
       <div
         style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "2rem",
-        }}
-      >
-        <Calendar value={selectedDate} onChange={setSelectedDate} />
-      </div>
+          width: "90%",
+          maxWidth: "1100px",
+          backgroundColor: "#ffffff",
+          padding: "40px 60px",
+          borderRadius: "16px",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+        }}>
+        <h3
+          style={{ fontSize: "25px", marginBottom: "10px", textAlign: "center", color: "#5c80bc" }}
+        >
+          Reschedule Appointment
+        </h3>
 
-      <h2
-        style={{ fontSize: "20px", marginBottom: "20px", textAlign: "center" }}
-      >
-        <em>Available Hours on {displayDate}</em>
-      </h2>
-
-      {availableHours.length === 0 ? (
-        <h2 style={{ color: "red", textAlign: "center" }}>
-          No hours available
+        <h2
+          style={{
+            fontSize: "20px",
+            marginBottom: "10px",
+            textAlign: "center",
+            padding: "10px 20px",
+            color: "#5c80bc"
+          }}
+        >
+          <em>Select a new date:</em>
         </h2>
-      ) : (
+
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            flexWrap: "wrap",
-            gap: "10px",
-            marginTop: "10px",
+            marginBottom: "2rem",
           }}
         >
-          {availableHours.map((hour) => (
-            <button
-              key={hour}
-              onClick={() => handleReschedule(hour)}
-              style={{
-                padding: "10px 15px",
-                backgroundColor: "#5E7EBE",
-                color: "#fff",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-            >
-              {hour}
-            </button>
-          ))}
+          <Calendar value={selectedDate} onChange={setSelectedDate} />
         </div>
-      )}
+
+        <h2
+          style={{ fontSize: "20px", marginBottom: "20px", textAlign: "center", color: "#5c80bc" }}
+        >
+          <em>Available Hours on {displayDate}</em>
+        </h2>
+
+        {availableHours.length === 0 ? (
+          <h2 style={{ color: "red", textAlign: "center" }}>
+            No hours available
+          </h2>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexWrap: "wrap",
+              gap: "10px",
+              marginTop: "10px",
+            }}
+          >
+            {availableHours.map((hour) => (
+              <button
+                key={hour}
+                onClick={() => handleReschedule(hour)}
+                style={{
+                  padding: "10px 15px",
+                  backgroundColor: "#5E7EBE",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                }}
+              >
+                {hour}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
