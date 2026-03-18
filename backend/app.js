@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
-const PORT = 5005;
+const PORT = process.env.PORT || 5005;
 
 server.use(middlewares);
 server.use(morgan("dev"));
@@ -34,6 +34,6 @@ server.delete("/appointments/:id", (req, res) => {
 
 server.use(router);
 
-server.listen(PORT, () => {
-  console.log(`JSON Server is running on http://localhost:${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`JSON Server is running on port ${PORT}`);
 });
