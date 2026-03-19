@@ -117,7 +117,7 @@ function PatientLogin() {
             }}
           >
             <input
-              type="text"
+              type="email"
               placeholder="Email"
               value={user}
               onChange={(e) => setUser(e.target.value)}
