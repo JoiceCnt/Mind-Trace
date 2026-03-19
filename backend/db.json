@@ -1,0 +1,816 @@
+{
+  "emojis": [
+    {
+      "id": "e01",
+      "emoji": "😊",
+      "name": "Happy",
+      "prompt": "That's great to see! What brought you joy today?"
+    },
+    {
+      "id": "e02",
+      "emoji": "😢",
+      "name": "Sad",
+      "prompt": "Sadness showed up today. Would you like to share why?"
+    },
+    {
+      "id": "e03",
+      "emoji": "😠",
+      "name": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?"
+    },
+    {
+      "id": "e04",
+      "emoji": "😱",
+      "name": "Anxious",
+      "prompt": "Feeling anxious today — care to share what’s causing it?"
+    },
+    {
+      "id": "e05",
+      "emoji": "😴",
+      "name": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?"
+    },
+    {
+      "id": "e06",
+      "emoji": "😍",
+      "name": "In love",
+      "prompt": "Feeling in love today — what made your heart feel full?"
+    },
+    {
+      "id": "e07",
+      "emoji": "😕",
+      "name": "Confused",
+      "prompt": "Feeling a bit unsure? Want to explore what’s behind it?"
+    },
+    {
+      "id": "e08",
+      "emoji": "😨",
+      "name": "Fearful",
+      "prompt": "Fear can feel heavy. Would you like to share what’s behind it today?"
+    },
+    {
+      "id": "e09",
+      "emoji": "😎",
+      "name": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?"
+    },
+    {
+      "id": "e10",
+      "emoji": "😌",
+      "name": "Calm",
+      "prompt": "Calmness is valuable. What helped you feel at peace today?"
+    },
+    {
+      "id": "e11",
+      "emoji": "🤯",
+      "name": "Overwhelmed",
+      "prompt": "Feeling overwhelmed can be tough. Want to unpack what’s going on?"
+    },
+    {
+      "id": "e12",
+      "emoji": "🤗",
+      "name": "Grateful",
+      "prompt": "Gratitude is beautiful. What are you thankful for today?"
+    },
+    {
+      "id": "e13",
+      "emoji": "😤",
+      "name": "Frustrated",
+      "prompt": "Frustration showed up today. What’s been bothering you?"
+    },
+    {
+      "id": "e14",
+      "emoji": "😔",
+      "name": "Disappointed",
+      "prompt": "Disappointment can weigh us down. Want to share what led to it?"
+    },
+    {
+      "id": "e15",
+      "emoji": "😅",
+      "name": "Nervous",
+      "prompt": "Feeling nervous? Want to talk about what’s making you feel that way?"
+    },
+    {
+      "id": "e16",
+      "emoji": "🤔",
+      "name": "Reflective",
+      "prompt": "You’re feeling reflective today. What’s been on your mind?"
+    },
+    {
+      "id": "e17",
+      "emoji": "😇",
+      "name": "Proud",
+      "prompt": "Pride can be empowering. What accomplishment are you proud of today?"
+    },
+    {
+      "id": "e18",
+      "emoji": "🤒",
+      "name": "Unwell",
+      "prompt": "You’re not feeling well — would it help to describe how?"
+    },
+    {
+      "id": "e19",
+      "emoji": "🥺",
+      "name": "Vulnerable",
+      "prompt": "Vulnerability takes courage. Want to share what you’re going through?"
+    },
+    {
+      "id": "e20",
+      "emoji": "🤩",
+      "name": "Excited",
+      "prompt": "You’re feeling excited — what’s making today feel special?"
+    }
+  ],
+  "logs": [
+    {
+      "patientId": "11",
+      "date": "2025-08-02",
+      "emojiId": "e03",
+      "nameId": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?",
+      "description": "I am upset with this project",
+      "id": 1
+    },
+    {
+      "patientId": "11",
+      "date": "2025-08-02",
+      "emojiId": "e09",
+      "nameId": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?",
+      "description": "Now its working",
+      "id": 2
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-04",
+      "emojiId": "e08",
+      "nameId": "Fearful",
+      "prompt": "Fear can feel heavy. Would you like to share what’s behind it today?",
+      "description": "I am afraid of css\n",
+      "id": 3
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-04",
+      "emojiId": "e17",
+      "nameId": "Proud",
+      "prompt": "Pride can be empowering. What accomplishment are you proud of today?",
+      "description": "Glad we are almost done with the project\n",
+      "id": 4
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-04",
+      "emojiId": "e09",
+      "nameId": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?",
+      "description": "feeling freat",
+      "id": 5
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-04",
+      "emojiId": "e09",
+      "nameId": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?",
+      "description": "",
+      "id": 6
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-04",
+      "emojiId": "e09",
+      "nameId": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?",
+      "description": "glad ",
+      "id": 7
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-04",
+      "emojiId": "e05",
+      "nameId": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?",
+      "description": "very tired of this life",
+      "id": 8
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-04",
+      "emojiId": "e05",
+      "nameId": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?",
+      "description": "so tired\n",
+      "id": 9
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-05",
+      "emojiId": "e05",
+      "nameId": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?",
+      "description": "dasd",
+      "id": 10
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-05",
+      "emojiId": "e09",
+      "nameId": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?",
+      "description": "Things are getting better",
+      "id": 11
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-05",
+      "emojiId": "e05",
+      "nameId": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?",
+      "description": "",
+      "id": 12
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-05",
+      "emojiId": "e04",
+      "nameId": "Anxious",
+      "prompt": "Feeling anxious today — care to share what’s causing it?",
+      "description": "",
+      "id": 13
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-05",
+      "emojiId": "e04",
+      "nameId": "Anxious",
+      "prompt": "Feeling anxious today — care to share what’s causing it?",
+      "description": "app is on",
+      "id": 14
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-05",
+      "emojiId": "e05",
+      "nameId": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?",
+      "description": "I wanna sleep\n",
+      "id": 15
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-05",
+      "emojiId": "e14",
+      "nameId": "Disappointed",
+      "prompt": "Disappointment can weigh us down. Want to share what led to it?",
+      "description": "csasdf",
+      "id": 16
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-06",
+      "emojiId": "e08",
+      "nameId": "Fearful",
+      "prompt": "Fear can feel heavy. Would you like to share what’s behind it today?",
+      "description": "shdqhsd",
+      "id": 17
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-06",
+      "emojiId": "e09",
+      "nameId": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?",
+      "description": "we are getting there\n",
+      "id": 18
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-07",
+      "emojiId": "e03",
+      "nameId": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?",
+      "description": "xsac",
+      "id": 19
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-07",
+      "emojiId": "e09",
+      "nameId": "Confident",
+      "prompt": "You’re feeling confident — what gave you that boost today?",
+      "description": "dfsaff",
+      "id": 20
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-07",
+      "emojiId": "e04",
+      "nameId": "Anxious",
+      "prompt": "Feeling anxious today — care to share what’s causing it?",
+      "description": "wtf",
+      "id": 21
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice Conte",
+      "date": "2025-08-07",
+      "emojiId": "e03",
+      "nameId": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?",
+      "description": "not working",
+      "id": 22
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice ",
+      "date": "2025-08-07",
+      "emojiId": "e05",
+      "nameId": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?",
+      "description": "zcasc",
+      "id": 23
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-07",
+      "emojiId": "e03",
+      "nameId": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?",
+      "description": "funciona????",
+      "id": 24
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-07",
+      "emojiId": "e10",
+      "nameId": "Calm",
+      "prompt": "Calmness is valuable. What helped you feel at peace today?",
+      "description": "siiii",
+      "id": 25
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-08",
+      "emojiId": "e05",
+      "nameId": "Tired",
+      "prompt": "You’re feeling tired today. Want to talk about what’s been draining you?",
+      "description": "tired!!",
+      "id": 26
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-08",
+      "emojiId": "e02",
+      "nameId": "Sad",
+      "prompt": "Sadness showed up today. Would you like to share why?",
+      "description": "scroll",
+      "id": 27
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-08",
+      "emojiId": "e02",
+      "nameId": "Sad",
+      "prompt": "Sadness showed up today. Would you like to share why?",
+      "description": "sad",
+      "id": 28
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-08",
+      "emojiId": "e03",
+      "nameId": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?",
+      "description": "hello\"\"",
+      "id": 29
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-08",
+      "emojiId": "e02",
+      "nameId": "Sad",
+      "prompt": "Sadness showed up today. Would you like to share why?",
+      "description": "super!!!!",
+      "id": 30
+    },
+    {
+      "patientId": "25",
+      "patientName": "Jose Gonzalez",
+      "date": "2025-08-08",
+      "emojiId": "e03",
+      "nameId": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?",
+      "description": "Ich spreche Deutsch!",
+      "id": 31
+    },
+    {
+      "patientId": "24",
+      "patientName": "Noemi Navarro",
+      "date": "2025-08-08",
+      "emojiId": "e07",
+      "nameId": "Confused",
+      "prompt": "Feeling a bit unsure? Want to explore what’s behind it?",
+      "description": "ewv ",
+      "id": 32
+    }
+  ],
+  "appointments": [
+    {
+      "date": "2025-08-05",
+      "time": "15:00",
+      "status": "available",
+      "patient": null,
+      "note": "",
+      "id": 5
+    },
+    {
+      "date": "2025-08-05",
+      "time": "16:00",
+      "status": "booked",
+      "patientId": "14",
+      "note": "",
+      "id": 20
+    },
+    {
+      "date": "2025-08-07",
+      "time": "15:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 24
+    },
+    {
+      "date": "2025-08-12",
+      "time": "11:00",
+      "status": "booked",
+      "patientId": "11",
+      "note": "",
+      "id": 25
+    },
+    {
+      "date": "2025-08-06",
+      "time": "11:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 26
+    },
+    {
+      "date": "2025-08-04",
+      "time": "10:00",
+      "status": "booked",
+      "patientId": "7",
+      "note": "",
+      "id": 27
+    },
+    {
+      "date": "2025-08-07",
+      "time": "11:00",
+      "status": "booked",
+      "patientId": "10",
+      "note": "",
+      "id": 28
+    },
+    {
+      "date": "2025-07-28",
+      "time": "14:00",
+      "status": "booked",
+      "patientId": "11",
+      "note": "",
+      "id": 31
+    },
+    {
+      "date": "2025-08-08",
+      "time": "10:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 36
+    },
+    {
+      "date": "2025-08-08",
+      "time": "11:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 37
+    },
+    {
+      "date": "2025-08-08",
+      "time": "15:00",
+      "status": "booked",
+      "patientId": "24",
+      "note": "",
+      "id": 38
+    },
+    {
+      "date": "2025-08-08",
+      "time": "09:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 39
+    },
+    {
+      "date": "2025-08-12",
+      "time": "14:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 41
+    },
+    {
+      "date": "2025-08-13",
+      "time": "11:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 43
+    },
+    {
+      "date": "2025-08-13",
+      "time": "14:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 44
+    },
+    {
+      "date": "2025-08-08",
+      "time": "12:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 45
+    },
+    {
+      "date": "2025-08-08",
+      "time": "16:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 47
+    },
+    {
+      "date": "2025-08-08",
+      "time": "17:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 48
+    },
+    {
+      "date": "2025-08-07",
+      "time": "12:00",
+      "status": "booked",
+      "patientId": "11",
+      "note": "",
+      "id": 49
+    },
+    {
+      "date": "2025-08-07",
+      "time": "14:00",
+      "status": "booked",
+      "patientId": "18",
+      "note": "",
+      "id": 50
+    },
+    {
+      "date": "2025-08-07",
+      "time": "17:00",
+      "status": "booked",
+      "patientId": "4",
+      "note": "",
+      "id": 51
+    },
+    {
+      "date": "2025-08-14",
+      "time": "12:00",
+      "status": "booked",
+      "patientId": "10",
+      "note": "",
+      "id": 52
+    },
+    {
+      "date": "2025-08-14",
+      "time": "14:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 53
+    },
+    {
+      "date": "2025-08-12",
+      "time": "13:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 54
+    },
+    {
+      "date": "2025-08-15",
+      "time": "14:00",
+      "status": "available",
+      "patientId": null,
+      "note": "",
+      "id": 55
+    }
+  ],
+  "patients": [
+    {
+      "id": 1,
+      "name": "Emma Johnson",
+      "email": "emma.johnson@example.com",
+      "birthDate": "1990-05-12"
+    },
+    {
+      "id": 2,
+      "name": "Liam Smith",
+      "email": "liam.smith@example.com",
+      "birthDate": "1985-10-03"
+    },
+    {
+      "id": 3,
+      "name": "Olivia Brown",
+      "email": "olivia.brown@example.com",
+      "birthDate": "1992-07-20"
+    },
+    {
+      "id": 4,
+      "name": "Noah Davis",
+      "email": "noah.davis@example.com",
+      "birthDate": "1988-03-17"
+    },
+    {
+      "id": 5,
+      "name": "Ava Wilson",
+      "email": "ava.wilson@example.com",
+      "birthDate": "1991-09-30"
+    },
+    {
+      "id": 6,
+      "name": "Ethan Taylor",
+      "email": "ethan.taylor@example.com",
+      "birthDate": "1989-12-22"
+    },
+    {
+      "id": 7,
+      "name": "Sophia Miller",
+      "email": "sophia.miller@example.com",
+      "birthDate": "1993-04-08"
+    },
+    {
+      "id": 8,
+      "name": "James Anderson",
+      "email": "james.anderson@example.com",
+      "birthDate": "1984-06-14"
+    },
+    {
+      "id": 9,
+      "name": "Isabella Thomas",
+      "email": "isabella.thomas@example.com",
+      "birthDate": "1986-01-25"
+    },
+    {
+      "id": 10,
+      "name": "Benjamin Jackson",
+      "email": "benjamin.jackson@example.com",
+      "birthDate": "1995-02-18"
+    },
+    {
+      "name": "Joice ",
+      "username": "Joice.conte",
+      "password": "1234",
+      "id": 11,
+      "email": "joiceconte@gmail.com",
+      "birthday": "0086-03-22"
+    },
+    {
+      "name": "Josh",
+      "username": "Josh.sur",
+      "password": "1234",
+      "id": 12
+    },
+    {
+      "name": "João Stock",
+      "username": "Joao.stock",
+      "password": "1234",
+      "id": 14
+    },
+    {
+      "name": "Larissa Santos",
+      "username": "Lari.santos",
+      "password": "1234",
+      "email": "larisantos@gmail.com",
+      "birthDate": "1986-01-01",
+      "id": 15
+    },
+    {
+      "name": "Kingsley Kanu",
+      "username": "Kingsley.kanu",
+      "password": "1234",
+      "email": "KingsleyKanu@gmail.com",
+      "birthDate": "1990-01-01",
+      "id": 16
+    },
+    {
+      "name": "Alexandre Encarnação",
+      "username": "Alexandre.encarnacao",
+      "password": "1234",
+      "email": "alexandre.encarnacao@gmail.com",
+      "birthDate": "1990-01-01",
+      "id": 17
+    },
+    {
+      "name": "Maria Daniela",
+      "username": "Maria.daniela",
+      "password": "1234",
+      "email": "mariadaniela@gmail.com",
+      "birthDate": "1990-01-01",
+      "id": 18
+    },
+    {
+      "name": "Daniel Skonetzky",
+      "username": "Daniel.skonetzky",
+      "password": "1234",
+      "email": "Danielskonetzky@gmail.com",
+      "birthDate": "1990-01-01",
+      "id": 19
+    },
+    {
+      "name": "kostantinos kazoullis",
+      "username": "kostantinos.kazoullis",
+      "password": "1234",
+      "email": "kostantinoskazoullis@gmail.com",
+      "birthDate": "1986-02-01",
+      "id": 20
+    },
+    {
+      "name": "Ricardo Félix",
+      "username": "Ricardo.felix",
+      "password": "1234",
+      "email": "ricardofelix@gmail.com",
+      "birthDate": "1985-03-01",
+      "id": 21
+    },
+    {
+      "name": "Thathsara Abayawardana",
+      "username": "Thathsara.abayawardana",
+      "password": "1234",
+      "email": "Thathsaraabayawardana@gmail.com",
+      "birthDate": "1985-10-25",
+      "id": 22
+    },
+    {
+      "name": "Timal Muralage",
+      "username": "Timal.muralage",
+      "password": "1234",
+      "email": "Timalmuralage@gmail.com",
+      "birthDate": "1996-05-03",
+      "id": 23
+    },
+    {
+      "name": "Noemi Navarro",
+      "username": "Noemi.navarro",
+      "password": "1234",
+      "email": "noeminavarro@gmail.com",
+      "birthDate": "1999-10-27",
+      "id": 24
+    },
+    {
+      "name": "Jose Gonzalez",
+      "username": "Jose.gonzalez",
+      "password": "1234",
+      "email": "j.gonzalez@gmail.com",
+      "birthDate": "1999-10-27",
+      "id": 25
+    }
+  ]
+}
