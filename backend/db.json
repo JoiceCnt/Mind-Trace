@@ -439,6 +439,26 @@
       "prompt": "Feeling a bit unsure? Want to explore what’s behind it?",
       "description": "ewv ",
       "id": 32
+    },
+    {
+      "patientId": "11",
+      "patientName": "Joice ",
+      "date": "2026-03-19",
+      "emojiId": "e03",
+      "nameId": "Angry",
+      "prompt": "I noticed you're feeling angry today. What triggered this emotion?",
+      "description": "not feeling well",
+      "id": 33
+    },
+    {
+      "patientId": "26",
+      "patientName": "User Testing",
+      "date": "2026-03-19",
+      "emojiId": "e20",
+      "nameId": "Excited",
+      "prompt": "You’re feeling excited — what’s making today feel special?",
+      "description": "",
+      "id": 34
     }
   ],
   "appointments": [
@@ -811,6 +831,14 @@
       "email": "j.gonzalez@gmail.com",
       "birthDate": "1999-10-27",
       "id": 25
+    },
+    {
+      "name": "User Testing",
+      "username": "Username",
+      "password": "Password",
+      "email": "email@email.com",
+      "birthDate": "2016-10-12",
+      "id": 26
     }
   ]
 }

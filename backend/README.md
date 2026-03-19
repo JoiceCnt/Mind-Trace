@@ -8,7 +8,7 @@ npm run dev
 
 > Remember to install the dependencies if you need to with `npm i`
 
-### You're probably gonna have to work only on the db.json file 😺
+### You're probably gonna have to work only on the db.json file
 
 ## For Cyclic (or every situation where you cannot write to db.json)
 
