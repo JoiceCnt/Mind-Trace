@@ -37,17 +37,20 @@ function PatientLogin() {
 
       if (data.length > 0) {
         const patient = data[0];
+
         if (patient.password === password) {
           localStorage.setItem("patientId", patient.id);
           localStorage.setItem("patientName", patient.name);
           setLogged(true);
-        }
 
-        setTimeout(() => {
-          navigate("/EmotionSelectorPage");
-        }, 1000);
+          setTimeout(() => {
+            navigate("/EmotionSelectorPage");
+          }, 1000);
+        } else {
+          setErrorMsg("Wrong password");
+        }
       } else {
-        setErrorMsg("Invalid username or password. Please try again.");
+        setErrorMsg("User not found");
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -115,7 +118,7 @@ function PatientLogin() {
           >
             <input
               type="text"
-              placeholder="User"
+              placeholder="Email"
               value={user}
               onChange={(e) => setUser(e.target.value)}
               required
