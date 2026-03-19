@@ -19,7 +19,7 @@ function PatientLogin() {
 
       const API_URL = import.meta.env.VITE_JSONSERVER_URL;
 
-      const res = await fetch(`${API_URL}/patients?username=${user}`);
+      const res = await fetch(`${API_URL}/patients?email=${user}`);
 
       // Verificamos si la respuesta es JSON válida
       const contentType = res.headers.get("content-type");
@@ -28,7 +28,7 @@ function PatientLogin() {
         !contentType ||
         !contentType.includes("application/json")
       ) {
-        const text = await res.text(); // Leemos el contenido aunque sea HTML
+        const text = await res.text();
         console.error("Respuesta inesperada del servidor:", text);
         throw new Error("El servidor respondió con contenido no válido.");
       }
@@ -37,9 +37,12 @@ function PatientLogin() {
 
       if (data.length > 0) {
         const patient = data[0];
-        localStorage.setItem("patientId", patient.id);
-        localStorage.setItem("patientName", patient.name);
-        setLogged(true);
+        if (patient.password === password) {
+          localStorage.setItem("patientId", patient.id);
+          localStorage.setItem("patientName", patient.name);
+          setLogged(true);
+        }
+
         setTimeout(() => {
           navigate("/EmotionSelectorPage");
         }, 1000);
