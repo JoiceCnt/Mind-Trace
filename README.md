@@ -1,8 +1,8 @@
 # Mind-Trace
 
-📌 Overview
-Mind trace is a Single Page Application (SPA) built with React to support and strengthen the relationship between a counselor and their patients.
-It serves as a bridge between therapy sessions, allowing both parties to stay connected and informed about the patient’s emotional journey.
+- Overview
+  Mind trace is a Single Page Application (SPA) built with React to support and strengthen the relationship between a counselor and their patients.
+  It serves as a bridge between therapy sessions, allowing both parties to stay connected and informed about the patient’s emotional journey.
 
 The platform has two types of users:
 
@@ -45,9 +45,9 @@ The ability to download these logs ensures that they can be reviewed together in
 
 ---
 
-🎯 Main Features
-For Professionals
-Login to a secure dashboard.
+- Main Features
+  For Professionals
+  Login to a secure dashboard.
 
 Manage appointments via an interactive calendar.
 
@@ -76,9 +76,9 @@ DELETE··········· Cancel appointments or remove logs········�
 
 ---
 
-🔌 API & Data Structure
-The backend is deployed on Render:
-Base URL: https://backend-repo-tjm4.onrender.com
+- API & Data Structure
+  The backend is deployed on Render:
+  Base URL: https://backend-repo-tjm4.onrender.com
 
 Main resources:
 
@@ -107,9 +107,9 @@ Edit
 
 ---
 
-🛠 Tools & Technologies
-Frontend
-React – SPA structure & component-based UI.
+- Tools & Technologies
+  Frontend
+  React – SPA structure & component-based UI.
 
 React Router DOM – Multi-page navigation without reloads.
 
@@ -131,9 +131,9 @@ Environment Variables – .env.local for local dev, Netlify environment for prod
 
 ---
 
-🚀 How to Run Locally
+- How to Run Locally
 
-1️⃣ Clone Repositories
+1- Clone Repositories
 bash
 Copy
 Edit
@@ -147,17 +147,17 @@ cd <frontend-Mind-Trace-folder>
 
 git clone <https://github.com/JoiceCnt/Backend_repo>
 cd <backend-repo-folder>
-2️⃣ Install Dependencies
+2️- Install Dependencies
 bash
 Copy
 Edit
 npm install
-3️⃣ Start Backend (Local)
+3️- Start Backend (Local)
 bash
 Copy
 Edit
 npx json-server --watch db.json --port 5005
-4️⃣ Start Frontend (Local)
+4️- Start Frontend (Local)
 bash
 Copy
 Edit
@@ -171,14 +171,14 @@ VITE_JSONSERVER_URL=http://localhost:5005
 
 ---
 
-🌐 Deployed Versions
-Frontend (Netlify): https://bucolic-quokka-36c2ae.netlify.app
+- Deployed Versions
+  Frontend (Netlify): https://bucolic-quokka-36c2ae.netlify.app
 
 Backend (Render): https://backend-repo-tjm4.onrender.com
 
 ---
 
-📌 Usage Instructions
+- Usage Instructions
 
 1. Professional login
 
@@ -210,10 +210,11 @@ Backend (Render): https://backend-repo-tjm4.onrender.com
 
 ---
 
-📊 Project Requirements Check
-✅ SPA with multiple views
-✅ Integrated with a mock backend API
-✅ Supports full CRUD operations
-✅ Deployed frontend & backend
-✅ Two separate GitHub repos
-✅ Meets all technical deliverables
+- Project Requirements Check
+
+* SPA with multiple views
+* Integrated with a mock backend API
+* Supports full CRUD operations
+* Deployed frontend & backend
+* Two separate GitHub repos
+* Meets all technical deliverables
